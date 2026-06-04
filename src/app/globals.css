@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
+/* ─── Brand Design Tokens ─────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand colours */
+  --color-navy:        #0B1F3A;
+  --color-navy-dark:   #071526;
+  --color-amber:       #C9893A;
+  --color-amber-light: #DDA85A;
+  --color-turquoise:   #3ABFC9;
+  --color-ivory:       #F5F1EA;
+  --color-ivory-dark:  #EDE7DC;
+
+  /* Semantic */
+  --background: var(--color-ivory);
+  --foreground: var(--color-navy);
+
+  /* Typography */
+  --font-display: var(--font-cormorant), 'Georgia', serif;
+  --font-body:    var(--font-outfit), 'Helvetica Neue', sans-serif;
+
+  /* Layout */
+  --section-padding-y: clamp(4rem, 8vw, 7rem);
+  --section-padding-x: clamp(1.25rem, 5vw, 5rem);
+
+  /* Transitions */
+  --transition-base:   200ms ease;
+  --transition-smooth: 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* ─── Tailwind v4 theme extension (CSS-first config) ─────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy:         var(--color-navy);
+  --color-navy-dark:    var(--color-navy-dark);
+  --color-amber:        var(--color-amber);
+  --color-amber-light:  var(--color-amber-light);
+  --color-turquoise:    var(--color-turquoise);
+  --color-ivory:        var(--color-ivory);
+  --color-ivory-dark:   var(--color-ivory-dark);
+  --color-background:   var(--background);
+  --color-foreground:   var(--foreground);
+  --font-display:       var(--font-display);
+  --font-body:          var(--font-body);
+  --font-sans:          var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base ────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-ivory);
+  color: var(--color-navy);
+  font-family: var(--font-body);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Typography helpers ─────────────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+
+/* ─── Utility: max-width container ──────────────────────────────── */
+.container-site {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--section-padding-x);
+  padding-right: var(--section-padding-x);
+}
+
+/* ─── Image placeholder (grey box until real images arrive) ──────── */
+.img-placeholder {
+  background: linear-gradient(135deg, #d1cec8 0%, #b8b4ad 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7a776f;
+  font-size: 0.8125rem;
+  font-family: var(--font-body);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
