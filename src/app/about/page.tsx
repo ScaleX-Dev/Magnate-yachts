@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ImgPlaceholder } from "@/components/ui/ImgPlaceholder";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
@@ -39,7 +39,15 @@ export default function AboutPage() {
       {/* Story */}
       <section className="bg-white">
         <div className="container-site py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <ImgPlaceholder label="Photograph — Galle Fort harbour, boats at anchor" aspectRatio="aspect-[4/3]" />
+          <div className="relative aspect-[4/3] w-full rounded-sm overflow-hidden">
+            <Image
+              src="https://images.unsplash.com/photo-1656347440710-70039fa0bd0a?q=80&w=1200&auto=format&fit=crop"
+              alt="Sailing yachts moored in a calm harbour"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
           <div className="flex flex-col gap-5">
             <h2
               className="text-2xl font-semibold text-[var(--color-navy)]"
@@ -85,10 +93,15 @@ export default function AboutPage() {
       {/* Team photo */}
       <section className="bg-white">
         <div className="container-site py-16">
-          <ImgPlaceholder
-            label="Photograph — the Magnate Yachts team, Galle dockside"
-            aspectRatio="aspect-[21/8]"
-          />
+          <div className="relative aspect-[21/8] w-full rounded-sm overflow-hidden">
+            <Image
+              src="https://images.unsplash.com/photo-1763151426912-92383702ab3f?q=80&w=2400&auto=format&fit=crop"
+              alt="Sailboats and yachts docked at the marina"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
           <p className="mt-4 text-xs text-[var(--color-navy)]/40 italic">
             Our team at Galle harbour.
           </p>
