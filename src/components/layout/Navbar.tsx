@@ -45,11 +45,11 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 shrink-0"
+            className="flex items-center shrink-0"
             aria-label="Magnate Yachts — home"
           >
             <span
-              className="font-display text-xl font-semibold tracking-wide text-[var(--color-navy)]"
+              className="text-sm font-semibold tracking-wide text-[var(--color-navy)] border border-[var(--color-navy)] px-3 py-1.5"
               style={{ fontFamily: "var(--font-display)" }}
             >
               MAGNATE YACHTS

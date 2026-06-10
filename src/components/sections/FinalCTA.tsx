@@ -14,15 +14,16 @@ export function FinalCTA() {
           We&apos;ll meet your boat. Everything from there is handled.
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
-          <Button href="/clearance" variant="primary" size="lg" arrow>
-            Arrange clearance
+          <Button href="/contact" variant="primary" size="lg" arrow>
+            Plan your stay
           </Button>
           <Button
             href="https://wa.me/94XXXXXXXXX"
             variant="outline"
             size="lg"
+            arrow
           >
-            WhatsApp us directly
+            Arriving on WhatsApp
           </Button>
         </div>
         <p className="text-white/30 text-xs">VHF 16 · Channel 16</p>

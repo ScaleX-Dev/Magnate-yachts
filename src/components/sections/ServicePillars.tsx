@@ -13,7 +13,7 @@ const PILLARS = [
   },
   {
     icon: Compass,
-    tag: "Your week ashore, and the boat in between",
+    tag: "At stay",
     title: "The island, shaped to you",
     items: [
       "A trip across the island, shaped to your crew",
@@ -24,7 +24,7 @@ const PILLARS = [
   },
   {
     icon: CheckSquare,
-    tag: "On commission",
+    tag: "On departure",
     title: "Clear out, on your timetable",
     items: [
       "Clear-out formalities lodged with the port",
@@ -42,14 +42,17 @@ export function ServicePillars() {
         {/* Intro */}
         <div className="mb-14 max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-4">
-            One agent. One island. One number to call.
+            The team · the whole stop
           </p>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[var(--color-navy)] leading-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[var(--color-navy)] leading-tight mb-5"
             style={{ fontFamily: "var(--font-display)" }}
           >
             From the moment you anchor down to the day you sail — every need on your boat, and on the island, handled by the same small team.
           </h2>
+          <p className="text-sm text-[var(--color-navy)]/60 leading-relaxed">
+            You won&apos;t be passed between an agent for paperwork, a separate driver for the hills, and a tour operator who doesn&apos;t know your boat. One number, one team, from your first call on VHF&nbsp;16 to the moment you clear out.
+          </p>
         </div>
 
         {/* Pillar grid */}
