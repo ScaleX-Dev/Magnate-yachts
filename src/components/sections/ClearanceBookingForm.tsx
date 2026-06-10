@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Flag } from "lucide-react";
+import Link from "next/link";
+import { Flag, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const MONTHS = [
@@ -16,9 +17,9 @@ const WINDOWS = [
 
 const TRIP_OPTIONS = [
   { value: "none",  label: "None",  sublabel: "Clearance only" },
-  { value: "3-day", label: "3-Day", sublabel: "from $—" },
-  { value: "5-day", label: "5-Day", sublabel: "from $—" },
-  { value: "7-day", label: "7-Day", sublabel: "from $—" },
+  { value: "3-day", label: "3-Day", sublabel: "from US $—" },
+  { value: "5-day", label: "5-Day", sublabel: "from US $—" },
+  { value: "7-day", label: "7-Day", sublabel: "from US $—" },
 ];
 
 const STEPS = [
@@ -35,274 +36,266 @@ export function ClearanceBookingForm() {
   const [trip, setTrip] = useState("none");
   const [payment, setPayment] = useState("deposit");
 
-  const scrollToSection = (id: string, step: number) => {
-    setActiveStep(step);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const tripLabel = TRIP_OPTIONS.find(t => t.value === trip)?.label ?? "—";
+
+  const scrollTo = (n: number) => {
+    setActiveStep(n);
+    document.getElementById(`step-${n}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <>
-      {/* Page header */}
+      {/* ── Page header ────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)] border-b border-[var(--color-ivory-dark)]">
-        <div className="container-site py-10">
+        <div className="container-site py-10 lg:py-14">
           <h1
-            className="text-3xl sm:text-4xl font-semibold text-[var(--color-navy)] mb-6"
+            className="text-3xl sm:text-4xl font-semibold text-[var(--color-navy)] mb-7"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Secure Magnate as your agent
           </h1>
 
           {/* Step indicator */}
-          <div className="flex items-center gap-2 flex-wrap">
-            {STEPS.map(({ n, label }) => (
-              <button
-                key={n}
-                onClick={() => scrollToSection(`step-${n}`, n)}
-                className={cn(
-                  "inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors",
-                  n === activeStep
-                    ? "bg-[var(--color-navy)] text-white"
-                    : "bg-white border border-[var(--color-ivory-dark)] text-[var(--color-navy)]/60 hover:border-[var(--color-navy)]/40"
+          <div className="flex flex-wrap items-center gap-2">
+            {STEPS.map(({ n, label }, i) => (
+              <div key={n} className="flex items-center gap-2">
+                <button
+                  onClick={() => scrollTo(n)}
+                  className={cn(
+                    "flex items-center gap-2 px-4 py-[9px] text-[13px] font-medium border transition-all duration-150",
+                    activeStep === n
+                      ? "bg-[var(--color-navy)] text-white border-[var(--color-navy)]"
+                      : "bg-white text-[var(--color-navy)]/50 border-[var(--color-ivory-dark)] hover:border-[var(--color-navy)]/20 hover:text-[var(--color-navy)]/75"
+                  )}
+                >
+                  <span className={cn("text-[11px] font-bold", activeStep === n ? "text-white/45" : "text-[var(--color-navy)]/20")}>
+                    {n}
+                  </span>
+                  {label}
+                </button>
+                {i < STEPS.length - 1 && (
+                  <span className="text-[var(--color-navy)]/15 text-xs hidden sm:inline">—</span>
                 )}
-              >
-                <span>{n}</span>
-                <span>{label}</span>
-              </button>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Two-column form + sidebar */}
-      <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
+      {/* ── Form + sidebar ──────────────────────────────────────────── */}
+      <section className="bg-white">
+        <div className="container-site py-12 lg:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-14 items-start">
 
-            {/* ── Left: form cards ── */}
-            <div className="flex flex-col gap-5">
+            {/* ── Left: form sections ─────────────────────────────── */}
+            <div className="flex flex-col gap-10">
 
-              {/* Card 1 — Your vessel */}
-              <div
-                id="step-1"
-                className="bg-white border border-[var(--color-ivory-dark)] rounded-sm p-6"
-                onFocus={() => setActiveStep(1)}
-              >
-                <h2 className="font-semibold text-[var(--color-navy)] mb-5">Your vessel</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Step 1 */}
+              <div id="step-1" className="scroll-mt-28">
+                <StepHeader n={1} label="Your vessel" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
                   <input
-                    className="form-input"
-                    placeholder="Vessel name"
                     value={vessel.name}
-                    onChange={(e) => setVessel({ ...vessel, name: e.target.value })}
+                    onChange={e => setVessel({ ...vessel, name: e.target.value })}
+                    placeholder="Vessel name"
+                    className="form-input"
                   />
                   <input
-                    className="form-input"
-                    placeholder="Type (sail / motor)"
                     value={vessel.type}
-                    onChange={(e) => setVessel({ ...vessel, type: e.target.value })}
+                    onChange={e => setVessel({ ...vessel, type: e.target.value })}
+                    placeholder="Type (sail / motor)"
+                    className="form-input"
                   />
                   <input
-                    className="form-input"
-                    placeholder="LOA & flag"
                     value={vessel.loa}
-                    onChange={(e) => setVessel({ ...vessel, loa: e.target.value })}
+                    onChange={e => setVessel({ ...vessel, loa: e.target.value })}
+                    placeholder="LOA & flag"
+                    className="form-input"
                   />
                   <input
-                    className="form-input"
-                    placeholder="Crew on board"
                     value={vessel.crew}
-                    onChange={(e) => setVessel({ ...vessel, crew: e.target.value })}
+                    onChange={e => setVessel({ ...vessel, crew: e.target.value })}
+                    placeholder="Crew on board"
+                    className="form-input"
                   />
                 </div>
               </div>
 
-              {/* Card 2 — Arrival */}
-              <div
-                id="step-2"
-                className="bg-white border border-[var(--color-ivory-dark)] rounded-sm p-6"
-                onFocus={() => setActiveStep(2)}
-              >
-                <h2 className="font-semibold text-[var(--color-navy)] mb-5">When will you arrive?</h2>
+              {/* Step 2 */}
+              <div id="step-2" className="scroll-mt-28">
+                <StepHeader n={2} label="When will you arrive?" />
 
-                {/* Warning banner */}
-                <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-sm px-4 py-3 mb-5">
-                  <Flag size={14} className="text-amber-700 shrink-0 mt-0.5" />
-                  <p className="text-sm text-amber-900 leading-relaxed">
-                    Passages slip with weather, so we ask for an approximate window — not a fixed date.
-                    Confirm exact arrival on VHF when you&apos;re close.
+                <div className="mt-6 flex items-start gap-3 bg-amber-50 border border-amber-200/70 p-4 mb-5">
+                  <Flag size={13} className="text-amber-600/80 shrink-0 mt-[2px]" />
+                  <p className="text-[12.5px] text-amber-800/80 leading-relaxed">
+                    <strong className="font-semibold">Passages slip with weather,</strong> so we ask for an approximate window — not a fixed date. Confirm exact arrival on VHF when you&apos;re close.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <select
-                    className="form-input"
                     value={arrival.month}
-                    onChange={(e) => setArrival({ ...arrival, month: e.target.value })}
+                    onChange={e => setArrival({ ...arrival, month: e.target.value })}
+                    className="form-input"
                   >
                     <option value="">Arrival month ▾</option>
-                    {MONTHS.map((m) => (
-                      <option key={m} value={m}>{m}</option>
-                    ))}
+                    {MONTHS.map(m => <option key={m} value={m}>{m}</option>)}
                   </select>
                   <select
-                    className="form-input"
                     value={arrival.window}
-                    onChange={(e) => setArrival({ ...arrival, window: e.target.value })}
+                    onChange={e => setArrival({ ...arrival, window: e.target.value })}
+                    className="form-input"
                   >
                     <option value="">Window ▾ (e.g. 2nd–3rd week)</option>
-                    {WINDOWS.map((w) => (
-                      <option key={w} value={w}>{w}</option>
-                    ))}
+                    {WINDOWS.map(w => <option key={w} value={w}>{w}</option>)}
                   </select>
                   <input
-                    className="form-input sm:col-span-2"
-                    placeholder="Last port / zarpe destination = Sri Lanka"
                     value={arrival.lastPort}
-                    onChange={(e) => setArrival({ ...arrival, lastPort: e.target.value })}
+                    onChange={e => setArrival({ ...arrival, lastPort: e.target.value })}
+                    placeholder="Last port / zarpe destination = Sri Lanka"
+                    className="form-input sm:col-span-2"
                   />
                 </div>
               </div>
 
-              {/* Card 3 — Add a trip */}
-              <div
-                id="step-3"
-                className="bg-white border border-[var(--color-ivory-dark)] rounded-sm p-6"
-                onFocus={() => setActiveStep(3)}
-              >
-                <div className="flex items-baseline gap-3 flex-wrap mb-5">
-                  <h2 className="font-semibold text-[var(--color-navy)]">Add a trip?</h2>
-                  <p className="text-sm text-[var(--color-navy)]/50">
+              {/* Step 3 */}
+              <div id="step-3" className="scroll-mt-28">
+                <StepHeader n={3} label="Add a trip?">
+                  <span className="text-[var(--color-navy)]/40 font-normal text-[12px] ml-1.5">
                     Optional — skip if you&apos;re just clearing through
-                  </p>
-                </div>
+                  </span>
+                </StepHeader>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {TRIP_OPTIONS.map(({ value, label, sublabel }) => (
-                    <button
+                    <label
                       key={value}
-                      onClick={() => setTrip(value)}
                       className={cn(
-                        "border rounded-sm p-4 text-left transition-colors",
+                        "flex flex-col gap-2 p-4 border cursor-pointer transition-all duration-150",
                         trip === value
-                          ? "border-[var(--color-navy)] bg-[var(--color-navy)]/[0.04]"
-                          : "border-[var(--color-ivory-dark)] hover:border-[var(--color-navy)]/30"
+                          ? "border-[var(--color-navy)] bg-[var(--color-navy)]/[0.025]"
+                          : "border-[var(--color-ivory-dark)] bg-white hover:border-[var(--color-navy)]/20"
                       )}
                     >
-                      <div
-                        className={cn(
-                          "w-4 h-4 rounded-full border-2 mb-3 flex items-center justify-center",
-                          trip === value
-                            ? "border-[var(--color-navy)] bg-[var(--color-navy)]"
-                            : "border-[var(--color-navy)]/30"
-                        )}
-                      >
-                        {trip === value && (
-                          <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                        )}
-                      </div>
-                      <p className="font-semibold text-[var(--color-navy)] text-sm">{label}</p>
-                      <p className="text-xs text-[var(--color-navy)]/50 mt-0.5">{sublabel}</p>
-                    </button>
+                      <input type="radio" name="trip" value={value} checked={trip === value} onChange={() => setTrip(value)} className="sr-only" />
+                      <RadioDot active={trip === value} />
+                      <span className="text-sm font-semibold text-[var(--color-navy)] mt-1">{label}</span>
+                      <span className="text-[11px] text-[var(--color-navy)]/40">{sublabel}</span>
+                    </label>
                   ))}
                 </div>
               </div>
 
-              {/* Card 4 — Payment */}
-              <div
-                id="step-4"
-                className="bg-white border border-[var(--color-ivory-dark)] rounded-sm p-6"
-                onFocus={() => setActiveStep(4)}
-              >
-                <h2 className="font-semibold text-[var(--color-navy)] mb-5">Payment</h2>
+              {/* Step 4 */}
+              <div id="step-4" className="scroll-mt-28">
+                <StepHeader n={4} label="Payment" />
 
-                {/* Deposit / full toggle */}
-                <div className="flex gap-3 mb-4 flex-wrap">
+                <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   {[
                     { value: "deposit", label: "Deposit now" },
-                    { value: "full",    label: "Pay in full"  },
+                    { value: "full",    label: "Pay in full" },
                   ].map(({ value, label }) => (
-                    <button
+                    <label
                       key={value}
-                      onClick={() => setPayment(value)}
                       className={cn(
-                        "inline-flex items-center gap-2.5 px-4 py-2.5 rounded-sm border text-sm font-medium transition-colors",
+                        "flex-1 flex items-center gap-3 px-4 py-3.5 border cursor-pointer transition-all duration-150",
                         payment === value
-                          ? "border-[var(--color-navy)] bg-[var(--color-navy)] text-white"
-                          : "border-[var(--color-ivory-dark)] text-[var(--color-navy)]/70 hover:border-[var(--color-navy)]/40"
+                          ? "border-[var(--color-navy)] bg-[var(--color-navy)]/[0.025]"
+                          : "border-[var(--color-ivory-dark)] bg-white hover:border-[var(--color-navy)]/20"
                       )}
                     >
-                      <span
-                        className={cn(
-                          "w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center shrink-0",
-                          payment === value ? "border-white" : "border-[var(--color-navy)]/40"
-                        )}
-                      >
-                        {payment === value && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-white block" />
-                        )}
-                      </span>
-                      {label}
-                    </button>
+                      <input type="radio" value={value} checked={payment === value} onChange={() => setPayment(value)} className="sr-only" />
+                      <RadioDot active={payment === value} />
+                      <span className="text-sm font-medium text-[var(--color-navy)]">{label}</span>
+                    </label>
                   ))}
                 </div>
 
-                {/* PayPal row */}
-                <div className="flex items-center gap-3 border border-[var(--color-ivory-dark)] rounded-sm px-4 py-3 mb-4">
-                  <span className="text-xs font-semibold text-[var(--color-navy)] border border-[var(--color-navy)]/20 px-2 py-1 rounded-sm tracking-wide">
-                    PayPal
-                  </span>
-                  <span className="text-sm text-[var(--color-navy)]/60">
-                    pay securely in USD / EUR
+                <div className="mt-3 px-5 py-4 border border-[var(--color-ivory-dark)] bg-[var(--color-ivory)]">
+                  <span className="text-sm text-[var(--color-navy)]/65">
+                    <span className="font-semibold text-[var(--color-navy)]/80">[ PayPal ]</span>
+                    {" "}pay securely in USD / EUR
                   </span>
                 </div>
 
-                <p className="text-xs text-[var(--color-navy)]/40 leading-relaxed">
-                  Refund &amp; cancellation policy shown clearly here — covers late arrival, no-show, and
-                  weather delays. (Policy TBC with Satush.)
+                <p className="mt-4 text-[11.5px] text-[var(--color-navy)]/35 leading-relaxed max-w-lg">
+                  Refund &amp; cancellation policy shown clearly here — covers late arrival, no-show, and weather delays.
                 </p>
               </div>
+
             </div>
 
-            {/* ── Right: sticky order summary ── */}
-            <div className="lg:sticky lg:top-24">
-              <div className="bg-white border border-[var(--color-ivory-dark)] rounded-sm p-6">
-                <h2 className="font-semibold text-[var(--color-navy)] mb-5">Order summary</h2>
+            {/* ── Right: Order summary ─────────────────────────────── */}
+            <aside className="lg:sticky lg:top-[88px]">
+              <div className="border border-[var(--color-ivory-dark)] p-6 bg-[var(--color-ivory)]">
+                <h3 className="text-[13.5px] font-semibold text-[var(--color-navy)] pb-4 mb-4 border-b border-[var(--color-ivory-dark)]">
+                  Order summary
+                </h3>
 
-                <div className="flex flex-col gap-3 mb-4">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-[var(--color-navy)]">Clearance package</span>
-                    <span className="font-medium text-[var(--color-navy)]">US $—</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-[var(--color-navy)]/50">Optional trip</span>
-                    <span className="text-[var(--color-navy)]/30">—</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-[var(--color-navy)]/50">Port dues (at cost)</span>
-                    <span className="text-[var(--color-navy)]/30">—</span>
-                  </div>
+                <div className="flex flex-col gap-3 pb-4 border-b border-[var(--color-ivory-dark)]">
+                  <SummaryRow label="Clearance package" value="US $—" />
+                  <SummaryRow label="Optional trip" value={trip !== "none" ? tripLabel : "—"} muted={trip === "none"} />
+                  <SummaryRow label="Port dues (at cost)" value="—" muted />
                 </div>
 
-                <div className="border-t border-[var(--color-ivory-dark)] pt-4 mb-5">
-                  <div className="flex items-center justify-between">
-                    <span className="font-semibold text-[var(--color-navy)]">Total (USD)</span>
-                    <span className="font-semibold text-[var(--color-navy)]">US $—</span>
-                  </div>
+                <div className="flex items-center justify-between py-4">
+                  <span className="text-[13px] font-semibold text-[var(--color-navy)]">Total (USD)</span>
+                  <span className="text-[13px] font-semibold text-[var(--color-navy)]">US $—</span>
                 </div>
 
-                <button className="w-full py-3.5 bg-[var(--color-navy)] text-white text-sm font-semibold rounded-sm hover:bg-[var(--color-navy-dark)] transition-colors mb-4">
+                <button className="w-full py-3.5 bg-[var(--color-navy)] text-white text-[13px] font-semibold hover:bg-[var(--color-navy-dark)] transition-colors duration-150">
                   Confirm &amp; pay
                 </button>
 
-                <p className="text-xs text-[var(--color-navy)]/40 leading-relaxed text-center">
+                <p className="mt-4 text-[11px] text-[var(--color-navy)]/35 leading-relaxed">
                   Confirmation and our document checklist arrive by email immediately.
                 </p>
               </div>
-            </div>
+
+              <p className="mt-4 text-center text-[12px] text-[var(--color-navy)]/40">
+                <Link href="/contact" className="hover:text-[var(--color-navy)]/65 transition-colors">
+                  Prefer to enquire first? Contact us →
+                </Link>
+              </p>
+            </aside>
 
           </div>
         </div>
       </section>
     </>
+  );
+}
+
+// ── helpers ─────────────────────────────────────────────────────────────────
+
+function StepHeader({ n, label, children }: { n: number; label: string; children?: React.ReactNode }) {
+  return (
+    <div className="flex flex-wrap items-center gap-2.5 pb-4 border-b border-[var(--color-ivory-dark)]">
+      <span className="text-[11px] font-bold text-[var(--color-navy)]/25">{n}</span>
+      <h2 className="text-[15px] font-semibold text-[var(--color-navy)]">{label}</h2>
+      {children}
+    </div>
+  );
+}
+
+function RadioDot({ active }: { active: boolean }) {
+  return (
+    <span className={cn(
+      "w-[14px] h-[14px] rounded-full border-2 flex items-center justify-center shrink-0 transition-colors duration-150",
+      active ? "border-[var(--color-navy)]" : "border-[var(--color-navy)]/20"
+    )}>
+      {active && <span className="w-[6px] h-[6px] rounded-full bg-[var(--color-navy)]" />}
+    </span>
+  );
+}
+
+function SummaryRow({ label, value, muted }: { label: string; value: string; muted?: boolean }) {
+  return (
+    <div className="flex items-center justify-between gap-4">
+      <span className="text-[12px] text-[var(--color-navy)]/50">{label}</span>
+      <span className={cn("text-[12px] font-medium", muted ? "text-[var(--color-navy)]/22" : "text-[var(--color-navy)]")}>
+        {value}
+      </span>
+    </div>
   );
 }

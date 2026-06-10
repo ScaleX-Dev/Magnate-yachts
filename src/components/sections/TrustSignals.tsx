@@ -10,7 +10,7 @@ const SIGNALS = [
   {
     icon: DollarSign,
     title: "Fixed published fee",
-    body: "One transparent fee. What you see is what you pay — no starting-high, no negotiation. Additional port dues shown separately at cost.",
+    body: "One transparent fee. What you see is what you pay — no starting-high, no negotiation. Port dues shown separately at cost.",
   },
   {
     icon: Ship,
@@ -22,20 +22,24 @@ const SIGNALS = [
 export function TrustSignals() {
   return (
     <section className="bg-[var(--color-navy)]">
-      <div className="container-site py-20">
-        <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-8">
-          The boat-side, while you&apos;re up there.
-        </p>
-        <p className="text-white/60 max-w-2xl text-sm leading-relaxed mb-12">
-          We&apos;re the people you&apos;ll have your first coffee on Sri Lankan soil with. Licensed agent. Fixed published fee. The same team that planned your week ashore is the same team that clears you out. Captains and favourite clients on the list say it the same way — they just didn&apos;t know it before they arrived.
-        </p>
+      <div className="container-site py-20 lg:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-12">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
+              The boat-side, while you&apos;re up there.
+            </p>
+            <p className="text-white/55 text-sm leading-relaxed">
+              We&apos;re the people you&apos;ll have your first coffee on Sri Lankan soil with. Licensed agent. Fixed published fee. The same team that planned your week ashore clears you out. Captains and returning clients all say the same thing — they just didn&apos;t know it before they arrived.
+            </p>
+          </div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 rounded-sm overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.07] border border-white/[0.07]">
           {SIGNALS.map(({ icon: Icon, title, body }) => (
-            <div key={title} className="bg-[var(--color-navy)] p-8 flex flex-col gap-4">
-              <Icon size={20} className="text-[var(--color-amber)]" />
-              <h3 className="text-white font-semibold">{title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed">{body}</p>
+            <div key={title} className="p-8 flex flex-col gap-5">
+              <Icon size={18} className="text-[var(--color-amber)]" />
+              <h3 className="text-[15px] font-semibold text-white">{title}</h3>
+              <p className="text-[13.5px] text-white/50 leading-relaxed">{body}</p>
             </div>
           ))}
         </div>
@@ -43,7 +47,7 @@ export function TrustSignals() {
         <div className="mt-8">
           <Link
             href="/clearance"
-            className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/75 transition-colors"
           >
             See the full clearance page <ArrowRight size={13} />
           </Link>

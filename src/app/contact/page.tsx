@@ -10,9 +10,7 @@ const schema = z.object({
   name: z.string().min(2, "Please enter your name"),
   email: z.string().email("Please enter a valid email address"),
   vessel: z.string().min(1, "Please enter your vessel name"),
-  port: z.enum(["galle", "trincomalee", "unsure"]).refine((v) => !!v, {
-    message: "Please select an entry port",
-  }),
+  port: z.enum(["galle", "trincomalee", "unsure"]),
   arrivalWindow: z.string().min(3, "Please give us an approximate arrival window"),
   crewCount: z.string().min(1, "Please indicate crew count"),
   message: z.string().optional(),
@@ -34,69 +32,70 @@ export default function ContactPage() {
   });
 
   const onSubmit = async (_data: FormData) => {
-    // TODO: wire up to API route / email service
-    await new Promise((r) => setTimeout(r, 600));
+    await new Promise(r => setTimeout(r, 600));
     setSubmitted(true);
   };
 
   return (
     <>
-      {/* Header */}
+      {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-20">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-4">
+        <div className="container-site py-20 lg:py-28">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
             Get in touch
           </p>
           <h1
-            className="text-4xl sm:text-5xl font-semibold text-[var(--color-navy)] max-w-2xl leading-tight mb-4"
+            className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-[var(--color-navy)] max-w-2xl leading-[1.1] mb-4"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Tell us your arrival window. Even a rough one.
           </h1>
-          <p className="text-[var(--color-navy)]/60 max-w-md text-sm leading-relaxed">
+          <p className="text-[var(--color-navy)]/55 max-w-md text-sm leading-relaxed">
             We&apos;ll reach out within 24 hours — usually much sooner.
           </p>
         </div>
       </section>
 
-      {/* Form + sidebar */}
+      {/* ── Form + sidebar ─────────────────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-20 grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="container-site py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-3 gap-12">
+
           {/* Form */}
           <div className="lg:col-span-2">
             {submitted ? (
-              <div className="flex flex-col gap-4 py-8">
-                <CheckCircle2 size={32} className="text-[var(--color-amber)]" />
+              <div className="flex flex-col gap-5 py-8">
+                <CheckCircle2 size={28} className="text-[var(--color-amber)]" />
                 <h2
                   className="text-2xl font-semibold text-[var(--color-navy)]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   Got it — we&apos;ll be in touch.
                 </h2>
-                <p className="text-sm text-[var(--color-navy)]/60 leading-relaxed">
-                  Expect a reply within 24 hours. If your arrival window is within the next 48 hours, call us directly on VHF 16 or WhatsApp.
+                <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed max-w-md">
+                  Expect a reply within 24 hours. If your arrival window is within the next 48 hours, call us directly on VHF&nbsp;16 or WhatsApp.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+
                 {/* Enquiry type */}
                 <fieldset>
-                  <legend className="text-xs font-semibold uppercase tracking-widest text-[var(--color-navy)]/60 mb-3">
+                  <legend className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/45 mb-4">
                     I&apos;m enquiring about
                   </legend>
                   <div className="flex flex-wrap gap-3">
                     {[
                       { value: "clearance", label: "Clearance" },
-                      { value: "trip", label: "A trip" },
-                      { value: "both", label: "Both" },
-                      { value: "other", label: "Something else" },
+                      { value: "trip",      label: "A trip" },
+                      { value: "both",      label: "Both" },
+                      { value: "other",     label: "Something else" },
                     ].map(({ value, label }) => (
                       <label key={value} className="flex items-center gap-2 cursor-pointer">
                         <input
                           type="radio"
                           value={value}
                           {...register("enquiryType")}
-                          className="accent-[var(--color-amber)]"
+                          className="accent-[var(--color-amber)] w-3.5 h-3.5"
                         />
                         <span className="text-sm text-[var(--color-navy)]">{label}</span>
                       </label>
@@ -107,37 +106,20 @@ export default function ContactPage() {
                 {/* Name + email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Field label="Your name" error={errors.name?.message}>
-                    <input
-                      {...register("name")}
-                      placeholder="Captain or crew"
-                      className={inputCls(!!errors.name)}
-                    />
+                    <input {...register("name")} placeholder="Captain or crew" className={inputCls(!!errors.name)} />
                   </Field>
                   <Field label="Email address" error={errors.email?.message}>
-                    <input
-                      {...register("email")}
-                      type="email"
-                      placeholder="you@yourboat.com"
-                      className={inputCls(!!errors.email)}
-                    />
+                    <input {...register("email")} type="email" placeholder="you@yourboat.com" className={inputCls(!!errors.email)} />
                   </Field>
                 </div>
 
                 {/* Vessel + crew */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Field label="Vessel name" error={errors.vessel?.message}>
-                    <input
-                      {...register("vessel")}
-                      placeholder="S/V …"
-                      className={inputCls(!!errors.vessel)}
-                    />
+                    <input {...register("vessel")} placeholder="S/V …" className={inputCls(!!errors.vessel)} />
                   </Field>
                   <Field label="Number of crew and guests" error={errors.crewCount?.message}>
-                    <input
-                      {...register("crewCount")}
-                      placeholder="e.g. 2 crew + 3 guests"
-                      className={inputCls(!!errors.crewCount)}
-                    />
+                    <input {...register("crewCount")} placeholder="e.g. 2 crew + 3 guests" className={inputCls(!!errors.crewCount)} />
                   </Field>
                 </div>
 
@@ -157,11 +139,7 @@ export default function ContactPage() {
                   error={errors.arrivalWindow?.message}
                   hint="A rough date range is fine — e.g. 'mid-January 2026'"
                 >
-                  <input
-                    {...register("arrivalWindow")}
-                    placeholder="e.g. mid-January 2026, or 10–20 Feb"
-                    className={inputCls(!!errors.arrivalWindow)}
-                  />
+                  <input {...register("arrivalWindow")} placeholder="e.g. mid-January 2026, or 10–20 Feb" className={inputCls(!!errors.arrivalWindow)} />
                 </Field>
 
                 {/* Message */}
@@ -177,7 +155,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-navy)] text-white text-sm font-medium rounded-sm hover:bg-[var(--color-navy-dark)] disabled:opacity-50 transition-colors self-start"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-navy)] text-white text-sm font-medium hover:bg-[var(--color-navy-dark)] disabled:opacity-50 transition-colors self-start"
                 >
                   {isSubmitting ? "Sending…" : "Send enquiry"}
                   {!isSubmitting && <ArrowRight size={14} />}
@@ -187,14 +165,14 @@ export default function ContactPage() {
           </div>
 
           {/* Sidebar */}
-          <aside className="flex flex-col gap-8 lg:pl-6 lg:border-l lg:border-[var(--color-ivory-dark)]">
+          <aside className="flex flex-col gap-7 lg:pl-5 lg:border-l lg:border-[var(--color-ivory-dark)]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-4">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
                 Other ways to reach us
               </p>
               <ul className="flex flex-col gap-4">
-                <li className="flex gap-3 text-sm text-[var(--color-navy)]/70">
-                  <MessageCircle size={15} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
+                <li className="flex gap-3 text-sm text-[var(--color-navy)]/65">
+                  <MessageCircle size={14} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
                   <span>
                     WhatsApp:{" "}
                     <a
@@ -205,22 +183,22 @@ export default function ContactPage() {
                     </a>
                   </span>
                 </li>
-                <li className="flex gap-3 text-sm text-[var(--color-navy)]/70">
-                  <Radio size={15} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
+                <li className="flex gap-3 text-sm text-[var(--color-navy)]/65">
+                  <Radio size={14} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
                   VHF Channel 16 on approach
                 </li>
-                <li className="flex gap-3 text-sm text-[var(--color-navy)]/70">
-                  <MapPin size={15} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
+                <li className="flex gap-3 text-sm text-[var(--color-navy)]/65">
+                  <MapPin size={14} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
                   Galle and Trincomalee harbours
                 </li>
               </ul>
             </div>
             <div className="border-t border-[var(--color-ivory-dark)] pt-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-navy)]/40 mb-2">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/35 mb-3">
                 Response time
               </p>
-              <p className="text-sm text-[var(--color-navy)]/60 leading-relaxed">
-                We reply to all enquiries within 24 hours — usually much sooner. If you&apos;re arriving within 48 hours, please WhatsApp or call VHF 16 directly.
+              <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed">
+                We reply to all enquiries within 24 hours — usually much sooner. If you&apos;re arriving within 48 hours, please WhatsApp or call VHF&nbsp;16 directly.
               </p>
             </div>
           </aside>
@@ -230,11 +208,9 @@ export default function ContactPage() {
   );
 }
 
-// ── helpers ──────────────────────────────────────────────────────────────────
-
 function inputCls(hasError: boolean) {
   return [
-    "w-full px-4 py-3 text-sm bg-[var(--color-ivory)] border rounded-sm text-[var(--color-navy)] placeholder:text-[var(--color-navy)]/40 focus:outline-none focus:border-[var(--color-navy)] transition-colors",
+    "w-full px-4 py-3 text-sm bg-[var(--color-ivory)] border text-[var(--color-navy)] placeholder:text-[var(--color-navy)]/35 focus:outline-none focus:border-[var(--color-navy)] transition-colors",
     hasError ? "border-red-400" : "border-[var(--color-ivory-dark)]",
   ].join(" ");
 }
@@ -254,13 +230,13 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-xs font-medium text-[var(--color-navy)]">
+      <label className="text-[12px] font-medium text-[var(--color-navy)]">
         {label}
-        {optional && <span className="text-[var(--color-navy)]/40 ml-1">(optional)</span>}
+        {optional && <span className="text-[var(--color-navy)]/35 ml-1">(optional)</span>}
       </label>
       {children}
-      {hint && !error && <p className="text-xs text-[var(--color-navy)]/40">{hint}</p>}
-      {error && <p className="text-xs text-red-500">{error}</p>}
+      {hint && !error && <p className="text-[11px] text-[var(--color-navy)]/40">{hint}</p>}
+      {error && <p className="text-[11px] text-red-500">{error}</p>}
     </div>
   );
 }

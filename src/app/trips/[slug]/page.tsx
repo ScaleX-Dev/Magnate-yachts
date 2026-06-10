@@ -38,54 +38,52 @@ export default async function TripDetailPage({
 
   return (
     <>
-      {/* ── Hero ──────────────────────────────────────────────────── */}
+      {/* ── Hero (dark, cinematic) ────────────────────────────────────── */}
       <section className="min-h-svh bg-[#080e1a] flex flex-col relative">
 
-        {/* Breadcrumb strip */}
+        {/* Breadcrumb */}
         <div className="container-site flex items-center justify-between pt-5 pb-3">
-          <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-amber)]/70">
-            <Link href="/trips" className="hover:text-[var(--color-amber)] transition-colors">Trips</Link>
-            <span className="text-white/20">/</span>
-            <span className="text-[var(--color-amber)]/50">{trip.shortName}</span>
-            <span className="text-white/20">/</span>
-            <span className="text-[var(--color-amber)]/40">About</span>
+          <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-amber)]/60">
+            <Link href="/trips" className="hover:text-[var(--color-amber)]/90 transition-colors">Trips</Link>
+            <span className="text-white/15">/</span>
+            <span className="text-[var(--color-amber)]/40">{trip.shortName}</span>
           </div>
           <Link
             href="/trips"
-            className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-white/30 hover:text-white/70 transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-white/25 hover:text-white/60 transition-colors"
           >
             <ArrowLeft size={10} /> Back to all trips
           </Link>
         </div>
 
-        {/* Play button centred */}
+        {/* Play button */}
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
           <button
             aria-label="Play with sound"
-            className="w-16 h-16 rounded-full border border-white/25 flex items-center justify-center hover:border-white/60 hover:bg-white/5 transition-all"
+            className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center hover:border-white/50 hover:bg-white/[0.04] transition-all"
           >
-            <Play size={22} className="text-white ml-1" fill="white" />
+            <Play size={20} className="text-white ml-1" fill="white" />
           </button>
-          <p className="text-[10px] uppercase tracking-widest text-white/30">Play with sound</p>
+          <p className="text-[9px] uppercase tracking-widest text-white/25">Play with sound</p>
         </div>
 
-        {/* Title + badge + tags */}
+        {/* Title block */}
         <div className="container-site pb-12 flex items-end justify-between gap-8">
           <div>
             <h1
-              className="text-5xl sm:text-7xl lg:text-8xl font-semibold text-white leading-[1.05] mb-6 whitespace-pre-line"
+              className="text-5xl sm:text-7xl lg:text-[5.5rem] font-semibold text-white leading-[1.04] mb-6 whitespace-pre-line"
               style={{ fontFamily: "var(--font-display)" }}
             >
               {trip.heroTitle}
             </h1>
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-[10px] uppercase tracking-widest border border-white/20 text-white/50 px-3 py-1.5">
+              <span className="text-[10px] uppercase tracking-widest border border-white/15 text-white/45 px-3 py-1.5">
                 {trip.badge}
               </span>
               {trip.routeTags.map((tag, i) => (
                 <span key={tag} className="flex items-center gap-3">
-                  {i > 0 && <span className="text-white/15">·</span>}
-                  <span className="text-xs text-white/35">{tag}</span>
+                  {i > 0 && <span className="text-white/12">·</span>}
+                  <span className="text-[11px] text-white/30">{tag}</span>
                 </span>
               ))}
             </div>
@@ -93,70 +91,69 @@ export default async function TripDetailPage({
 
           {/* Scroll indicator */}
           <div className="hidden lg:flex flex-col items-center gap-3 shrink-0 pb-1">
-            <span className="text-[9px] uppercase tracking-widest text-white/25 [writing-mode:vertical-lr] rotate-180">
+            <span className="text-[9px] uppercase tracking-widest text-white/20 [writing-mode:vertical-lr] rotate-180">
               Scroll
             </span>
-            <div className="w-px h-10 bg-white/15" />
+            <div className="w-px h-10 bg-white/12" />
           </div>
         </div>
       </section>
 
-      {/* ── About this trip ──────────────────────────────────────── */}
+      {/* ── About this trip ───────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
         <div className="container-site py-20">
           <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-8">
             About this trip
           </p>
-          <p className="text-base sm:text-lg text-[var(--color-navy)]/70 leading-relaxed max-w-2xl">
+          <p className="text-base sm:text-lg text-[var(--color-navy)]/65 leading-relaxed max-w-2xl">
             {trip.about}
           </p>
         </div>
       </section>
 
-      {/* ── Day-by-day ───────────────────────────────────────────── */}
+      {/* ── Day-by-day ────────────────────────────────────────────────── */}
       {trip.days.map((day, i) => {
         const imageRight = i % 2 === 0;
         return (
           <section key={day.n} className="bg-[var(--color-ivory)]">
             <div className="container-site pb-4">
-              {/* Number + title  |  image   (alternates each day) */}
               <div
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-0 items-start ${
                   imageRight ? "" : "lg:[direction:rtl] [&>*]:[direction:ltr]"
                 }`}
               >
-                {/* Number + title side */}
-                <div className="flex flex-col justify-end pt-16 pb-8 lg:pb-4">
-                  <span className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/40 mb-2">
+                {/* Number + title */}
+                <div className="flex flex-col justify-end pt-14 pb-6 lg:pb-4">
+                  <span className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/35 mb-2">
                     {day.label}
                   </span>
                   <span
-                    className="block text-[9rem] sm:text-[12rem] lg:text-[15rem] font-semibold leading-none text-[var(--color-amber)]/30 select-none -ml-1"
+                    className="block text-[8rem] sm:text-[11rem] lg:text-[14rem] font-semibold leading-none text-[var(--color-amber)]/20 select-none -ml-1"
                     style={{ fontFamily: "var(--font-display)" }}
                     aria-hidden
                   >
                     {day.n}
                   </span>
                   <h2
-                    className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mt-3 leading-snug"
+                    className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mt-2 leading-snug"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {day.title}
                   </h2>
                 </div>
 
-                {/* Image side */}
-                <div className="lg:pt-16 lg:pl-8">
+                {/* Image */}
+                <div className="lg:pt-14 lg:pl-8">
                   <ImgPlaceholder
                     label={day.imageLabel}
                     aspectRatio="aspect-[4/3]"
-                    className="rounded-sm"
+                    className="rounded-none"
                   />
                 </div>
               </div>
 
-              {/* Description — full width below */}
-              <p className="mt-8 mb-16 text-sm text-[var(--color-navy)]/60 leading-relaxed max-w-2xl">
+              {/* Description */}
+              <p className="mt-7 mb-16 text-sm text-[var(--color-navy)]/55 leading-relaxed max-w-2xl">
                 {day.description}
               </p>
             </div>
@@ -164,19 +161,19 @@ export default async function TripDetailPage({
         );
       })}
 
-      {/* ── Quote ────────────────────────────────────────────────── */}
+      {/* ── Quote ─────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy)]">
         <div className="container-site py-20 lg:py-28">
           <blockquote className="max-w-3xl">
             <p
-              className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-snug mb-8"
+              className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-[1.2] mb-8"
               style={{ fontFamily: "var(--font-display)" }}
             >
               &ldquo;{trip.quote}&rdquo;
             </p>
-            <footer className="flex items-center gap-3">
-              <div className="w-6 h-px bg-white/20" />
-              <cite className="not-italic text-xs text-white/40 tracking-wide">
+            <footer className="flex items-center gap-4">
+              <div className="w-7 h-px bg-white/15" />
+              <cite className="not-italic text-[11px] text-white/35 tracking-wide">
                 {trip.quoteAttrib}
               </cite>
             </footer>
@@ -184,34 +181,31 @@ export default async function TripDetailPage({
         </div>
       </section>
 
-      {/* ── What's included / not included ───────────────────────── */}
+      {/* ── What's included / not ─────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-16">
+        <div className="container-site py-16 lg:py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-            {/* Included */}
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-6">
                 What&apos;s included
               </p>
               <ul className="flex flex-col gap-4">
                 {trip.included.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/70 leading-relaxed">
-                    <span className="mt-1.5 w-1 h-1 rounded-full bg-[var(--color-amber)] shrink-0" />
+                  <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/65 leading-relaxed">
+                    <span className="mt-[7px] w-[5px] h-[5px] rounded-full bg-[var(--color-amber)] shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
-
-            {/* Not included */}
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/30 mb-6">
+              <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/25 mb-6">
                 What&apos;s not included
               </p>
               <ul className="flex flex-col gap-4">
                 {trip.notIncluded.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/40 leading-relaxed">
-                    <span className="mt-1.5 w-1 h-1 rounded-full bg-[var(--color-navy)]/20 shrink-0" />
+                    <span className="mt-[7px] w-[5px] h-[5px] rounded-full bg-[var(--color-navy)]/18 shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -221,26 +215,26 @@ export default async function TripDetailPage({
         </div>
       </section>
 
-      {/* ── Honest notes ─────────────────────────────────────────── */}
+      {/* ── Honest notes ──────────────────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-16">
+        <div className="container-site py-16 lg:py-20">
           <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-10">
             Honest notes
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-navy)]/50 mb-4">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/40 mb-4">
                 This one is right for —
               </p>
-              <p className="text-sm text-[var(--color-navy)]/60 leading-relaxed">
+              <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed">
                 {trip.honestFor}
               </p>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-navy)]/50 mb-4">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/40 mb-4">
                 Probably not for —
               </p>
-              <p className="text-sm text-[var(--color-navy)]/60 leading-relaxed">
+              <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed">
                 {trip.honestNotFor}
               </p>
             </div>
@@ -248,31 +242,31 @@ export default async function TripDetailPage({
         </div>
       </section>
 
-      {/* ── Booking CTA ──────────────────────────────────────────── */}
+      {/* ── Booking CTA ───────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory-dark)]">
-        <div className="container-site py-16">
+        <div className="container-site py-16 lg:py-20">
           <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-5">
             Pick a date
           </p>
           <h2
-            className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-3 max-w-lg"
+            className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-3 max-w-lg leading-snug"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Tell us when you&apos;ll be in Sri Lanka.
           </h2>
           <p className="text-sm text-[var(--color-navy)]/50 leading-relaxed mb-8 max-w-lg">
-            We&apos;ll hold the trip on the calendar and confirm pricing for your dates. No deposit yet — that comes later, when you&apos;re closer to arriving and your window has firmed up.
+            We&apos;ll hold the trip on the calendar and confirm pricing for your dates. No deposit yet — that comes when your window firms up.
           </p>
 
           <TripEnquiryForm tripName={trip.shortName} />
 
-          <p className="mt-5 text-xs text-[var(--color-navy)]/40">
+          <p className="mt-5 text-xs text-[var(--color-navy)]/35">
             Or message on{" "}
             <a
               href="https://wa.me/94XXXXXXXXX"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-[var(--color-navy)] transition-colors"
+              className="underline hover:text-[var(--color-navy)]/65 transition-colors"
             >
               WhatsApp →
             </a>
@@ -280,39 +274,35 @@ export default async function TripDetailPage({
         </div>
       </section>
 
-      {/* ── See also ─────────────────────────────────────────────── */}
+      {/* ── See also ──────────────────────────────────────────────────── */}
       {(shorterTrips.length > 0 || longerTrips.length > 0) && (
         <section className="bg-[var(--color-ivory)]">
           <div className="container-site py-16">
             <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-10">
               On this same passage
             </p>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
-              {/* Shorter */}
+
               {shorterTrips.length > 0 && (
                 <div>
                   <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/30 mb-6">
                     If you&apos;ve got less time
                   </p>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-3">
                     {shorterTrips.map((t) => (
                       <div
                         key={t.slug}
-                        className="border border-[var(--color-ivory-dark)] rounded-sm p-5 flex items-center justify-between gap-4 bg-white"
+                        className="border border-[var(--color-ivory-dark)] p-5 flex items-center justify-between gap-4 bg-white"
                       >
                         <div>
-                          <p
-                            className="font-semibold text-[var(--color-navy)] mb-1"
-                            style={{ fontFamily: "var(--font-display)" }}
-                          >
+                          <p className="font-semibold text-[var(--color-navy)] text-[15px] mb-1" style={{ fontFamily: "var(--font-display)" }}>
                             {t.heroTitle.replace("\n", " ")}
                           </p>
-                          <p className="text-xs text-[var(--color-navy)]/40">{t.badge}</p>
+                          <p className="text-[11px] text-[var(--color-navy)]/35 uppercase tracking-widest">{t.badge}</p>
                         </div>
                         <Link
                           href={`/trips/${t.slug}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors whitespace-nowrap shrink-0"
+                          className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors whitespace-nowrap shrink-0"
                         >
                           See this trip <ArrowRight size={12} />
                         </Link>
@@ -322,30 +312,26 @@ export default async function TripDetailPage({
                 </div>
               )}
 
-              {/* Longer */}
               {longerTrips.length > 0 && (
                 <div className={shorterTrips.length === 0 ? "md:col-span-2" : ""}>
                   <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/30 mb-6">
                     If you can take more time
                   </p>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-3">
                     {longerTrips.map((t) => (
                       <div
                         key={t.slug}
-                        className="border border-[var(--color-ivory-dark)] rounded-sm p-5 flex items-center justify-between gap-4 bg-white"
+                        className="border border-[var(--color-ivory-dark)] p-5 flex items-center justify-between gap-4 bg-white"
                       >
                         <div>
-                          <p
-                            className="font-semibold text-[var(--color-navy)] mb-1"
-                            style={{ fontFamily: "var(--font-display)" }}
-                          >
+                          <p className="font-semibold text-[var(--color-navy)] text-[15px] mb-1" style={{ fontFamily: "var(--font-display)" }}>
                             {t.heroTitle.replace("\n", " ")}
                           </p>
-                          <p className="text-xs text-[var(--color-navy)]/40">{t.badge}</p>
+                          <p className="text-[11px] text-[var(--color-navy)]/35 uppercase tracking-widest">{t.badge}</p>
                         </div>
                         <Link
                           href={`/trips/${t.slug}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors whitespace-nowrap shrink-0"
+                          className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors whitespace-nowrap shrink-0"
                         >
                           See this trip <ArrowRight size={12} />
                         </Link>
@@ -354,6 +340,7 @@ export default async function TripDetailPage({
                   </div>
                 </div>
               )}
+
             </div>
           </div>
         </section>
