@@ -29,7 +29,7 @@ const STEPS = [
   {
     n: "1",
     title: "Pre-arrival",
-    body: "Appoint by email or booking. Send documents ahead so we can start the paperwork before you arrive.",
+    body: "Appoint us by email or booking. Send documents ahead so we can start the paperwork before you arrive.",
   },
   {
     n: "2",
