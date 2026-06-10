@@ -91,6 +91,28 @@ body {
   text-transform: uppercase;
 }
 
+/* ─── Form inputs ────────────────────────────────────────────────── */
+.form-input {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  border: 1px solid var(--color-ivory-dark);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--color-navy);
+  transition: border-color 200ms;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input::placeholder {
+  color: color-mix(in srgb, var(--color-navy) 35%, transparent);
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-navy);
+}
+
 /* ─── Focus ring ─────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--color-amber);

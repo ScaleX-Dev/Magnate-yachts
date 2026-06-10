@@ -22,12 +22,6 @@ export function EmailCapture() {
             <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-4">
               Before you arrive — a small thing we send you.
             </p>
-            <h2
-              className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-4"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Before you arrive — a small thing we send you.
-            </h2>
             <p className="text-sm text-[var(--color-navy)]/60 leading-relaxed">
               The first document. Port notes for whoever&apos;s at the helm. SIM cards, ATMs and temple etiquette for everyone else.
             </p>

@@ -27,7 +27,7 @@ export function TrustSignals() {
           The boat-side, while you&apos;re up there.
         </p>
         <p className="text-white/60 max-w-2xl text-sm leading-relaxed mb-12">
-          We&apos;re the people you&apos;ll have your first coffee on Sri Lankan soil with. Licensed agent. Fixed published fee. The same team that left-published-here. The same team the captains and favourite clients on the list actually live on the clearance page.
+          We&apos;re the people you&apos;ll have your first coffee on Sri Lankan soil with. Licensed agent. Fixed published fee. The same team that planned your week ashore is the same team that clears you out. Captains and favourite clients on the list say it the same way — they just didn&apos;t know it before they arrived.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 rounded-sm overflow-hidden">

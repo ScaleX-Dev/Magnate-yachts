@@ -20,6 +20,14 @@ export function Footer() {
         </span>
 
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span>Secure checkout</span>
+          <span className="text-white/25">·</span>
+          <span>USD / EUR</span>
+          <span className="text-white/25">·</span>
+          <span>PayPal</span>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <span>VHF 16</span>
           <span className="text-white/25">·</span>
           <a

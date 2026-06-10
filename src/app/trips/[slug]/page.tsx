@@ -1,124 +1,13 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
+import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { ImgPlaceholder } from "@/components/ui/ImgPlaceholder";
-import { Button } from "@/components/ui/Button";
-
-type TripSlug = "3-day" | "5-day" | "7-day";
-
-interface TripData {
-  duration: string;
-  tag: string;
-  price: string;
-  intro: string;
-  heroPhoto: string;
-  days: { label: string; body: string }[];
-  stays: string[];
-}
-
-const TRIPS: Record<TripSlug, TripData> = {
-  "3-day": {
-    duration: "Three days",
-    tag: "Galle · South coast · Ella",
-    price: "from US $—",
-    intro:
-      "Down the south coast and up into the tea country. The train through Ella is the one the locals tell their friends about. Two nights in a quiet villa — the kind of place that wasn't built for tour buses.",
-    heroPhoto: "Photograph — Nine Arch Bridge, Ella, Sri Lanka",
-    days: [
-      {
-        label: "Day one — Galle Fort and the south coast road",
-        body: "We start at the fort. Breakfast inside the walls. Then down the coast road — sea on one side, jungle on the other — stopping at Mirissa or Tangalle depending on your crew. Overnight in Ella.",
-      },
-      {
-        label: "Day two — The hills",
-        body: "Ella Rock in the morning before the heat. The Nine Arch Bridge. A walk through a working tea estate. Overnight in Ella.",
-      },
-      {
-        label: "Day three — Back to Galle",
-        body: "The train from Ella to Colombo is the famous one — we'll book you into it. Return to Galle Fort by car. Back to your boat by evening.",
-      },
-    ],
-    stays: ["Two nights in Ella — a villa or boutique stay, not a hotel chain"],
-  },
-  "5-day": {
-    duration: "Five days",
-    tag: "Galle · Ella · Nuwara Eliya · high country",
-    price: "from US $—",
-    intro:
-      "Everything in the three-day trip, then up to the colonial bungalow country of Nuwara Eliya. Cold mornings. Strawberries. The strangest light you've ever seen at 6,000 feet. A working tea estate.",
-    heroPhoto: "Photograph — Nuwara Eliya, tea fields, hill country Sri Lanka",
-    days: [
-      {
-        label: "Day one — Galle Fort and south coast",
-        body: "The fort, the coast road, Mirissa or Tangalle. Overnight near Ella.",
-      },
-      {
-        label: "Day two — Ella",
-        body: "Ella Rock. The Nine Arch Bridge. A working estate tour. Overnight in Ella.",
-      },
-      {
-        label: "Day three — Up to Nuwara Eliya",
-        body: "The drive up is the highlight — winding roads through estates, waterfalls alongside. Afternoon walk around the lake. Overnight Nuwara Eliya.",
-      },
-      {
-        label: "Day four — High country",
-        body: "Horton Plains National Park and World's End in the morning. Colonial tea club for lunch. Gregory Lake by afternoon. Overnight Nuwara Eliya.",
-      },
-      {
-        label: "Day five — Return to Galle",
-        body: "Down from the hills. Back to the coast. Back to your boat.",
-      },
-    ],
-    stays: [
-      "Two nights in Ella",
-      "Two nights in Nuwara Eliya — colonial bungalow or planter's estate stay",
-    ],
-  },
-  "7-day": {
-    duration: "A full week",
-    tag: "Galle · Ella · Nuwara Eliya · Sigiriya · Kandy",
-    price: "from US $—",
-    intro:
-      "The whole island. A week that takes you from the south coast tea country up to the ancient rock fortresses of the Cultural Triangle, and back. Sigiriya at sunrise, an elephant safari, and Kandy on the way home.",
-    heroPhoto: "Photograph — Sigiriya Rock Fortress at dawn, Sri Lanka",
-    days: [
-      {
-        label: "Days one–two — South coast and Ella",
-        body: "Galle Fort, the coast road, Ella Rock, Nine Arch Bridge. Two nights in the hills.",
-      },
-      {
-        label: "Day three — Nuwara Eliya",
-        body: "Drive up through tea country to the colonial bungalow belt. Horton Plains in the afternoon.",
-      },
-      {
-        label: "Day four — Drive north to Dambulla",
-        body: "The cave temple at Dambulla. Overnight near Sigiriya.",
-      },
-      {
-        label: "Day five — Sigiriya",
-        body: "Sigiriya Rock Fortress at sunrise — the climb takes 45 minutes, the views stay with you longer. Udawalawe National Park for an elephant safari in the afternoon.",
-      },
-      {
-        label: "Day six — Kandy",
-        body: "The Temple of the Tooth. The lake. The last royal city of the Kandyan kingdom. Overnight in Kandy.",
-      },
-      {
-        label: "Day seven — Return to Galle",
-        body: "Back to the coast through the hill roads. Back to your boat by evening.",
-      },
-    ],
-    stays: [
-      "Two nights in Ella",
-      "One night in Nuwara Eliya",
-      "One night near Sigiriya",
-      "One night in Kandy",
-    ],
-  },
-};
+import { TripEnquiryForm } from "@/components/trip/TripEnquiryForm";
+import { TRIPS, getTripBySlug, getTripsBySlug } from "@/lib/trips-data";
 
 export function generateStaticParams() {
-  return (Object.keys(TRIPS) as TripSlug[]).map((slug) => ({ slug }));
+  return TRIPS.map((t) => ({ slug: t.slug }));
 }
 
 export async function generateMetadata({
@@ -127,11 +16,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const trip = TRIPS[slug as TripSlug];
+  const trip = getTripBySlug(slug);
   if (!trip) return {};
   return {
-    title: `${trip.duration} Trip — Magnate Yachts Sri Lanka`,
-    description: trip.intro,
+    title: `${trip.shortName} — Magnate Yachts Sri Lanka`,
+    description: trip.about,
   };
 }
 
@@ -141,109 +30,334 @@ export default async function TripDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const trip = TRIPS[slug as TripSlug];
+  const trip = getTripBySlug(slug);
   if (!trip) notFound();
+
+  const shorterTrips = getTripsBySlug(trip.shorterTrips);
+  const longerTrips  = getTripsBySlug(trip.longerTrips);
 
   return (
     <>
-      {/* Hero */}
-      <section className="bg-[var(--color-navy)] relative overflow-hidden">
-        <ImgPlaceholder
-          label={trip.heroPhoto}
-          aspectRatio="aspect-[21/8]"
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
-        />
-        <div className="relative container-site py-24">
+      {/* ── Hero ──────────────────────────────────────────────────── */}
+      <section className="min-h-svh bg-[#080e1a] flex flex-col relative">
+
+        {/* Breadcrumb strip */}
+        <div className="container-site flex items-center justify-between pt-5 pb-3">
+          <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-amber)]/70">
+            <Link href="/trips" className="hover:text-[var(--color-amber)] transition-colors">Trips</Link>
+            <span className="text-white/20">/</span>
+            <span className="text-[var(--color-amber)]/50">{trip.shortName}</span>
+            <span className="text-white/20">/</span>
+            <span className="text-[var(--color-amber)]/40">About</span>
+          </div>
           <Link
             href="/trips"
-            className="inline-flex items-center gap-2 text-xs text-white/40 hover:text-white/80 transition-colors mb-8"
+            className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-white/30 hover:text-white/70 transition-colors"
           >
-            <ArrowLeft size={12} /> All trips
+            <ArrowLeft size={10} /> Back to all trips
           </Link>
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-3">
-            {trip.tag}
-          </p>
-          <h1
-            className="text-4xl sm:text-5xl font-semibold text-white max-w-2xl leading-tight mb-4"
-            style={{ fontFamily: "var(--font-display)" }}
+        </div>
+
+        {/* Play button centred */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-4">
+          <button
+            aria-label="Play with sound"
+            className="w-16 h-16 rounded-full border border-white/25 flex items-center justify-center hover:border-white/60 hover:bg-white/5 transition-all"
           >
-            {trip.duration}
-          </h1>
-          <p className="text-white/60 max-w-xl text-sm leading-relaxed mb-8">{trip.intro}</p>
-          <div className="flex flex-wrap items-center gap-4">
-            <Button href="/contact" variant="primary" size="lg" arrow>
-              Enquire about this trip
-            </Button>
-            <span className="text-white/40 text-sm">{trip.price} per person</span>
+            <Play size={22} className="text-white ml-1" fill="white" />
+          </button>
+          <p className="text-[10px] uppercase tracking-widest text-white/30">Play with sound</p>
+        </div>
+
+        {/* Title + badge + tags */}
+        <div className="container-site pb-12 flex items-end justify-between gap-8">
+          <div>
+            <h1
+              className="text-5xl sm:text-7xl lg:text-8xl font-semibold text-white leading-[1.05] mb-6 whitespace-pre-line"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              {trip.heroTitle}
+            </h1>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-[10px] uppercase tracking-widest border border-white/20 text-white/50 px-3 py-1.5">
+                {trip.badge}
+              </span>
+              {trip.routeTags.map((tag, i) => (
+                <span key={tag} className="flex items-center gap-3">
+                  {i > 0 && <span className="text-white/15">·</span>}
+                  <span className="text-xs text-white/35">{tag}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="hidden lg:flex flex-col items-center gap-3 shrink-0 pb-1">
+            <span className="text-[9px] uppercase tracking-widest text-white/25 [writing-mode:vertical-lr] rotate-180">
+              Scroll
+            </span>
+            <div className="w-px h-10 bg-white/15" />
           </div>
         </div>
       </section>
 
-      {/* Hero photo */}
-      <section className="bg-white">
-        <div className="container-site py-12">
-          <ImgPlaceholder label={trip.heroPhoto} aspectRatio="aspect-[21/9]" />
-        </div>
-      </section>
-
-      {/* Day by day */}
+      {/* ── About this trip ──────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
         <div className="container-site py-20">
-          <h2
-            className="text-2xl font-semibold text-[var(--color-navy)] mb-10"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Day by day
-          </h2>
-          <div className="flex flex-col divide-y divide-[var(--color-ivory-dark)]">
-            {trip.days.map(({ label, body }) => (
-              <div key={label} className="py-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
-                <h3 className="font-semibold text-[var(--color-navy)] text-sm lg:col-span-1">
-                  {label}
-                </h3>
-                <p className="text-sm text-[var(--color-navy)]/60 leading-relaxed lg:col-span-2">
-                  {body}
-                </p>
+          <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-8">
+            About this trip
+          </p>
+          <p className="text-base sm:text-lg text-[var(--color-navy)]/70 leading-relaxed max-w-2xl">
+            {trip.about}
+          </p>
+        </div>
+      </section>
+
+      {/* ── Day-by-day ───────────────────────────────────────────── */}
+      {trip.days.map((day, i) => {
+        const imageRight = i % 2 === 0;
+        return (
+          <section key={day.n} className="bg-[var(--color-ivory)]">
+            <div className="container-site pb-4">
+              {/* Number + title  |  image   (alternates each day) */}
+              <div
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-0 items-start ${
+                  imageRight ? "" : "lg:[direction:rtl] [&>*]:[direction:ltr]"
+                }`}
+              >
+                {/* Number + title side */}
+                <div className="flex flex-col justify-end pt-16 pb-8 lg:pb-4">
+                  <span className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/40 mb-2">
+                    {day.label}
+                  </span>
+                  <span
+                    className="block text-[9rem] sm:text-[12rem] lg:text-[15rem] font-semibold leading-none text-[var(--color-amber)]/30 select-none -ml-1"
+                    style={{ fontFamily: "var(--font-display)" }}
+                    aria-hidden
+                  >
+                    {day.n}
+                  </span>
+                  <h2
+                    className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mt-3 leading-snug"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {day.title}
+                  </h2>
+                </div>
+
+                {/* Image side */}
+                <div className="lg:pt-16 lg:pl-8">
+                  <ImgPlaceholder
+                    label={day.imageLabel}
+                    aspectRatio="aspect-[4/3]"
+                    className="rounded-sm"
+                  />
+                </div>
               </div>
-            ))}
+
+              {/* Description — full width below */}
+              <p className="mt-8 mb-16 text-sm text-[var(--color-navy)]/60 leading-relaxed max-w-2xl">
+                {day.description}
+              </p>
+            </div>
+          </section>
+        );
+      })}
+
+      {/* ── Quote ────────────────────────────────────────────────── */}
+      <section className="bg-[var(--color-navy)]">
+        <div className="container-site py-20 lg:py-28">
+          <blockquote className="max-w-3xl">
+            <p
+              className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-snug mb-8"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              &ldquo;{trip.quote}&rdquo;
+            </p>
+            <footer className="flex items-center gap-3">
+              <div className="w-6 h-px bg-white/20" />
+              <cite className="not-italic text-xs text-white/40 tracking-wide">
+                {trip.quoteAttrib}
+              </cite>
+            </footer>
+          </blockquote>
+        </div>
+      </section>
+
+      {/* ── What's included / not included ───────────────────────── */}
+      <section className="bg-[var(--color-ivory)]">
+        <div className="container-site py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+            {/* Included */}
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-6">
+                What&apos;s included
+              </p>
+              <ul className="flex flex-col gap-4">
+                {trip.included.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/70 leading-relaxed">
+                    <span className="mt-1.5 w-1 h-1 rounded-full bg-[var(--color-amber)] shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Not included */}
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/30 mb-6">
+                What&apos;s not included
+              </p>
+              <ul className="flex flex-col gap-4">
+                {trip.notIncluded.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/40 leading-relaxed">
+                    <span className="mt-1.5 w-1 h-1 rounded-full bg-[var(--color-navy)]/20 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stays */}
+      {/* ── Honest notes ─────────────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-12">
-          <h2
-            className="text-xl font-semibold text-[var(--color-navy)] mb-6"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Stays
-          </h2>
-          <ul className="flex flex-col gap-3">
-            {trip.stays.map((stay) => (
-              <li key={stay} className="flex gap-3 text-sm text-[var(--color-navy)]/70">
-                <CheckCircle2 size={15} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
-                {stay}
-              </li>
-            ))}
-          </ul>
+        <div className="container-site py-16">
+          <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-10">
+            Honest notes
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-navy)]/50 mb-4">
+                This one is right for —
+              </p>
+              <p className="text-sm text-[var(--color-navy)]/60 leading-relaxed">
+                {trip.honestFor}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-navy)]/50 mb-4">
+                Probably not for —
+              </p>
+              <p className="text-sm text-[var(--color-navy)]/60 leading-relaxed">
+                {trip.honestNotFor}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-16 flex flex-col items-start gap-6">
+      {/* ── Booking CTA ──────────────────────────────────────────── */}
+      <section className="bg-[var(--color-ivory-dark)]">
+        <div className="container-site py-16">
+          <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-5">
+            Pick a date
+          </p>
           <h2
-            className="text-2xl sm:text-3xl font-semibold text-white max-w-xl"
+            className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-3 max-w-lg"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Tell us your arrival window and your crew. We&apos;ll build this around you.
+            Tell us when you&apos;ll be in Sri Lanka.
           </h2>
-          <Button href="/contact" variant="primary" size="lg" arrow>
-            Get in touch
-          </Button>
+          <p className="text-sm text-[var(--color-navy)]/50 leading-relaxed mb-8 max-w-lg">
+            We&apos;ll hold the trip on the calendar and confirm pricing for your dates. No deposit yet — that comes later, when you&apos;re closer to arriving and your window has firmed up.
+          </p>
+
+          <TripEnquiryForm tripName={trip.shortName} />
+
+          <p className="mt-5 text-xs text-[var(--color-navy)]/40">
+            Or message on{" "}
+            <a
+              href="https://wa.me/94XXXXXXXXX"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-[var(--color-navy)] transition-colors"
+            >
+              WhatsApp →
+            </a>
+          </p>
         </div>
       </section>
+
+      {/* ── See also ─────────────────────────────────────────────── */}
+      {(shorterTrips.length > 0 || longerTrips.length > 0) && (
+        <section className="bg-[var(--color-ivory)]">
+          <div className="container-site py-16">
+            <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-10">
+              On this same passage
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
+              {/* Shorter */}
+              {shorterTrips.length > 0 && (
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/30 mb-6">
+                    If you&apos;ve got less time
+                  </p>
+                  <div className="flex flex-col gap-4">
+                    {shorterTrips.map((t) => (
+                      <div
+                        key={t.slug}
+                        className="border border-[var(--color-ivory-dark)] rounded-sm p-5 flex items-center justify-between gap-4 bg-white"
+                      >
+                        <div>
+                          <p
+                            className="font-semibold text-[var(--color-navy)] mb-1"
+                            style={{ fontFamily: "var(--font-display)" }}
+                          >
+                            {t.heroTitle.replace("\n", " ")}
+                          </p>
+                          <p className="text-xs text-[var(--color-navy)]/40">{t.badge}</p>
+                        </div>
+                        <Link
+                          href={`/trips/${t.slug}`}
+                          className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors whitespace-nowrap shrink-0"
+                        >
+                          See this trip <ArrowRight size={12} />
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Longer */}
+              {longerTrips.length > 0 && (
+                <div className={shorterTrips.length === 0 ? "md:col-span-2" : ""}>
+                  <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/30 mb-6">
+                    If you can take more time
+                  </p>
+                  <div className="flex flex-col gap-4">
+                    {longerTrips.map((t) => (
+                      <div
+                        key={t.slug}
+                        className="border border-[var(--color-ivory-dark)] rounded-sm p-5 flex items-center justify-between gap-4 bg-white"
+                      >
+                        <div>
+                          <p
+                            className="font-semibold text-[var(--color-navy)] mb-1"
+                            style={{ fontFamily: "var(--font-display)" }}
+                          >
+                            {t.heroTitle.replace("\n", " ")}
+                          </p>
+                          <p className="text-xs text-[var(--color-navy)]/40">{t.badge}</p>
+                        </div>
+                        <Link
+                          href={`/trips/${t.slug}`}
+                          className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors whitespace-nowrap shrink-0"
+                        >
+                          See this trip <ArrowRight size={12} />
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }

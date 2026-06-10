@@ -11,7 +11,7 @@ export function FinalCTA() {
           When you have an arrival window — even a rough one — drop us a note.
         </h2>
         <p className="text-white/60 text-sm leading-relaxed">
-          We&apos;ll meet your boat. Everything from there is handled.
+          We&apos;ll meet your boat.
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
           <Button href="/contact" variant="primary" size="lg" arrow>
@@ -23,7 +23,7 @@ export function FinalCTA() {
             size="lg"
             arrow
           >
-            Arriving on WhatsApp
+            Message on WhatsApp
           </Button>
         </div>
         <p className="text-white/30 text-xs">VHF 16 · Channel 16</p>
