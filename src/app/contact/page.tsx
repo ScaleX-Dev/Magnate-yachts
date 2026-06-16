@@ -4,7 +4,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, MapPin, MessageCircle, Radio } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 
 const schema = z.object({
   name: z.string().min(2, "Please enter your name"),
@@ -41,18 +43,20 @@ export default function ContactPage() {
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
         <div className="container-site py-20 lg:py-28">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
-            Get in touch
-          </p>
-          <h1
-            className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-[var(--color-navy)] max-w-2xl leading-[1.1] mb-4"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Tell us your arrival window. Even a rough one.
-          </h1>
-          <p className="text-[var(--color-navy)]/55 max-w-md text-sm leading-relaxed">
-            We&apos;ll reach out within 24 hours — usually much sooner.
-          </p>
+          <Reveal>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
+              Get in touch
+            </p>
+            <h1
+              className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-[var(--color-navy)] max-w-2xl leading-[1.1] mb-4"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Tell us your arrival window. Even a rough one.
+            </h1>
+            <p className="text-[var(--color-navy)]/55 max-w-md text-sm leading-relaxed">
+              We&apos;ll reach out within 24 hours — usually much sooner.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -63,8 +67,19 @@ export default function ContactPage() {
           {/* Form */}
           <div className="lg:col-span-2">
             {submitted ? (
-              <div className="flex flex-col gap-5 py-8">
-                <CheckCircle2 size={28} className="text-[var(--color-amber)]" />
+              <motion.div
+                className="flex flex-col gap-5 py-8"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <motion.div
+                  initial={{ scale: 0.6, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  <CheckCircle2 size={28} className="text-[var(--color-amber)]" />
+                </motion.div>
                 <h2
                   className="text-2xl font-semibold text-[var(--color-navy)]"
                   style={{ fontFamily: "var(--font-display)" }}
@@ -74,7 +89,7 @@ export default function ContactPage() {
                 <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed max-w-md">
                   Expect a reply within 24 hours. If your arrival window is within the next 48 hours, call us directly on VHF&nbsp;16 or WhatsApp.
                 </p>
-              </div>
+              </motion.div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 
@@ -90,7 +105,10 @@ export default function ContactPage() {
                       { value: "both",      label: "Both" },
                       { value: "other",     label: "Something else" },
                     ].map(({ value, label }) => (
-                      <label key={value} className="flex items-center gap-2 cursor-pointer">
+                      <label
+                        key={value}
+                        className="flex items-center gap-2 cursor-pointer px-3 py-1.5 -mx-3 -my-1.5 rounded-sm transition-colors duration-200 hover:bg-[var(--color-ivory)]"
+                      >
                         <input
                           type="radio"
                           value={value}
@@ -155,10 +173,10 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-navy)] text-white text-sm font-medium hover:bg-[var(--color-navy-dark)] disabled:opacity-50 transition-colors self-start"
+                  className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--color-navy)] text-white text-sm font-medium hover:bg-[var(--color-navy-dark)] hover:shadow-[0_8px_20px_-6px_rgba(11,31,58,0.4)] hover:-translate-y-px active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none transition-all duration-300 self-start"
                 >
                   {isSubmitting ? "Sending…" : "Send enquiry"}
-                  {!isSubmitting && <ArrowRight size={14} />}
+                  {!isSubmitting && <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />}
                 </button>
               </form>
             )}
@@ -166,7 +184,7 @@ export default function ContactPage() {
 
           {/* Sidebar */}
           <aside className="flex flex-col gap-7 lg:pl-5 lg:border-l lg:border-[var(--color-ivory-dark)]">
-            <div>
+            <Reveal delay={0.1} y={16}>
               <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
                 Other ways to reach us
               </p>
@@ -192,15 +210,15 @@ export default function ContactPage() {
                   Galle and Trincomalee harbours
                 </li>
               </ul>
-            </div>
-            <div className="border-t border-[var(--color-ivory-dark)] pt-6">
+            </Reveal>
+            <Reveal delay={0.18} y={16} className="border-t border-[var(--color-ivory-dark)] pt-6">
               <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/35 mb-3">
                 Response time
               </p>
               <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed">
                 We reply to all enquiries within 24 hours — usually much sooner. If you&apos;re arriving within 48 hours, please WhatsApp or call VHF&nbsp;16 directly.
               </p>
-            </div>
+            </Reveal>
           </aside>
         </div>
       </section>
@@ -210,7 +228,7 @@ export default function ContactPage() {
 
 function inputCls(hasError: boolean) {
   return [
-    "w-full px-4 py-3 text-sm bg-[var(--color-ivory)] border text-[var(--color-navy)] placeholder:text-[var(--color-navy)]/35 focus:outline-none focus:border-[var(--color-navy)] transition-colors",
+    "w-full px-4 py-3 text-sm rounded-xl bg-[var(--color-ivory)] border text-[var(--color-navy)] placeholder:text-[var(--color-navy)]/35 focus:outline-none focus:border-[var(--color-navy)] focus:shadow-[0_0_0_3px_rgba(11,31,58,0.08)] transition-all duration-200",
     hasError ? "border-red-400" : "border-[var(--color-ivory-dark)]",
   ].join(" ");
 }

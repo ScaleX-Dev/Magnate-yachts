@@ -1,14 +1,18 @@
+import { Reveal } from "@/components/ui/Reveal";
+
 export function TestimonialSection() {
   return (
     <section className="bg-white">
       <div className="container-site py-20 lg:py-28">
-        <h2
-          className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-12"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          Hear it from other sailors
-        </h2>
-        <div className="max-w-3xl">
+        <Reveal>
+          <h2
+            className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-12"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Hear it from other sailors
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1} className="max-w-3xl">
           <blockquote className="flex flex-col gap-7">
             <p
               className="text-3xl sm:text-4xl lg:text-5xl font-light text-[var(--color-navy)] leading-[1.2]"
@@ -24,7 +28,7 @@ export function TestimonialSection() {
               </div>
             </footer>
           </blockquote>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

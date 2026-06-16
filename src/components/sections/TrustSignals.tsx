@@ -1,21 +1,22 @@
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, DollarSign, Ship } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 
 const SIGNALS = [
   {
     icon: BadgeCheck,
     title: "Licensed agent",
-    body: "Registered in Galle and Trincomalee. We file with the port authority — not a middleman filing on our behalf.",
+    body: "Approved in Galle and Trincomalee. Required to enter Sri Lanka by yacht.",
   },
   {
     icon: DollarSign,
     title: "Fixed published fee",
-    body: "One transparent fee. What you see is what you pay — no starting-high, no negotiation. Port dues shown separately at cost.",
+    body: "See the number before you commit. No negotiation games.",
   },
   {
     icon: Ship,
     title: "We meet your boat",
-    body: "Call us on VHF 16. We'll be on the dock when you arrive, and we'll be there when you leave.",
+    body: "Call us on VHF 16. We're on the dock when you berth.",
   },
 ];
 
@@ -24,7 +25,7 @@ export function TrustSignals() {
     <section className="bg-[var(--color-navy)]">
       <div className="container-site py-20 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-12">
-          <div>
+          <Reveal>
             <h2
               className="text-3xl sm:text-4xl font-semibold text-white leading-tight mb-5"
               style={{ fontFamily: "var(--font-display)" }}
@@ -32,27 +33,31 @@ export function TrustSignals() {
               The boat-side, while you&apos;re up there.
             </h2>
             <p className="text-white/55 text-sm leading-relaxed">
-              Your clearance, immigration, customs, port authority, gate passes — sorted before you&apos;ve finished your first coffee on Sri Lankan soil. Licensed agent, fixed published fee, the same team that&apos;s planning your week ashore and Noonsite-savvy crews — the full details live on the clearance page.
+              Clearance, immigration, customs, port authority — sorted before you&apos;ve finished your first coffee on Sri Lankan soil. Licensed agent, fixed published fee, the same team planning your week ashore.
             </p>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.07] border border-white/[0.07]">
-          {SIGNALS.map(({ icon: Icon, title, body }) => (
-            <div key={title} className="p-8 flex flex-col gap-5">
-              <Icon size={18} className="text-[var(--color-amber)]" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {SIGNALS.map(({ icon: Icon, title, body }, i) => (
+            <Reveal
+              key={title}
+              delay={i * 0.1}
+              className="rounded-2xl border border-white/15 p-7 md:p-8 flex flex-col gap-5 transition-all duration-300 hover:bg-white/[0.04] hover:border-white/25 hover:-translate-y-1"
+            >
+              <Icon size={18} className="text-[var(--color-amber)] transition-transform duration-300 group-hover:scale-110" />
               <h3 className="text-[15px] font-semibold text-white">{title}</h3>
               <p className="text-[13.5px] text-white/50 leading-relaxed">{body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
 
         <div className="mt-8">
           <Link
             href="/clearance"
-            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/75 transition-colors"
+            className="group inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/75 transition-colors"
           >
-            See the full clearance page <ArrowRight size={13} />
+            See the full clearance page <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

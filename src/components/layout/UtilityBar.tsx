@@ -3,7 +3,7 @@ import { Radio, MessageCircle, MapPin } from "lucide-react";
 
 export function UtilityBar() {
   return (
-    <div className="w-full bg-[var(--color-navy-dark)] text-white/55 text-[11.5px]">
+    <div className="hidden lg:block w-full bg-[var(--color-navy-dark)] text-white/55 text-[11.5px]">
       <div className="container-site flex items-center justify-between h-9 gap-4">
 
         {/* Left — operational info */}

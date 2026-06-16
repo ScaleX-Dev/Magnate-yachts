@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { Flag, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/ui/Reveal";
 
 const MONTHS = [
   "January", "February", "March", "April", "May", "June",
@@ -48,37 +50,39 @@ export function ClearanceBookingForm() {
       {/* ── Page header ────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)] border-b border-[var(--color-ivory-dark)]">
         <div className="container-site py-10 lg:py-14">
-          <h1
-            className="text-3xl sm:text-4xl font-semibold text-[var(--color-navy)] mb-7"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Secure Magnate as your agent
-          </h1>
+          <Reveal>
+            <h1
+              className="text-3xl sm:text-4xl font-semibold text-[var(--color-navy)] mb-7"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Secure Magnate as your agent
+            </h1>
 
-          {/* Step indicator */}
-          <div className="flex flex-wrap items-center gap-2">
-            {STEPS.map(({ n, label }, i) => (
-              <div key={n} className="flex items-center gap-2">
-                <button
-                  onClick={() => scrollTo(n)}
-                  className={cn(
-                    "flex items-center gap-2 px-4 py-[9px] text-[13px] font-medium border transition-all duration-150",
-                    activeStep === n
-                      ? "bg-[var(--color-navy)] text-white border-[var(--color-navy)]"
-                      : "bg-white text-[var(--color-navy)]/50 border-[var(--color-ivory-dark)] hover:border-[var(--color-navy)]/20 hover:text-[var(--color-navy)]/75"
+            {/* Step indicator */}
+            <div className="flex flex-wrap items-center gap-2">
+              {STEPS.map(({ n, label }, i) => (
+                <div key={n} className="flex items-center gap-2">
+                  <button
+                    onClick={() => scrollTo(n)}
+                    className={cn(
+                      "flex items-center gap-2 px-4 py-[9px] rounded-full text-[13px] font-medium border transition-all duration-300",
+                      activeStep === n
+                        ? "bg-[var(--color-navy)] text-white border-[var(--color-navy)] shadow-[0_6px_16px_-6px_rgba(11,31,58,0.4)]"
+                        : "bg-white text-[var(--color-navy)]/50 border-[var(--color-ivory-dark)] hover:border-[var(--color-navy)]/20 hover:text-[var(--color-navy)]/75 hover:-translate-y-px"
+                    )}
+                  >
+                    <span className={cn("text-[11px] font-bold", activeStep === n ? "text-white/45" : "text-[var(--color-navy)]/20")}>
+                      {n}
+                    </span>
+                    {label}
+                  </button>
+                  {i < STEPS.length - 1 && (
+                    <span className="text-[var(--color-navy)]/15 text-xs hidden sm:inline">—</span>
                   )}
-                >
-                  <span className={cn("text-[11px] font-bold", activeStep === n ? "text-white/45" : "text-[var(--color-navy)]/20")}>
-                    {n}
-                  </span>
-                  {label}
-                </button>
-                {i < STEPS.length - 1 && (
-                  <span className="text-[var(--color-navy)]/15 text-xs hidden sm:inline">—</span>
-                )}
-              </div>
-            ))}
-          </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -91,7 +95,7 @@ export function ClearanceBookingForm() {
             <div className="flex flex-col gap-10">
 
               {/* Step 1 */}
-              <div id="step-1" className="scroll-mt-28">
+              <Reveal id="step-1" className="scroll-mt-28">
                 <StepHeader n={1} label="Your vessel" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
                   <input
@@ -119,13 +123,13 @@ export function ClearanceBookingForm() {
                     className="form-input"
                   />
                 </div>
-              </div>
+              </Reveal>
 
               {/* Step 2 */}
-              <div id="step-2" className="scroll-mt-28">
+              <Reveal id="step-2" className="scroll-mt-28">
                 <StepHeader n={2} label="When will you arrive?" />
 
-                <div className="mt-6 flex items-start gap-3 bg-amber-50 border border-amber-200/70 p-4 mb-5">
+                <div className="mt-6 flex items-start gap-3 rounded-xl bg-amber-50 border border-amber-200/70 p-4 mb-5">
                   <Flag size={13} className="text-amber-600/80 shrink-0 mt-[2px]" />
                   <p className="text-[12.5px] text-amber-800/80 leading-relaxed">
                     <strong className="font-semibold">Passages slip with weather,</strong> so we ask for an approximate window — not a fixed date. Confirm exact arrival on VHF when you&apos;re close.
@@ -156,10 +160,10 @@ export function ClearanceBookingForm() {
                     className="form-input sm:col-span-2"
                   />
                 </div>
-              </div>
+              </Reveal>
 
               {/* Step 3 */}
-              <div id="step-3" className="scroll-mt-28">
+              <Reveal id="step-3" className="scroll-mt-28">
                 <StepHeader n={3} label="Add a trip?">
                   <span className="text-[var(--color-navy)]/40 font-normal text-[12px] ml-1.5">
                     Optional — skip if you&apos;re just clearing through
@@ -171,10 +175,10 @@ export function ClearanceBookingForm() {
                     <label
                       key={value}
                       className={cn(
-                        "flex flex-col gap-2 p-4 border cursor-pointer transition-all duration-150",
+                        "flex flex-col gap-2 p-4 rounded-xl border cursor-pointer transition-all duration-200",
                         trip === value
-                          ? "border-[var(--color-navy)] bg-[var(--color-navy)]/[0.025]"
-                          : "border-[var(--color-ivory-dark)] bg-white hover:border-[var(--color-navy)]/20"
+                          ? "border-[var(--color-navy)] bg-[var(--color-navy)]/[0.025] shadow-[0_8px_20px_-12px_rgba(11,31,58,0.3)]"
+                          : "border-[var(--color-ivory-dark)] bg-white hover:border-[var(--color-navy)]/20 hover:-translate-y-px"
                       )}
                     >
                       <input type="radio" name="trip" value={value} checked={trip === value} onChange={() => setTrip(value)} className="sr-only" />
@@ -184,10 +188,10 @@ export function ClearanceBookingForm() {
                     </label>
                   ))}
                 </div>
-              </div>
+              </Reveal>
 
               {/* Step 4 */}
-              <div id="step-4" className="scroll-mt-28">
+              <Reveal id="step-4" className="scroll-mt-28">
                 <StepHeader n={4} label="Payment" />
 
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -198,10 +202,10 @@ export function ClearanceBookingForm() {
                     <label
                       key={value}
                       className={cn(
-                        "flex-1 flex items-center gap-3 px-4 py-3.5 border cursor-pointer transition-all duration-150",
+                        "flex-1 flex items-center gap-3 px-4 py-3.5 rounded-xl border cursor-pointer transition-all duration-200",
                         payment === value
-                          ? "border-[var(--color-navy)] bg-[var(--color-navy)]/[0.025]"
-                          : "border-[var(--color-ivory-dark)] bg-white hover:border-[var(--color-navy)]/20"
+                          ? "border-[var(--color-navy)] bg-[var(--color-navy)]/[0.025] shadow-[0_8px_20px_-12px_rgba(11,31,58,0.3)]"
+                          : "border-[var(--color-ivory-dark)] bg-white hover:border-[var(--color-navy)]/20 hover:-translate-y-px"
                       )}
                     >
                       <input type="radio" value={value} checked={payment === value} onChange={() => setPayment(value)} className="sr-only" />
@@ -211,7 +215,7 @@ export function ClearanceBookingForm() {
                   ))}
                 </div>
 
-                <div className="mt-3 px-5 py-4 border border-[var(--color-ivory-dark)] bg-[var(--color-ivory)]">
+                <div className="mt-3 px-5 py-4 rounded-xl border border-[var(--color-ivory-dark)] bg-[var(--color-ivory)]">
                   <span className="text-sm text-[var(--color-navy)]/65">
                     <span className="font-semibold text-[var(--color-navy)]/80">[ PayPal ]</span>
                     {" "}pay securely in USD / EUR
@@ -221,13 +225,13 @@ export function ClearanceBookingForm() {
                 <p className="mt-4 text-[11.5px] text-[var(--color-navy)]/35 leading-relaxed max-w-lg">
                   Refund &amp; cancellation policy shown clearly here — covers late arrival, no-show, and weather delays.
                 </p>
-              </div>
+              </Reveal>
 
             </div>
 
             {/* ── Right: Order summary ─────────────────────────────── */}
             <aside className="lg:sticky lg:top-[88px]">
-              <div className="border border-[var(--color-ivory-dark)] p-6 bg-[var(--color-ivory)]">
+              <div className="rounded-2xl border border-[var(--color-ivory-dark)] p-6 bg-[var(--color-ivory)] shadow-[0_24px_60px_-36px_rgba(11,31,58,0.25)]">
                 <h3 className="text-[13.5px] font-semibold text-[var(--color-navy)] pb-4 mb-4 border-b border-[var(--color-ivory-dark)]">
                   Order summary
                 </h3>
@@ -243,7 +247,7 @@ export function ClearanceBookingForm() {
                   <span className="text-[13px] font-semibold text-[var(--color-navy)]">US $—</span>
                 </div>
 
-                <button className="w-full py-3.5 bg-[var(--color-navy)] text-white text-[13px] font-semibold hover:bg-[var(--color-navy-dark)] transition-colors duration-150">
+                <button className="group w-full py-3.5 rounded-full bg-[var(--color-navy)] text-white text-[13px] font-semibold hover:bg-[var(--color-navy-dark)] hover:shadow-[0_10px_24px_-8px_rgba(11,31,58,0.45)] active:scale-[0.98] transition-all duration-300">
                   Confirm &amp; pay
                 </button>
 
@@ -281,10 +285,20 @@ function StepHeader({ n, label, children }: { n: number; label: string; children
 function RadioDot({ active }: { active: boolean }) {
   return (
     <span className={cn(
-      "w-[14px] h-[14px] rounded-full border-2 flex items-center justify-center shrink-0 transition-colors duration-150",
+      "w-[14px] h-[14px] rounded-full border-2 flex items-center justify-center shrink-0 transition-colors duration-200",
       active ? "border-[var(--color-navy)]" : "border-[var(--color-navy)]/20"
     )}>
-      {active && <span className="w-[6px] h-[6px] rounded-full bg-[var(--color-navy)]" />}
+      <AnimatePresence>
+        {active && (
+          <motion.span
+            className="w-[6px] h-[6px] rounded-full bg-[var(--color-navy)]"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            transition={{ duration: 0.2 }}
+          />
+        )}
+      </AnimatePresence>
     </span>
   );
 }

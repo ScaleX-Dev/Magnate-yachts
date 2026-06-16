@@ -26,11 +26,11 @@ export function Button({
   arrow,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 font-medium tracking-wide transition-all duration-200 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2";
+    "group inline-flex items-center justify-center gap-2 font-medium tracking-wide transition-all duration-300 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[0.97]";
 
   const variants = {
-    primary: "bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-dark)] focus-visible:outline-[var(--color-navy)]",
-    outline: "border border-[var(--color-navy)] text-[var(--color-navy)] hover:bg-[var(--color-navy)] hover:text-white focus-visible:outline-[var(--color-navy)]",
+    primary: "bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-dark)] shadow-[0_1px_2px_rgba(11,31,58,0.05)] hover:shadow-[0_8px_20px_-4px_rgba(11,31,58,0.35)] hover:-translate-y-[1px] focus-visible:outline-[var(--color-navy)]",
+    outline: "border border-[var(--color-navy)] text-[var(--color-navy)] hover:bg-[var(--color-navy)] hover:text-white hover:-translate-y-[1px] focus-visible:outline-[var(--color-navy)]",
     ghost:   "text-[var(--color-navy)] hover:text-[var(--color-amber)] focus-visible:outline-[var(--color-amber)]",
   };
 
@@ -41,12 +41,15 @@ export function Button({
   };
 
   const classes = cn(base, variants[variant], sizes[size], disabled && "opacity-50 pointer-events-none", className);
+  const arrowEl = arrow && (
+    <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+  );
 
   if (href) {
     return (
       <Link href={href} className={classes}>
         {children}
-        {arrow && <ArrowRight size={14} />}
+        {arrowEl}
       </Link>
     );
   }
@@ -54,7 +57,7 @@ export function Button({
   return (
     <button type={type} onClick={onClick} disabled={disabled} className={classes}>
       {children}
-      {arrow && <ArrowRight size={14} />}
+      {arrowEl}
     </button>
   );
 }

@@ -13,7 +13,7 @@ export function ImgPlaceholder({
 }: ImgPlaceholderProps) {
   return (
     <div
-      className={cn("img-placeholder w-full rounded-sm overflow-hidden", aspectRatio, className)}
+      className={cn("img-placeholder w-full rounded-xl overflow-hidden", aspectRatio, className)}
       role="img"
       aria-label={label}
     >

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import { ImgPlaceholder } from "@/components/ui/ImgPlaceholder";
+import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Trips — Magnate Yachts Sri Lanka",
@@ -57,39 +58,47 @@ export default function TripsPage() {
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
         <div className="container-site py-20 lg:py-28">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
-            Land trips · Sri Lanka
-          </p>
-          <h1
-            className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-[var(--color-navy)] leading-[1.1] mb-5 max-w-lg"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            See Sri Lanka<br />by land
-          </h1>
-          <p className="text-[var(--color-navy)]/55 max-w-md text-sm leading-relaxed">
-            Optional guided road trips for visiting crew. Transportation and driver only — you&apos;re free to book your own stays.
-          </p>
+          <Reveal>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
+              Land trips · Sri Lanka
+            </p>
+            <h1
+              className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-[var(--color-navy)] leading-[1.1] mb-5 max-w-lg"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              See Sri Lanka<br />by land
+            </h1>
+            <p className="text-[var(--color-navy)]/55 max-w-md text-sm leading-relaxed">
+              Optional guided road trips for visiting crew. Transportation and driver only — you&apos;re free to book your own stays.
+            </p>
+          </Reveal>
         </div>
       </section>
 
       {/* ── Trip cards ─────────────────────────────────────────────────── */}
       <section className="bg-white">
         <div className="container-site py-16 lg:py-20">
-          <h2
-            className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-10"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Choose your trip
-          </h2>
+          <Reveal>
+            <h2
+              className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-10"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Choose your trip
+            </h2>
+          </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
-            {TRIPS.map(({ slug, badge, duration, price, destinations, photo }) => (
-              <div key={slug} className="border border-[var(--color-ivory-dark)] flex flex-col group">
+            {TRIPS.map(({ slug, badge, duration, price, destinations, photo }, i) => (
+              <Reveal
+                key={slug}
+                delay={i * 0.1}
+                className="rounded-2xl overflow-hidden border border-[var(--color-ivory-dark)] flex flex-col group transition-all duration-300 hover:border-[var(--color-navy)]/20 hover:shadow-[0_20px_48px_-24px_rgba(11,31,58,0.25)] hover:-translate-y-1"
+              >
                 <div className="overflow-hidden">
                   <ImgPlaceholder
                     label={photo}
                     aspectRatio="aspect-[4/3]"
-                    className="rounded-none transition-transform duration-500 group-hover:scale-[1.02]"
+                    className="rounded-none transition-transform duration-500 group-hover:scale-[1.05]"
                   />
                 </div>
                 <div className="p-6 flex flex-col gap-3 flex-1">
@@ -109,18 +118,18 @@ export default function TripsPage() {
                   <div className="mt-auto pt-4">
                     <Link
                       href={`/trips/${slug}`}
-                      className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-[var(--color-navy)] text-white text-[13px] font-medium hover:bg-[var(--color-navy-dark)] transition-colors"
+                      className="group/btn inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-full bg-[var(--color-navy)] text-white text-[13px] font-medium hover:bg-[var(--color-navy-dark)] hover:shadow-[0_8px_20px_-6px_rgba(11,31,58,0.4)] transition-all duration-300"
                     >
-                      Book this trip <ArrowRight size={13} />
+                      Book this trip <ArrowRight size={13} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
                     </Link>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
 
           {/* Custom enquiry */}
-          <div className="border border-[var(--color-ivory-dark)] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 bg-[var(--color-ivory)]">
+          <div className="rounded-2xl border border-[var(--color-ivory-dark)] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 bg-[var(--color-ivory)]">
             <div>
               <p className="font-semibold text-[var(--color-navy)] text-[15px] mb-1.5">
                 Longer than 7 days, or something custom?
@@ -131,9 +140,9 @@ export default function TripsPage() {
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--color-navy)] text-[var(--color-navy)] text-sm font-medium hover:bg-[var(--color-navy)] hover:text-white transition-colors whitespace-nowrap shrink-0"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--color-navy)] text-[var(--color-navy)] text-sm font-medium hover:bg-[var(--color-navy)] hover:text-white transition-colors whitespace-nowrap shrink-0"
             >
-              Enquire by email <ArrowRight size={14} />
+              Enquire by email <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
@@ -142,29 +151,31 @@ export default function TripsPage() {
       {/* ── Where you'll go ───────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
         <div className="container-site py-16 lg:py-20">
-          <h2
-            className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-8"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Where you&apos;ll go
-          </h2>
+          <Reveal>
+            <h2
+              className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-8"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Where you&apos;ll go
+            </h2>
 
-          <div className="flex flex-wrap gap-2 mb-10">
-            {DESTINATIONS.map((dest) => (
-              <span
-                key={dest}
-                className="px-4 py-2 border border-[var(--color-navy)]/15 text-[13px] text-[var(--color-navy)] font-medium rounded-full"
-              >
-                {dest}
+            <div className="flex flex-wrap gap-2 mb-10">
+              {DESTINATIONS.map((dest) => (
+                <span
+                  key={dest}
+                  className="px-4 py-2 border border-[var(--color-navy)]/15 text-[13px] text-[var(--color-navy)] font-medium rounded-full transition-all duration-200 hover:border-[var(--color-navy)]/40 hover:bg-white cursor-default"
+                >
+                  {dest}
+                </span>
+              ))}
+            </div>
+
+            <div className="rounded-2xl border border-[var(--color-ivory-dark)] bg-[var(--color-ivory-dark)]/50 h-72 flex items-center justify-center">
+              <span className="text-[10px] text-[var(--color-navy)]/35 uppercase tracking-widest">
+                [ Map of Sri Lanka — route highlights ]
               </span>
-            ))}
-          </div>
-
-          <div className="border border-[var(--color-ivory-dark)] bg-[var(--color-ivory-dark)]/50 h-72 flex items-center justify-center">
-            <span className="text-[10px] text-[var(--color-navy)]/35 uppercase tracking-widest">
-              [ Map of Sri Lanka — route highlights ]
-            </span>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -172,7 +183,7 @@ export default function TripsPage() {
       <section className="bg-white">
         <div className="container-site py-16 lg:py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-            <div>
+            <Reveal>
               <h2
                 className="text-xl sm:text-2xl font-semibold text-[var(--color-navy)] mb-7"
                 style={{ fontFamily: "var(--font-display)" }}
@@ -187,8 +198,8 @@ export default function TripsPage() {
                   </li>
                 ))}
               </ul>
-            </div>
-            <div>
+            </Reveal>
+            <Reveal delay={0.1}>
               <h2
                 className="text-xl sm:text-2xl font-semibold text-[var(--color-navy)] mb-7"
                 style={{ fontFamily: "var(--font-display)" }}
@@ -203,7 +214,7 @@ export default function TripsPage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
