@@ -25,11 +25,14 @@ export function TrustSignals() {
       <div className="container-site py-20 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-12">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
+            <h2
+              className="text-3xl sm:text-4xl font-semibold text-white leading-tight mb-5"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               The boat-side, while you&apos;re up there.
-            </p>
+            </h2>
             <p className="text-white/55 text-sm leading-relaxed">
-              We&apos;re the people you&apos;ll have your first coffee on Sri Lankan soil with. Licensed agent. Fixed published fee. The same team that planned your week ashore clears you out. Captains and returning clients all say the same thing — they just didn&apos;t know it before they arrived.
+              Your clearance, immigration, customs, port authority, gate passes — sorted before you&apos;ve finished your first coffee on Sri Lankan soil. Licensed agent, fixed published fee, the same team that&apos;s planning your week ashore and Noonsite-savvy crews — the full details live on the clearance page.
             </p>
           </div>
         </div>

@@ -2,6 +2,12 @@ export function TestimonialSection() {
   return (
     <section className="bg-white">
       <div className="container-site py-20 lg:py-28">
+        <h2
+          className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-12"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          Hear it from other sailors
+        </h2>
         <div className="max-w-3xl">
           <blockquote className="flex flex-col gap-7">
             <p
@@ -13,7 +19,7 @@ export function TestimonialSection() {
             <footer className="flex items-center gap-4">
               <div className="w-8 h-px bg-[var(--color-navy)]/15" />
               <div>
-                <p className="text-sm font-semibold text-[var(--color-navy)]">Jojo Marcum</p>
+                <p className="text-sm font-semibold text-[var(--color-navy)]">s/y Halcyon</p>
                 <p className="text-xs text-[var(--color-navy)]/45 mt-0.5">Australia · mid-passage Indian Ocean</p>
               </div>
             </footer>

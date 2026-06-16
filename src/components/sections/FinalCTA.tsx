@@ -15,20 +15,27 @@ export function FinalCTA() {
             We&apos;ll meet your boat. Everything from there is handled.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Button href="/book" variant="primary" size="lg" arrow>
-              Plan your stay
+            <Button
+              href="/contact"
+              variant="primary"
+              size="lg"
+              arrow
+              className="bg-white text-[var(--color-navy)] hover:bg-white/90"
+            >
+              Send a message
             </Button>
             <Button
-              href="https://wa.me/94XXXXXXXXX"
+              href="mailto:hello@magnateyachts.com"
               variant="outline"
               size="lg"
               arrow
+              className="border-white/30 text-white hover:bg-white/10 hover:text-white"
             >
-              Message on WhatsApp
+              Email us
             </Button>
           </div>
-          <p className="mt-8 text-[11px] text-white/20 uppercase tracking-widest">
-            VHF&nbsp;16 · Channel 16 monitored
+          <p className="mt-8 text-[13px] text-white/40">
+            Or VHF&nbsp;16 · WhatsApp&nbsp;+94&nbsp;···
           </p>
         </div>
       </div>

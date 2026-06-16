@@ -1,31 +1,31 @@
 const PILLARS = [
   {
-    tag: "On arrival",
-    title: "Your agent at the dock",
+    tag: "01 · On arrival",
+    title: "Before you've finished tying up.",
     items: [
       "Clearance, immigration, customs, port authority",
       "Berthing coordinated ahead of time",
-      "Man on the dock not a minute longer than necessary",
+      "Met on the dock at Galle or Trincomalee",
       "Paperwork done as quickly as the system allows",
     ],
   },
   {
-    tag: "At stay",
-    title: "The island, shaped to you",
+    tag: "02 · At stay",
+    title: "Your week ashore, and the boat in between.",
     items: [
       "A trip across the island, shaped to your crew",
       "Trusted drivers, handpicked stays",
       "Recommendations from people who actually live here",
-      "Provisioning, fuel, gas, water, repairs",
+      "Provisioning, fuel, gas, water, repairs — as the boat needs",
     ],
   },
   {
-    tag: "On departure",
-    title: "Clear out, on your timetable",
+    tag: "03 · On departure",
+    title: "Out cleanly, on your timetable.",
     items: [
-      "Clear-out formalities lodged with the port",
+      "Clear-out formalities lodged with the authorities",
       "Departure paperwork ready before you sail",
-      "Marine logistics on the dockside",
+      "Last-mile logistics — fuel, ice, provisions",
       "A clean handover for the next passage",
     ],
   },
@@ -34,25 +34,7 @@ const PILLARS = [
 export function ServicePillars() {
   return (
     <section className="bg-[var(--color-ivory)]">
-      <div className="container-site py-20 lg:py-28">
-
-        {/* Intro */}
-        <div className="mb-14 max-w-2xl">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
-            The team · the whole stop
-          </p>
-          <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[var(--color-navy)] leading-[1.15] mb-5"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            From the moment you anchor down to the day you sail — every need on your boat, and on the island, handled by the same small team.
-          </h2>
-          <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed">
-            You won&apos;t be passed between an agent for paperwork, a separate driver for the hills, and a tour operator who doesn&apos;t know your boat. One number, one team, from your first call on VHF&nbsp;16 to the moment you clear out.
-          </p>
-        </div>
-
-        {/* Pillar grid */}
+      <div className="container-site py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[var(--color-ivory-dark)] border border-[var(--color-ivory-dark)]">
           {PILLARS.map(({ tag, title, items }) => (
             <div key={tag} className="bg-white p-8 flex flex-col gap-6">
@@ -78,10 +60,6 @@ export function ServicePillars() {
             </div>
           ))}
         </div>
-
-        <p className="mt-7 text-center text-[13px] text-[var(--color-navy)]/40 italic" style={{ fontFamily: "var(--font-display)" }}>
-          One agent for the boat. One agent for the island. One number to call.
-        </p>
       </div>
     </section>
   );

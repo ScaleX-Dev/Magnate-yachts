@@ -7,8 +7,8 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { href: "/clearance",  label: "Clearance" },
   { href: "/trips",      label: "Trips" },
+  { href: "/clearance",  label: "Clearance" },
   { href: "/port-guide", label: "Port Guide" },
   { href: "/about",      label: "About" },
   { href: "/contact",    label: "Contact" },
@@ -77,7 +77,7 @@ export function Navbar() {
               href="/book"
               className="hidden sm:inline-flex items-center justify-center px-5 py-[9px] bg-[var(--color-navy)] text-white text-[11.5px] font-semibold tracking-[0.08em] uppercase hover:bg-[var(--color-navy-dark)] transition-colors duration-200"
             >
-              Arrange Clearance
+              Plan your stay
             </Link>
             <button
               className="lg:hidden p-2 text-[var(--color-navy)]/70 hover:text-[var(--color-navy)] transition-colors"
@@ -112,7 +112,7 @@ export function Navbar() {
               href="/book"
               className="mt-6 inline-flex items-center justify-center px-5 py-3 bg-[var(--color-navy)] text-white text-sm font-semibold tracking-wider uppercase hover:bg-[var(--color-navy-dark)] transition-colors"
             >
-              Arrange Clearance
+              Plan your stay
             </Link>
           </nav>
         </div>
