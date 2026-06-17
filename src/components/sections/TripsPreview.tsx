@@ -27,10 +27,10 @@ const TRIPS = [
 export function TripsPreview() {
   return (
     <section className="bg-white">
-      <div className="container-site py-20 lg:py-28">
+      <div className="container-site py-12 lg:py-16">
 
         {/* Heading */}
-        <Reveal className="mb-12 max-w-2xl">
+        <Reveal className="mb-8 max-w-2xl">
           <div className="flex items-center gap-3 mb-5">
             <span className="w-6 h-px bg-[var(--color-navy)]/25" />
             <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)]">

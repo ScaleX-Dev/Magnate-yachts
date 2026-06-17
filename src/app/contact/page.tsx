@@ -42,7 +42,7 @@ export default function ContactPage() {
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-20 lg:py-28">
+        <div className="container-site py-12 lg:py-16">
           <Reveal>
             <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
               Get in touch
@@ -62,7 +62,7 @@ export default function ContactPage() {
 
       {/* ── Form + sidebar ─────────────────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="container-site py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           {/* Form */}
           <div className="lg:col-span-2">

@@ -57,7 +57,7 @@ export default function TripsPage() {
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-20 lg:py-28">
+        <div className="container-site py-12 lg:py-16">
           <Reveal>
             <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
               Land trips · Sri Lanka
@@ -77,7 +77,7 @@ export default function TripsPage() {
 
       {/* ── Trip cards ─────────────────────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-16 lg:py-20">
+        <div className="container-site py-10 lg:py-14">
           <Reveal>
             <h2
               className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-10"
@@ -150,7 +150,7 @@ export default function TripsPage() {
 
       {/* ── Where you'll go ───────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-16 lg:py-20">
+        <div className="container-site py-10 lg:py-14">
           <Reveal>
             <h2
               className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-8"
@@ -181,7 +181,7 @@ export default function TripsPage() {
 
       {/* ── What's included / not ─────────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-16 lg:py-20">
+        <div className="container-site py-10 lg:py-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
             <Reveal>
               <h2

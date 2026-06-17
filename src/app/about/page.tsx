@@ -33,7 +33,7 @@ export default function AboutPage() {
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-20 lg:py-28">
+        <div className="container-site py-12 lg:py-16">
           <Reveal>
             <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
               About Magnate Yachts
@@ -53,7 +53,7 @@ export default function AboutPage() {
 
       {/* ── Story ─────────────────────────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="container-site py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <Reveal className="relative aspect-[4/3] w-full overflow-hidden rounded-md shadow-[0_24px_60px_-28px_rgba(11,31,58,0.3)]">
             <Image
               src="https://images.unsplash.com/photo-1656347440710-70039fa0bd0a?q=80&w=1200&auto=format&fit=crop"
@@ -85,7 +85,7 @@ export default function AboutPage() {
 
       {/* ── Credentials ───────────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-20">
+        <div className="container-site py-12">
           <Reveal>
             <h2
               className="text-2xl sm:text-3xl font-semibold text-white mb-10"
@@ -113,7 +113,7 @@ export default function AboutPage() {
 
       {/* ── Team photo ────────────────────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-16">
+        <div className="container-site py-10">
           <Reveal>
             <div className="relative aspect-[21/8] w-full overflow-hidden rounded-md shadow-[0_24px_60px_-28px_rgba(11,31,58,0.25)]">
               <Image
@@ -133,7 +133,7 @@ export default function AboutPage() {
 
       {/* ── CTA ───────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-16 flex flex-col sm:flex-row items-start sm:items-center gap-8 justify-between">
+        <div className="container-site py-10 flex flex-col sm:flex-row items-start sm:items-center gap-8 justify-between">
           <Reveal>
             <h2
               className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-2 leading-snug"

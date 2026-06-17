@@ -12,7 +12,7 @@ export function HeroSection() {
     <section className="bg-[var(--color-ivory)] overflow-hidden">
       {/* Full-width hero image */}
       <motion.div
-        className="container-site pt-8"
+        className="container-site pt-5"
         initial={{ opacity: 0, scale: 1.03 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, ease: EASE }}
@@ -25,7 +25,7 @@ export function HeroSection() {
       </motion.div>
 
       {/* Headline + CTAs */}
-      <div className="container-site pt-12 pb-20">
+      <div className="container-site pt-8 pb-12">
         <div className="max-w-2xl">
           <motion.h1
             className="text-5xl sm:text-[3.75rem] lg:text-7xl font-semibold leading-[1.08] text-[var(--color-navy)]"

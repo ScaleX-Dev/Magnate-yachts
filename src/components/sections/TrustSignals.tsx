@@ -23,8 +23,8 @@ const SIGNALS = [
 export function TrustSignals() {
   return (
     <section className="bg-[var(--color-navy)]">
-      <div className="container-site py-20 lg:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-12">
+      <div className="container-site py-12 lg:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 mb-8">
           <Reveal>
             <h2
               className="text-3xl sm:text-4xl font-semibold text-white leading-tight mb-5"

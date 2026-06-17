@@ -50,7 +50,7 @@ export function ServicePillars() {
       <div className="lg:hidden flex flex-col">
         {PILLARS.map(({ number, label, title, bg, items }, i) => (
           <div key={number} className={bg}>
-            <Reveal className="container-site py-14" delay={i * 0.05}>
+            <Reveal className="container-site py-8" delay={i * 0.05}>
               <span
                 className="block text-7xl text-[var(--color-amber)] leading-none mb-2"
                 style={{ fontFamily: "var(--font-display)" }}
@@ -86,7 +86,7 @@ export function ServicePillars() {
       </div>
 
       {/* Desktop — card grid */}
-      <div className="hidden lg:block container-site py-20 lg:py-28">
+      <div className="hidden lg:block container-site py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {PILLARS.map(({ tag, title, items }, i) => (
             <Reveal

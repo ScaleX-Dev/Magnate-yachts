@@ -4,7 +4,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export function FinalCTA() {
   return (
     <section className="bg-[var(--color-navy)]">
-      <div className="container-site py-24 lg:py-32">
+      <div className="container-site py-14 lg:py-20">
         <Reveal className="max-w-2xl">
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-[1.15] mb-8"

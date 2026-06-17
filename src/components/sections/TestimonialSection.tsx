@@ -3,10 +3,10 @@ import { Reveal } from "@/components/ui/Reveal";
 export function TestimonialSection() {
   return (
     <section className="bg-white">
-      <div className="container-site py-20 lg:py-28">
+      <div className="container-site py-12 lg:py-16">
         <Reveal>
           <h2
-            className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-12"
+            className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-8"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Hear it from other sailors
