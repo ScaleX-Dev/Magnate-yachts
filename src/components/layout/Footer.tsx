@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Anchor, Mail, Radio } from "lucide-react";
+import { Mail, Radio } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/trips",      label: "Trips" },
@@ -11,31 +11,50 @@ const NAV_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--color-navy-dark)]">
-      <div className="container-site py-14 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-[1.3fr_1fr_1fr] gap-10 sm:gap-8 pb-10 sm:pb-12 border-b border-white/[0.08]">
+    <footer className="bg-[var(--color-midnight)] border-t border-white/[0.06]">
+      <div className="container-site py-14 sm:py-16 lg:py-20">
+
+        <div className="grid grid-cols-1 sm:grid-cols-[1.4fr_1fr_1fr] gap-10 sm:gap-8 pb-12 sm:pb-14 border-b border-white/[0.06]">
 
           {/* Brand */}
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center justify-center rounded-xl bg-[var(--color-amber)] text-white w-9 h-9 shrink-0">
-                <Anchor size={17} strokeWidth={2.2} />
-              </span>
+          <div className="flex flex-col gap-5">
+            <div>
               <span
-                className="text-[18px] font-semibold text-white"
+                className="block text-[22px] font-semibold text-white leading-none mb-1"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Magnate Yachts
+                Magnate
+              </span>
+              <span
+                className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/25"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                Yachts
               </span>
             </div>
-            <p className="text-[13.5px] text-white/40 leading-relaxed max-w-[280px]">
+            <p
+              className="text-[13px] text-white/35 leading-relaxed max-w-[260px]"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Licensed yacht agent · Galle &amp; Trincomalee, Sri Lanka
             </p>
+            <div className="flex items-center gap-2">
+              <span className="w-6 h-px bg-[var(--color-amber)]/40" />
+              <span
+                className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-amber)]/60"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                Est. 2009
+              </span>
+            </div>
           </div>
 
           {/* Navigation */}
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-4">
+            <p
+              className="text-[9.5px] font-medium uppercase tracking-[0.28em] text-white/22 mb-5"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Navigation
             </p>
             <nav className="flex flex-col gap-2.5">
@@ -43,7 +62,8 @@ export function Footer() {
                 <Link
                   key={href}
                   href={href}
-                  className="text-[13.5px] text-white/55 hover:text-white transition-colors w-fit"
+                  className="text-[13.5px] text-white/45 hover:text-white/80 transition-colors w-fit"
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
                   {label}
                 </Link>
@@ -53,29 +73,57 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-4">
+            <p
+              className="text-[9.5px] font-medium uppercase tracking-[0.28em] text-white/22 mb-5"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Reach us
             </p>
-            <div className="flex flex-col gap-2.5">
-              <span className="flex items-center gap-2 text-[13.5px] text-white/55">
-                <Radio size={13} className="text-[var(--color-amber-light)]/70 shrink-0" />
-                VHF&nbsp;16 · WhatsApp&nbsp;+94&nbsp;···
+            <div className="flex flex-col gap-3">
+              <span
+                className="flex items-center gap-2.5 text-[13.5px] text-white/45"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                <Radio size={12} className="text-[var(--color-amber)]/50 shrink-0" />
+                VHF&nbsp;16&nbsp;&nbsp;·&nbsp;&nbsp;WhatsApp +94&nbsp;···
               </span>
               <a
                 href="mailto:hello@magnateyachts.com"
-                className="flex items-center gap-2 text-[13.5px] text-white/55 hover:text-white transition-colors w-fit"
+                className="flex items-center gap-2.5 text-[13.5px] text-white/45 hover:text-white/80 transition-colors w-fit"
+                style={{ fontFamily: "var(--font-body)" }}
               >
-                <Mail size={13} className="text-[var(--color-amber-light)]/70 shrink-0" />
+                <Mail size={12} className="text-[var(--color-amber)]/50 shrink-0" />
                 hello@magnateyachts.com
               </a>
             </div>
           </div>
         </div>
 
-        <div className="pt-6">
-          <p className="text-[11.5px] text-white/25">
-            © Magnate Yachts
+        {/* Bottom bar */}
+        <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <p
+            className="text-[11px] text-white/20"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            © {new Date().getFullYear()} Magnate Yachts. All rights reserved.
           </p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/privacy"
+              className="text-[11px] text-white/18 hover:text-white/40 transition-colors"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Privacy
+            </Link>
+            <span className="text-white/10">·</span>
+            <Link
+              href="/terms"
+              className="text-[11px] text-white/18 hover:text-white/40 transition-colors"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Terms
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -8,94 +8,137 @@ const TRIPS = [
     slug: "3-day",
     number: "01",
     duration: "Three days",
+    label: "THREE DAYS",
     subtitle: "Galle, south coast, Ella",
+    tag: "The short one",
   },
   {
     slug: "5-day",
     number: "02",
     duration: "Five days",
+    label: "FIVE DAYS",
     subtitle: "Adding the tea country and Nuwara Eliya",
+    tag: "The full hills",
   },
   {
     slug: "7-day",
     number: "03",
     duration: "A full week",
+    label: "SEVEN DAYS",
     subtitle: "Sigiriya, the kings, and home",
+    tag: "The whole island",
   },
 ];
 
 export function TripsPreview() {
   return (
-    <section className="bg-white">
-      <div className="container-site py-12 lg:py-16">
+    <section className="bg-[var(--color-ivory)]">
+      <div className="container-site py-20 md:py-28 lg:py-32">
 
-        {/* Heading */}
-        <Reveal className="mb-8 max-w-2xl">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="w-6 h-px bg-[var(--color-navy)]/25" />
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)]">
+        {/* Header */}
+        <Reveal className="mb-10 md:mb-14">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-8 h-px bg-[var(--color-navy)]/20" />
+            <span
+              className="text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)]"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Into the island
             </span>
           </div>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[var(--color-navy)] leading-[1.15] mb-5"
+            className="text-[clamp(2rem,5.5vw,4rem)] font-light text-[var(--color-navy)] leading-[1.1] mb-5"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Three days, five, or the whole island.
+            Three days, five,
+            <br />
+            <span className="italic text-[var(--color-navy)]/40">or the whole island.</span>
           </h2>
-          <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed">
-            Whichever fits your window — we&apos;d take you somewhere quietly memorable.
+          <p
+            className="text-[14px] text-[var(--color-navy)]/45 leading-relaxed max-w-sm"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            Whichever fits your window — we'd take you somewhere quietly memorable.
           </p>
         </Reveal>
 
-        {/* Full-bleed image */}
-        <Reveal delay={0.1}>
+        {/* Hero image */}
+        <Reveal delay={0.08} className="mb-8 md:mb-10">
           <ImgPlaceholder
-            label="Iconic Sri Lanka image — Sigiriya at sunrise, or panoramic tea country, or Nine Arch Bridge train. Full bleed, atmospheric, allowed to breathe."
-            aspectRatio="aspect-[16/9]"
-            className="rounded-md shadow-[0_20px_50px_-24px_rgba(11,31,58,0.25)]"
+            label="Iconic Sri Lanka — Sigiriya at sunrise, or Nine Arch Bridge, or panoramic tea country"
+            aspectRatio="aspect-[21/9]"
+            className="rounded-2xl shadow-[0_24px_60px_-24px_rgba(6,12,24,0.28)]"
           />
         </Reveal>
 
-        <p className="mt-6 text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/40">
-          Where Magnate would take you
-        </p>
+        <Reveal delay={0.12}>
+          <span
+            className="block text-[9.5px] font-medium uppercase tracking-[0.25em] text-[var(--color-navy)]/30 mb-6"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            Where Magnate would take you
+          </span>
+        </Reveal>
 
         {/* Trip list */}
-        <div className="mt-4 flex flex-col divide-y divide-[var(--color-ivory-dark)] border-t border-[var(--color-ivory-dark)]">
-          {TRIPS.map(({ slug, number, duration, subtitle }, i) => (
-            <Reveal key={slug} delay={i * 0.08} y={14}>
+        <div className="flex flex-col border-t border-[var(--color-navy)]/[0.08]">
+          {TRIPS.map(({ slug, number, duration, subtitle, tag }, i) => (
+            <Reveal key={slug} delay={i * 0.09} y={14}>
               <Link
                 href={`/trips/${slug}`}
-                className="group grid grid-cols-[2.5rem_1fr] sm:grid-cols-[2.5rem_10rem_1fr_auto] items-center gap-3 sm:gap-6 py-6 px-3 -mx-3 rounded-sm transition-colors duration-300 hover:bg-[var(--color-ivory)]"
+                className="group relative flex items-center gap-4 sm:gap-8 py-6 sm:py-7 px-4 -mx-4 border-b border-[var(--color-navy)]/[0.08] rounded-xl transition-all duration-300 hover:bg-[var(--color-ivory-dark)] hover:px-6 active:scale-[0.99]"
               >
-                <span className="text-sm text-[var(--color-amber)] font-medium transition-transform duration-300 group-hover:scale-110">{number}</span>
-                <h3
-                  className="text-lg sm:text-xl font-semibold text-[var(--color-navy)] col-span-1"
+                {/* Number */}
+                <span
+                  className="text-sm font-medium text-[var(--color-amber)] w-6 shrink-0 transition-transform duration-300 group-hover:scale-110"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  {duration}
-                </h3>
-                <span className="text-sm text-[var(--color-navy)]/55 col-span-2 sm:col-span-1">
-                  {subtitle}
+                  {number}
                 </span>
-                <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-[var(--color-navy)] group-hover:text-[var(--color-amber)] transition-colors whitespace-nowrap">
-                  See this trip <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <h3
+                    className="text-[1.35rem] sm:text-[1.6rem] font-light text-[var(--color-navy)] leading-tight"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {duration}
+                  </h3>
+                  <p
+                    className="text-[13px] text-[var(--color-navy)]/40 mt-1 truncate"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    {subtitle}
+                  </p>
+                </div>
+
+                {/* CTA */}
+                <span
+                  className="hidden sm:inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-navy)]/30 group-hover:text-[var(--color-amber)] transition-colors whitespace-nowrap shrink-0"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  View trip
+                  <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
+                <ArrowRight
+                  size={15}
+                  className="sm:hidden text-[var(--color-navy)]/20 group-hover:text-[var(--color-amber)] transition-colors shrink-0"
+                />
               </Link>
             </Reveal>
           ))}
         </div>
 
-        <div className="mt-8">
+        <Reveal delay={0.3} className="mt-8">
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 text-sm text-[var(--color-navy)]/55 hover:text-[var(--color-navy)] transition-colors"
+            className="group inline-flex items-center gap-2 text-[13.5px] text-[var(--color-navy)]/40 hover:text-[var(--color-navy)] transition-colors"
+            style={{ fontFamily: "var(--font-body)" }}
           >
-            Or tell us how long you&apos;ve got. We&apos;ll build something around your crew <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+            Or tell us how long you&apos;ve got — we&apos;ll build something around your crew
+            <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
-        </div>
-
+        </Reveal>
       </div>
     </section>
   );

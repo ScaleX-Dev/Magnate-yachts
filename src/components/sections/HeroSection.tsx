@@ -5,69 +5,108 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { ImgPlaceholder } from "@/components/ui/ImgPlaceholder";
 
-const EASE = [0.25, 0.46, 0.45, 0.94] as const;
+const EASE_EXPO = [0.22, 1, 0.36, 1] as const;
+
+function LineReveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <span className={`block overflow-hidden ${className}`} style={{ paddingBottom: "0.06em" }}>
+      <motion.span
+        className="block"
+        initial={{ y: "104%" }}
+        animate={{ y: "0%" }}
+        transition={{ duration: 1.05, delay, ease: EASE_EXPO }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
 
 export function HeroSection() {
   return (
-    <section className="bg-[var(--color-ivory)] overflow-hidden">
-      {/* Full-width hero image */}
-      <motion.div
-        className="container-site pt-5"
-        initial={{ opacity: 0, scale: 1.03 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.9, ease: EASE }}
-      >
-        <ImgPlaceholder
-          label="Hero Image — Sri Lanka moment"
-          aspectRatio="aspect-[16/9]"
-          className="rounded-2xl shadow-[0_20px_60px_-20px_rgba(11,31,58,0.25)]"
-        />
-      </motion.div>
+    <section className="bg-[var(--color-ivory)]">
+      <div className="container-site pt-5 md:pt-6 pb-14 md:pb-20">
 
-      {/* Headline + CTAs */}
-      <div className="container-site pt-8 pb-12">
-        <div className="max-w-2xl">
-          <motion.h1
-            className="text-5xl sm:text-[3.75rem] lg:text-7xl font-semibold leading-[1.08] text-[var(--color-navy)]"
-            style={{ fontFamily: "var(--font-display)" }}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
+        {/* Hero image */}
+        <motion.div
+          className="mb-8 md:mb-10"
+          initial={{ opacity: 0, scale: 1.015 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.1, ease: EASE_EXPO }}
+        >
+          <ImgPlaceholder
+            label="Hero Image — Sri Lanka moment"
+            aspectRatio="aspect-[16/9]"
+            className="rounded-2xl shadow-[0_20px_60px_-20px_rgba(6,12,24,0.18)]"
+          />
+        </motion.div>
+
+        {/* Headline */}
+        <h1
+          className="mb-8 md:mb-10"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          <LineReveal
+            delay={0.18}
+            className="text-[clamp(2.6rem,7.5vw,6.5rem)] font-bold text-[var(--color-navy)] leading-[0.93] tracking-[-0.02em]"
           >
-            <span className="block mb-3">Anchor down.</span>
-            <span className="block text-[11px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-3" style={{ fontFamily: "var(--font-body)" }}>
-              Galle &nbsp;·&nbsp; Trincomalee
-            </span>
-            <span className="block mb-8">Your Sri Lanka adventure begins here.</span>
-          </motion.h1>
-          <motion.p
-            className="text-sm text-[var(--color-navy)]/55 leading-relaxed mb-8 max-w-md"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
+            Anchor down.
+          </LineReveal>
+          <LineReveal
+            delay={0.32}
+            className="text-[clamp(2.6rem,7.5vw,6.5rem)] font-bold text-[var(--color-navy)] leading-[0.93] tracking-[-0.02em]"
           >
-            Yacht services and handpicked experiences, trusted by the global cruising community.
-          </motion.p>
-          <motion.div
-            className="flex flex-col sm:flex-row gap-3"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.42, ease: EASE }}
+            Your Sri Lanka adventure begins
+          </LineReveal>
+          <LineReveal
+            delay={0.46}
+            className="text-[clamp(2.6rem,7.5vw,6.5rem)] font-bold text-[var(--color-navy)] leading-[0.93] tracking-[-0.02em]"
           >
-            <Link
-              href="/book"
-              className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3.5 rounded-full bg-[var(--color-navy)] text-white text-sm font-medium tracking-wide shadow-[0_1px_2px_rgba(11,31,58,0.05)] hover:bg-[var(--color-navy-dark)] hover:shadow-[0_8px_20px_-4px_rgba(11,31,58,0.35)] hover:-translate-y-[1px] transition-all duration-300 active:scale-[0.97]"
+            <span>here.</span>
+            <motion.span
+              className="inline-flex items-center gap-2 ml-4 sm:ml-6 text-[clamp(0.6rem,1.35vw,0.875rem)] font-medium uppercase tracking-[0.22em] text-[var(--color-amber)] align-middle"
+              style={{ fontFamily: "var(--font-body)", verticalAlign: "middle", transform: "translateY(-0.1em)" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.82 }}
             >
-              Plan your stay <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/clearance"
-              className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3.5 rounded-full border border-[var(--color-navy)]/25 text-[var(--color-navy)] text-sm font-medium tracking-wide hover:border-[var(--color-navy)] hover:bg-[var(--color-navy)]/[0.04] hover:-translate-y-[1px] transition-all duration-300 active:scale-[0.97]"
-            >
-              Arrange Clearance <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
-        </div>
+              Galle&nbsp;&nbsp;·&nbsp;&nbsp;Trincomalee
+            </motion.span>
+          </LineReveal>
+        </h1>
+
+        {/* CTAs */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-3"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7, ease: EASE_EXPO }}
+        >
+          <Link
+            href="/book"
+            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-xl bg-[var(--color-navy)] text-white text-[13.5px] font-medium tracking-wide hover:bg-[var(--color-navy-dark)] hover:shadow-[0_16px_48px_-8px_rgba(6,12,24,0.35)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            Plan your stay
+            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+          <Link
+            href="/clearance"
+            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-xl border border-[var(--color-navy)]/22 text-[var(--color-navy)] text-[13.5px] font-medium tracking-wide hover:border-[var(--color-navy)]/45 hover:bg-[var(--color-navy)]/[0.04] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            Arrange Clearance
+            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

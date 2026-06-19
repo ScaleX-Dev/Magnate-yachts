@@ -32,19 +32,26 @@ export default function AboutPage() {
   return (
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-12 lg:py-16">
+      <section className="bg-[var(--color-navy)]">
+        <div className="container-site py-20 lg:py-28">
           <Reveal>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
+            <span
+              className="block text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-7"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               About Magnate Yachts
-            </p>
+            </span>
             <h1
-              className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-[var(--color-navy)] max-w-3xl leading-[1.1] mb-6"
+              className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white max-w-3xl leading-[1.1] mb-7"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              The team on the dock when you arrive. The same team when you leave.
+              The team on the dock when you arrive.{" "}
+              <span className="italic text-white/40">The same team when you leave.</span>
             </h1>
-            <p className="text-[var(--color-navy)]/55 max-w-xl text-sm leading-relaxed">
+            <p
+              className="text-[14.5px] text-white/40 max-w-xl leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Magnate Yachts is Sri Lanka&apos;s dominant sailing yacht operations company — the licensed clearance agent for the majority of international sailing yachts arriving in the country. We cover both entry ports: Galle on the south coast, Trincomalee on the east.
             </p>
           </Reveal>
@@ -52,9 +59,9 @@ export default function AboutPage() {
       </section>
 
       {/* ── Story ─────────────────────────────────────────────────────── */}
-      <section className="bg-white">
-        <div className="container-site py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <Reveal className="relative aspect-[4/3] w-full overflow-hidden rounded-md shadow-[0_24px_60px_-28px_rgba(11,31,58,0.3)]">
+      <section className="bg-[var(--color-ivory)]">
+        <div className="container-site py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <Reveal className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-[0_32px_80px_-28px_rgba(6,12,24,0.3)]">
             <Image
               src="https://images.unsplash.com/photo-1656347440710-70039fa0bd0a?q=80&w=1200&auto=format&fit=crop"
               alt="Sailing yachts moored in a calm harbour"
@@ -63,48 +70,61 @@ export default function AboutPage() {
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </Reveal>
-          <Reveal delay={0.1} className="flex flex-col gap-5">
+          <Reveal delay={0.1} className="flex flex-col gap-6 pt-2">
             <h2
-              className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] leading-snug"
+              className="text-[clamp(1.65rem,3.5vw,2.5rem)] font-light text-[var(--color-navy)] leading-[1.2]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              We started on the dockside and we&apos;ve stayed there.
+              We started on the dockside and{" "}
+              <span className="italic text-[var(--color-navy)]/45">we&apos;ve stayed there.</span>
             </h2>
-            <p className="text-sm text-[var(--color-navy)]/65 leading-relaxed">
-              We&apos;ve been working with international sailing crews arriving in Galle since 2009. What started as clearance grew — crews wanted someone they already trusted to help them see the country. We built the land operation around the same team.
-            </p>
-            <p className="text-sm text-[var(--color-navy)]/65 leading-relaxed">
-              Today we handle clearance, provisioning, land trips, and marine logistics for more international yachts arriving in Sri Lanka than any other agent. We don&apos;t advertise that on billboards — we&apos;re known by word of mouth from captain to captain, passage to passage.
-            </p>
-            <p className="text-sm text-[var(--color-navy)]/65 leading-relaxed">
-              The fee is fixed and published. The team you speak to before you arrive is the team you meet on the dock.
-            </p>
+            {[
+              "We've been working with international sailing crews arriving in Galle since 2009. What started as clearance grew — crews wanted someone they already trusted to help them see the country. We built the land operation around the same team.",
+              "Today we handle clearance, provisioning, land trips, and marine logistics for more international yachts arriving in Sri Lanka than any other agent. We don't advertise that on billboards — we're known by word of mouth from captain to captain, passage to passage.",
+              "The fee is fixed and published. The team you speak to before you arrive is the team you meet on the dock.",
+            ].map((para, i) => (
+              <p
+                key={i}
+                className="text-[14px] text-[var(--color-navy)]/55 leading-relaxed"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                {para}
+              </p>
+            ))}
           </Reveal>
         </div>
       </section>
 
       {/* ── Credentials ───────────────────────────────────────────────── */}
-      <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-12">
+      <section className="bg-[var(--color-navy-dark)]">
+        <div className="container-site py-20">
           <Reveal>
             <h2
-              className="text-2xl sm:text-3xl font-semibold text-white mb-10"
+              className="text-[clamp(1.75rem,4vw,3rem)] font-light text-white mb-12"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Our credentials
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 divide-[1px] divide-white/[0.07] border border-white/[0.07]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {CREDENTIALS.map(({ label, detail }, i) => (
               <Reveal
                 key={label}
                 delay={i * 0.08}
-                className="p-7 flex flex-col gap-2 border-b border-r border-white/[0.07] last:border-r-0 [&:nth-child(2)]:border-r-0 sm:[&:nth-child(2)]:border-r transition-colors duration-300 hover:bg-white/[0.03]"
+                className="p-7 md:p-8 flex flex-col gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.03] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/[0.12]"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)]">
+                <p
+                  className="text-[9.5px] font-medium uppercase tracking-[0.28em] text-[var(--color-amber)]"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
                   {label}
                 </p>
-                <p className="text-sm text-white/50 leading-relaxed">{detail}</p>
+                <p
+                  className="text-[13.5px] text-white/45 leading-relaxed"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  {detail}
+                </p>
               </Reveal>
             ))}
           </div>
@@ -112,10 +132,10 @@ export default function AboutPage() {
       </section>
 
       {/* ── Team photo ────────────────────────────────────────────────── */}
-      <section className="bg-white">
-        <div className="container-site py-10">
+      <section className="bg-[var(--color-ivory)]">
+        <div className="container-site py-14">
           <Reveal>
-            <div className="relative aspect-[21/8] w-full overflow-hidden rounded-md shadow-[0_24px_60px_-28px_rgba(11,31,58,0.25)]">
+            <div className="relative aspect-[21/8] w-full overflow-hidden rounded-2xl shadow-[0_24px_60px_-28px_rgba(6,12,24,0.25)]">
               <Image
                 src="https://images.unsplash.com/photo-1763151426912-92383702ab3f?q=80&w=2400&auto=format&fit=crop"
                 alt="Sailboats and yachts docked at the marina"
@@ -124,7 +144,10 @@ export default function AboutPage() {
                 sizes="100vw"
               />
             </div>
-            <p className="mt-4 text-[11.5px] text-[var(--color-navy)]/35 italic">
+            <p
+              className="mt-4 text-[12px] text-[var(--color-navy)]/30 italic"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Our team at Galle harbour.
             </p>
           </Reveal>
@@ -132,24 +155,33 @@ export default function AboutPage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────── */}
-      <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-10 flex flex-col sm:flex-row items-start sm:items-center gap-8 justify-between">
+      <section className="bg-[var(--color-navy)]">
+        <div className="container-site py-16 md:py-20 flex flex-col sm:flex-row items-start sm:items-center gap-10 justify-between">
           <Reveal>
             <h2
-              className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-2 leading-snug"
+              className="text-[clamp(1.5rem,4vw,2.75rem)] font-light text-white leading-[1.15]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              When you have an arrival window — get in touch.
+              When you have an arrival window —{" "}
+              <span className="italic text-white/40">get in touch.</span>
             </h2>
-            <p className="text-sm text-[var(--color-navy)]/55">
+            <p
+              className="mt-3 text-[13.5px] text-white/38"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               We&apos;ll meet your boat. Everything from there is handled.
             </p>
           </Reveal>
           <Reveal delay={0.1} className="flex gap-3 flex-wrap shrink-0">
-            <Button href="/book" variant="primary" size="md" arrow>
+            <Button href="/book" variant="gold" size="md" arrow>
               Arrange clearance
             </Button>
-            <Button href="/contact" variant="outline" size="md">
+            <Button
+              href="/contact"
+              variant="outline"
+              size="md"
+              className="border-white/20 text-white hover:bg-white/10 hover:border-white/35 hover:text-white"
+            >
               Contact us
             </Button>
           </Reveal>

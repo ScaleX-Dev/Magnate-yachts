@@ -1,12 +1,12 @@
+"use client";
+
 import { Reveal } from "@/components/ui/Reveal";
 
 const PILLARS = [
   {
     number: "01",
-    tag: "01 · On arrival",
-    label: "On arrival",
+    tag: "On arrival",
     title: "Before you've finished tying up.",
-    bg: "bg-white",
     items: [
       "Clearance, immigration, customs, port authority",
       "Berthing coordinated ahead of time",
@@ -16,10 +16,8 @@ const PILLARS = [
   },
   {
     number: "02",
-    tag: "02 · At stay",
-    label: "At stay",
+    tag: "At stay",
     title: "Your week ashore, and the boat in between.",
-    bg: "bg-[var(--color-ivory-dark)]",
     items: [
       "A trip across the island, shaped to your crew",
       "Trusted drivers, handpicked stays",
@@ -29,10 +27,8 @@ const PILLARS = [
   },
   {
     number: "03",
-    tag: "03 · On departure",
-    label: "On departure",
+    tag: "On departure",
     title: "Out cleanly, on your timetable.",
-    bg: "bg-white",
     items: [
       "Clear-out formalities lodged with the authorities",
       "Departure paperwork ready before you sail",
@@ -42,77 +38,93 @@ const PILLARS = [
   },
 ];
 
-export function ServicePillars() {
+function PillarCard({ number, tag, title, items }: (typeof PILLARS)[0]) {
   return (
-    <section className="bg-[var(--color-ivory)]">
+    <div className="relative flex flex-col gap-6 bg-white/[0.04] border border-white/[0.08] rounded-2xl p-7 md:p-8 overflow-hidden transition-all duration-500 hover:bg-white/[0.07] hover:border-white/[0.15] hover:-translate-y-1 group">
+      {/* Watermark number */}
+      <span
+        className="absolute -top-5 -right-1 text-[7rem] md:text-[9rem] font-bold text-white/[0.03] leading-none select-none pointer-events-none transition-all duration-500 group-hover:text-white/[0.055]"
+        style={{ fontFamily: "var(--font-display)" }}
+      >
+        {number}
+      </span>
 
-      {/* Mobile / tablet — stacked, big numerals */}
-      <div className="lg:hidden flex flex-col">
-        {PILLARS.map(({ number, label, title, bg, items }, i) => (
-          <div key={number} className={bg}>
-            <Reveal className="container-site py-8" delay={i * 0.05}>
-              <span
-                className="block text-7xl text-[var(--color-amber)] leading-none mb-2"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {number}
-              </span>
-              <h3
-                className="text-3xl font-medium text-[var(--color-navy)] leading-tight mb-2"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {label}
-              </h3>
-              <p
-                className="text-base text-[var(--color-navy)]/45 mb-6"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {title}
-              </p>
-              <div className="w-8 h-px bg-[var(--color-amber)] mb-6" />
-              <ul className="flex flex-col">
-                {items.map((item) => (
-                  <li
-                    key={item}
-                    className="py-4 border-b border-[var(--color-navy)]/[0.08] last:border-b-0 text-[15px] text-[var(--color-navy)]/70 leading-relaxed"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        ))}
+      <div className="flex flex-col gap-2">
+        <span
+          className="text-[9.5px] uppercase tracking-[0.28em] text-[var(--color-amber)]"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          {number}&nbsp;&nbsp;·&nbsp;&nbsp;{tag}
+        </span>
+        <h3
+          className="text-[1.35rem] md:text-[1.45rem] font-medium text-white leading-snug"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          {title}
+        </h3>
       </div>
 
-      {/* Desktop — card grid */}
-      <div className="hidden lg:block container-site py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {PILLARS.map(({ tag, title, items }, i) => (
-            <Reveal
-              key={tag}
-              delay={i * 0.1}
-              className="rounded-2xl border border-[var(--color-ivory-dark)] bg-white p-8 flex flex-col gap-6 transition-all duration-300 hover:border-[var(--color-navy)]/15 hover:shadow-[0_16px_40px_-20px_rgba(11,31,58,0.18)] hover:-translate-y-1 relative hover:z-10"
+      <div className="w-8 h-px bg-[var(--color-amber)]/35" />
+
+      <ul className="flex flex-col gap-3.5">
+        {items.map((item) => (
+          <li key={item} className="flex items-start gap-3">
+            <span className="mt-[9px] w-[5px] h-[5px] rounded-full bg-[var(--color-amber)]/60 shrink-0 flex-none" />
+            <span
+              className="text-[13.5px] text-white/45 leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
             >
-              <div>
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)]">
-                  {tag}
-                </span>
-              </div>
-              <h3
-                className="text-xl font-semibold text-[var(--color-navy)] leading-snug"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {title}
-              </h3>
-              <ul className="flex flex-col gap-3">
-                {items.map((item) => (
-                  <li key={item} className="flex gap-3 text-[13.5px] text-[var(--color-navy)]/60 leading-relaxed">
-                    <span className="mt-[7px] w-[5px] h-[5px] rounded-full bg-[var(--color-amber)] shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              {item}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export function ServicePillars() {
+  return (
+    <section className="bg-[var(--color-navy)] overflow-hidden">
+      <div className="container-site py-20 md:py-28 lg:py-32">
+
+        {/* Section header */}
+        <Reveal className="mb-12 md:mb-16">
+          <span
+            className="block text-[10px] uppercase tracking-[0.3em] text-[var(--color-amber)] mb-6"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            How we work
+          </span>
+          <h2
+            className="text-[clamp(2rem,5vw,3.5rem)] font-light text-white leading-[1.1]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            From arrival to departure,
+            <br />
+            <span className="italic text-white/40">we hold the line.</span>
+          </h2>
+        </Reveal>
+
+        {/* Mobile: horizontal snap scroll */}
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-[var(--section-padding-x)] px-[var(--section-padding-x)] pb-5 lg:hidden scrollbar-none">
+          {PILLARS.map((pillar) => (
+            <div
+              key={pillar.number}
+              className="snap-start shrink-0 w-[85vw] max-w-[360px]"
+            >
+              <PillarCard {...pillar} />
+            </div>
+          ))}
+          {/* Trailing spacer */}
+          <div className="shrink-0 w-4" />
+        </div>
+
+        {/* Desktop: 3-column grid */}
+        <div className="hidden lg:grid grid-cols-3 gap-5">
+          {PILLARS.map((pillar, i) => (
+            <Reveal key={pillar.number} delay={i * 0.12}>
+              <PillarCard {...pillar} />
             </Reveal>
           ))}
         </div>

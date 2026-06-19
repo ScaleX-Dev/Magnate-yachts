@@ -53,19 +53,27 @@ export default function ClearancePage() {
   return (
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-12 lg:py-16">
+      <section className="bg-[var(--color-navy)]">
+        <div className="container-site py-20 lg:py-28">
           <Reveal>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
+            <span
+              className="block text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-7"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Galle · Sri Lanka
-            </p>
+            </span>
             <h1
-              className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-[var(--color-navy)] leading-[1.1] mb-5 max-w-lg"
+              className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white leading-[1.1] mb-6 max-w-lg"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Yacht clearance<br />in Galle
+              Yacht clearance
+              <br />
+              <span className="italic text-[var(--color-amber)]/80">in Galle</span>
             </h1>
-            <p className="text-[var(--color-navy)]/55 max-w-md text-sm leading-relaxed">
+            <p
+              className="text-[14.5px] text-white/40 max-w-md leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Fast, transparent, and met at the dock. The mandatory part of arriving in Sri Lanka, made the easy part.
             </p>
           </Reveal>

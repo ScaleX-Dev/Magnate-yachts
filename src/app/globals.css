@@ -2,57 +2,66 @@
 
 /* ─── Brand Design Tokens ─────────────────────────────────────────── */
 :root {
-  /* Brand colours — modern deep-indigo + warm brass palette */
-  --color-navy:        #11203F;
-  --color-navy-dark:   #070D1C;
-  --color-amber:       #B8854A;
-  --color-amber-light: #D9AE74;
-  --color-turquoise:   #2FA9A8;
-  --color-ivory:       #FAF9F6;
-  --color-ivory-dark:  #EEEBE3;
+  /* Midnight ocean palette */
+  --color-midnight:    #060C18;
+  --color-navy-dark:   #080F1E;
+  --color-navy:        #0F1D33;
+  --color-navy-mid:    #172A46;
+  --color-amber:       #C4924A;
+  --color-amber-light: #D8A862;
+  --color-turquoise:   #1E9292;
+  --color-ivory:       #F4F1EA;
+  --color-ivory-dark:  #EAE6DC;
+  --color-cream:       #FAF8F3;
 
   /* Surfaces */
   --color-surface:      #FFFFFF;
-  --color-surface-sunk: #F3F1EC;
-  --color-border:       #E6E2D8;
+  --color-surface-sunk: #F0EDE5;
+  --color-border:       #E2DDD3;
+  --color-border-dark:  rgba(255,255,255,0.07);
 
   /* Semantic */
   --background: var(--color-ivory);
   --foreground: var(--color-navy);
 
   /* Typography */
-  --font-display: var(--font-fraunces), 'Georgia', serif;
-  --font-body:    var(--font-inter), 'Helvetica Neue', sans-serif;
+  --font-display: var(--font-cormorant), 'Georgia', serif;
+  --font-body:    var(--font-dm-sans), 'Helvetica Neue', sans-serif;
 
-  /* Radius scale */
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 
-  /* Shadow scale — soft, navy-tinted elevation */
-  --shadow-soft: 0 1px 2px rgba(17, 32, 63, 0.05);
-  --shadow-md:   0 16px 40px -20px rgba(17, 32, 63, 0.18);
-  --shadow-lg:   0 28px 70px -28px rgba(17, 32, 63, 0.24);
+  /* Shadows */
+  --shadow-soft: 0 1px 3px rgba(6, 12, 24, 0.08);
+  --shadow-md:   0 16px 48px -20px rgba(6, 12, 24, 0.24);
+  --shadow-lg:   0 32px 80px -28px rgba(6, 12, 24, 0.35);
+  --shadow-gold: 0 8px 32px -8px rgba(196, 146, 74, 0.4);
 
   /* Layout */
-  --section-padding-y: clamp(4rem, 8vw, 7rem);
+  --section-padding-y: clamp(5rem, 9vw, 8rem);
   --section-padding-x: clamp(1.25rem, 5vw, 5rem);
 
   /* Transitions */
-  --transition-base:   200ms ease;
-  --transition-smooth: 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-base:   180ms ease;
+  --transition-smooth: 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo:         cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ─── Tailwind v4 theme extension (CSS-first config) ─────────────── */
+/* ─── Tailwind v4 theme extension ─────────────────────────────────── */
 @theme inline {
+  --color-midnight:     var(--color-midnight);
   --color-navy:         var(--color-navy);
   --color-navy-dark:    var(--color-navy-dark);
+  --color-navy-mid:     var(--color-navy-mid);
   --color-amber:        var(--color-amber);
   --color-amber-light:  var(--color-amber-light);
   --color-turquoise:    var(--color-turquoise);
   --color-ivory:        var(--color-ivory);
   --color-ivory-dark:   var(--color-ivory-dark);
+  --color-cream:        var(--color-cream);
   --color-surface:      var(--color-surface);
   --color-surface-sunk: var(--color-surface-sunk);
   --color-border:       var(--color-border);
@@ -77,7 +86,7 @@ html {
 }
 
 body {
-  background-color: var(--color-ivory);
+  background-color: var(--color-midnight);
   color: var(--color-navy);
   font-family: var(--font-body);
   min-height: 100dvh;
@@ -88,7 +97,7 @@ body {
 /* ─── Typography helpers ─────────────────────────────────────────── */
 .font-display { font-family: var(--font-display); }
 
-/* ─── Utility: max-width container ──────────────────────────────── */
+/* ─── Container ──────────────────────────────────────────────────── */
 .container-site {
   max-width: 1280px;
   margin-left: auto;
@@ -97,17 +106,26 @@ body {
   padding-right: var(--section-padding-x);
 }
 
-/* ─── Image placeholder (grey box until real images arrive) ──────── */
+/* ─── Scrollbar hide ─────────────────────────────────────────────── */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Image placeholder ──────────────────────────────────────────── */
 .img-placeholder {
   position: relative;
-  background: linear-gradient(135deg, #dcdfe6 0%, #aeb4c2 100%);
+  background: linear-gradient(135deg, #1a2840 0%, #0f1d33 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #5b6275;
-  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.2);
+  font-size: 0.75rem;
   font-family: var(--font-body);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   overflow: hidden;
 }
@@ -118,12 +136,12 @@ body {
   background: linear-gradient(
     100deg,
     transparent 30%,
-    rgba(255, 255, 255, 0.22) 48%,
-    rgba(255, 255, 255, 0.22) 52%,
+    rgba(255, 255, 255, 0.04) 48%,
+    rgba(255, 255, 255, 0.04) 52%,
     transparent 70%
   );
   background-size: 200% 100%;
-  animation: shimmer 5s ease-in-out infinite;
+  animation: shimmer 4s ease-in-out infinite;
 }
 @keyframes shimmer {
   0%   { background-position: 150% 0; }
@@ -133,24 +151,24 @@ body {
 /* ─── Form inputs ────────────────────────────────────────────────── */
 .form-input {
   width: 100%;
-  padding: 0.6875rem 0.875rem;
+  padding: 0.75rem 1rem;
   font-size: 0.875rem;
   font-family: var(--font-body);
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  color: var(--color-navy);
+  background: rgba(255,255,255,0.05);
+  color: white;
   transition: border-color var(--transition-base), box-shadow var(--transition-base);
   appearance: none;
   -webkit-appearance: none;
 }
 .form-input::placeholder {
-  color: color-mix(in srgb, var(--color-navy) 35%, transparent);
+  color: rgba(255,255,255,0.25);
 }
 .form-input:focus {
   outline: none;
-  border-color: var(--color-navy);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-navy) 8%, transparent);
+  border-color: var(--color-amber);
+  box-shadow: 0 0 0 3px rgba(196,146,74,0.15);
 }
 
 /* ─── Focus ring ─────────────────────────────────────────────────── */

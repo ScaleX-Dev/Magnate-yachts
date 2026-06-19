@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Anchor, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -15,59 +15,60 @@ const NAV_LINKS = [
   { href: "/contact",    label: "Contact" },
 ] as const;
 
-function Mark({ size = 30 }: { size?: number }) {
-  return (
-    <span
-      className="inline-flex items-center justify-center rounded-xl bg-[var(--color-navy)] text-[var(--color-amber-light)] shrink-0"
-      style={{ width: size, height: size }}
-    >
-      <Anchor size={size * 0.55} strokeWidth={2.2} />
-    </span>
-  );
-}
-
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
+  useEffect(() => {
+    if (open) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
     <>
       <header
         className={cn(
-          "sticky top-0 z-50 w-full transition-all duration-300",
+          "sticky top-0 z-50 w-full transition-all duration-500",
           scrolled
-            ? "bg-white shadow-[0_4px_24px_-8px_rgba(17,32,63,0.12)] border-b border-[var(--color-border)]"
-            : "bg-[var(--color-ivory)] border-b border-transparent"
+            ? "bg-[var(--color-midnight)]/95 backdrop-blur-xl shadow-[0_1px_0_rgba(255,255,255,0.06)]"
+            : "bg-[var(--color-midnight)]"
         )}
       >
         <div className="container-site">
-          <div className="flex items-center justify-between h-[64px]">
+          <div className="flex items-center justify-between h-[68px] md:h-[72px]">
+
             {/* Logo */}
-            <Link href="/" aria-label="Magnate Yachts — home" className="flex items-center gap-2.5 shrink-0">
-              <Mark />
-              <span className="flex flex-col leading-none">
-                <span
-                  className="text-[15px] font-semibold text-[var(--color-navy)] tracking-tight"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  Magnate
-                </span>
-                <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[var(--color-navy)]/40 hidden sm:inline">
-                  Yachts
-                </span>
+            <Link
+              href="/"
+              aria-label="Magnate Yachts — home"
+              className="flex items-center gap-3 shrink-0 group"
+            >
+              <span
+                className="text-[22px] md:text-[24px] font-semibold tracking-tight text-white leading-none transition-opacity duration-200 group-hover:opacity-80"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Magnate
+              </span>
+              <span className="hidden sm:block w-px h-4 bg-white/15" />
+              <span
+                className="hidden sm:block text-[9px] font-medium uppercase tracking-[0.25em] text-white/35 transition-opacity duration-200 group-hover:opacity-60"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                Yachts
               </span>
             </Link>
 
-            {/* Desktop nav — pill indicator */}
+            {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-1" aria-label="Primary navigation">
               {NAV_LINKS.map(({ href, label }) => {
                 const active = pathname === href || pathname.startsWith(href + "/");
@@ -76,16 +77,17 @@ export function Navbar() {
                     key={href}
                     href={href}
                     className={cn(
-                      "relative px-4 py-2 text-[13px] font-medium rounded-full transition-colors duration-200",
+                      "relative px-4 py-2 text-[13px] tracking-wide transition-colors duration-200 rounded-sm",
                       active
-                        ? "text-white"
-                        : "text-[var(--color-navy)]/60 hover:text-[var(--color-navy)]"
+                        ? "text-white font-medium"
+                        : "text-white/45 hover:text-white/80 font-normal"
                     )}
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {active && (
                       <motion.span
-                        layoutId="nav-pill"
-                        className="absolute inset-0 rounded-full bg-[var(--color-navy)] -z-10"
+                        layoutId="nav-underline"
+                        className="absolute bottom-0 left-4 right-4 h-px bg-[var(--color-amber)]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -95,19 +97,20 @@ export function Navbar() {
               })}
             </nav>
 
-            {/* CTA (desktop only) */}
-            <div className="hidden lg:flex items-center gap-3">
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center gap-4">
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center px-5 py-[9px] rounded-full bg-[var(--color-amber)] text-white text-[12px] font-semibold tracking-wide hover:bg-[var(--color-amber-light)] hover:shadow-[0_8px_20px_-6px_rgba(184,133,74,0.5)] hover:-translate-y-px transition-all duration-300"
+                className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[var(--color-amber)] text-white text-[12.5px] font-medium tracking-wide hover:bg-[var(--color-amber-light)] hover:shadow-[0_8px_28px_-6px_rgba(196,146,74,0.45)] hover:-translate-y-px transition-all duration-300 active:scale-[0.97]"
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 Plan your stay
               </Link>
             </div>
 
-            {/* Hamburger (mobile only) */}
+            {/* Mobile hamburger */}
             <button
-              className="lg:hidden p-2 -mr-1 text-[var(--color-navy)]/70 hover:text-[var(--color-navy)] transition-colors"
+              className="lg:hidden p-2 -mr-1 text-white/60 hover:text-white transition-colors"
               onClick={() => setOpen(!open)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
@@ -119,7 +122,7 @@ export function Navbar() {
                   initial={{ rotate: -90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.18 }}
                 >
                   {open ? <X size={20} /> : <Menu size={20} />}
                 </motion.span>
@@ -129,69 +132,88 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile drawer */}
+      {/* Full-screen mobile menu */}
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-            <motion.div
-              className="absolute inset-0 bg-[var(--color-navy)]/50 backdrop-blur-sm"
-              onClick={() => setOpen(false)}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
+          <motion.div
+            className="fixed inset-0 z-40 lg:hidden flex flex-col"
+            style={{ background: "var(--color-midnight)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            {/* Atmospheric gradient */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `radial-gradient(ellipse 130% 60% at 5% 90%, rgba(30, 146, 146, 0.07) 0%, transparent 60%)`,
+              }}
             />
-            <motion.nav
-              className="absolute top-3 right-3 bottom-3 w-72 rounded-3xl bg-[var(--color-ivory)] flex flex-col pt-8 pb-8 px-7 gap-1 shadow-[-12px_0_40px_-12px_rgba(17,32,63,0.25)]"
-              initial={{ x: "110%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "110%" }}
-              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-            >
-              <div className="flex items-center gap-2.5 mb-6">
-                <Mark size={28} />
-                <span
-                  className="text-[15px] font-semibold text-[var(--color-navy)]"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  Magnate
-                </span>
-              </div>
-              {NAV_LINKS.map(({ href, label }, i) => (
-                <motion.div
-                  key={href}
-                  initial={{ opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
-                >
-                  <Link
-                    href={href}
-                    className={cn(
-                      "block px-4 py-3 rounded-full text-[15px] font-medium transition-colors",
-                      pathname === href
-                        ? "bg-[var(--color-navy)] text-white"
-                        : "text-[var(--color-navy)]/60 hover:bg-[var(--color-navy)]/5 hover:text-[var(--color-navy)]"
-                    )}
+
+            <div className="relative flex-1 flex flex-col justify-center container-site pb-12 pt-28">
+              <nav className="flex flex-col" aria-label="Mobile navigation">
+                {NAV_LINKS.map(({ href, label }, i) => (
+                  <motion.div
+                    key={href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45, delay: 0.08 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    {label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={href}
+                      className={cn(
+                        "block py-4 border-b border-white/[0.07] transition-all duration-200",
+                        pathname === href
+                          ? "text-white"
+                          : "text-white/35 hover:text-white/75 active:text-white"
+                      )}
+                    >
+                      <span
+                        className="text-[clamp(2.25rem,8vw,3.75rem)] font-light leading-none"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {label}
+                      </span>
+                      {pathname === href && (
+                        <span
+                          className="ml-4 text-[11px] uppercase tracking-widest text-[var(--color-amber)] align-middle"
+                          style={{ fontFamily: "var(--font-body)" }}
+                        >
+                          Current
+                        </span>
+                      )}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+
               <motion.div
-                className="mt-4"
-                initial={{ opacity: 0, x: 16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.1 + NAV_LINKS.length * 0.05 }}
+                className="mt-10"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.45 }}
               >
                 <Link
                   href="/book"
-                  className="inline-flex items-center justify-center w-full px-5 py-3 rounded-full bg-[var(--color-amber)] text-white text-sm font-semibold tracking-wide hover:bg-[var(--color-amber-light)] transition-colors"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[var(--color-amber)] text-white text-sm font-medium tracking-wide hover:bg-[var(--color-amber-light)] transition-all duration-300 active:scale-[0.97]"
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
                   Plan your stay
                 </Link>
               </motion.div>
-            </motion.nav>
-          </div>
+
+              <motion.p
+                className="mt-8 text-[11px] text-white/20 tracking-wide"
+                style={{ fontFamily: "var(--font-body)" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.55 }}
+              >
+                VHF 16 · hello@magnateyachts.com
+              </motion.p>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

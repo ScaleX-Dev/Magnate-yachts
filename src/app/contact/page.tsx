@@ -41,19 +41,26 @@ export default function ContactPage() {
   return (
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-12 lg:py-16">
+      <section className="bg-[var(--color-navy)]">
+        <div className="container-site py-20 lg:py-28">
           <Reveal>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
+            <span
+              className="block text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-7"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Get in touch
-            </p>
+            </span>
             <h1
-              className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-[var(--color-navy)] max-w-2xl leading-[1.1] mb-4"
+              className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white max-w-2xl leading-[1.1] mb-6"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Tell us your arrival window. Even a rough one.
+              Tell us your arrival window.{" "}
+              <span className="italic text-white/40">Even a rough one.</span>
             </h1>
-            <p className="text-[var(--color-navy)]/55 max-w-md text-sm leading-relaxed">
+            <p
+              className="text-[14.5px] text-white/40 max-w-md leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               We&apos;ll reach out within 24 hours — usually much sooner.
             </p>
           </Reveal>

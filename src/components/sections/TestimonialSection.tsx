@@ -2,32 +2,52 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export function TestimonialSection() {
   return (
-    <section className="bg-white">
-      <div className="container-site py-12 lg:py-16">
-        <Reveal>
-          <h2
-            className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-8"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Hear it from other sailors
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1} className="max-w-3xl">
-          <blockquote className="flex flex-col gap-7">
-            <p
-              className="text-3xl sm:text-4xl lg:text-5xl font-light text-[var(--color-navy)] leading-[1.2]"
+    <section className="bg-[var(--color-midnight)] overflow-hidden relative">
+      {/* Subtle gradient accent */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse 120% 60% at 80% 50%, rgba(196, 146, 74, 0.04) 0%, transparent 60%)`,
+        }}
+      />
+
+      <div className="relative z-10 container-site py-24 md:py-36 lg:py-40">
+        <Reveal y={30}>
+          <div className="max-w-4xl">
+            {/* Decorative opening quote */}
+            <span
+              className="block text-[7rem] md:text-[10rem] leading-[0.7] text-[var(--color-amber)]/12 mb-2 md:mb-4 select-none"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              &ldquo;We&apos;d planned to stop in Galle for fuel. We stayed three weeks. The kids are still asking when we go back.&rdquo;
-            </p>
-            <footer className="flex items-center gap-4">
-              <div className="w-8 h-px bg-[var(--color-navy)]/15" />
-              <div>
-                <p className="text-sm font-semibold text-[var(--color-navy)]">s/y Halcyon</p>
-                <p className="text-xs text-[var(--color-navy)]/45 mt-0.5">Australia · mid-passage Indian Ocean</p>
-              </div>
-            </footer>
-          </blockquote>
+              &ldquo;
+            </span>
+
+            <blockquote>
+              <p
+                className="text-[clamp(1.65rem,3.8vw,3rem)] font-light italic text-white/85 leading-[1.4] mb-12 md:mb-14"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                We&apos;d planned to stop in Galle for fuel. We stayed three weeks. The kids are still asking when we go back.
+              </p>
+              <footer className="flex items-center gap-5">
+                <div className="w-12 h-px bg-[var(--color-amber)]/30 flex-shrink-0" />
+                <div>
+                  <p
+                    className="text-[15px] font-medium text-white/70"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    s/y Halcyon
+                  </p>
+                  <p
+                    className="text-[11.5px] text-white/28 mt-1 tracking-wide"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    Australia · mid-passage Indian Ocean
+                  </p>
+                </div>
+              </footer>
+            </blockquote>
+          </div>
         </Reveal>
       </div>
     </section>
