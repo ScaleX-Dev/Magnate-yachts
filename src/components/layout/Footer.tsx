@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Mail, Radio } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/trips",      label: "Trips" },
+  { href: "/trips",      label: "Excursions" },
   { href: "/clearance",  label: "Clearance" },
   { href: "/port-guide", label: "Port Guide" },
   { href: "/about",      label: "About" },

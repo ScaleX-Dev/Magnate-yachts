@@ -19,7 +19,7 @@ const PILLARS = [
     tag: "At stay",
     title: "Your week ashore, and the boat in between.",
     items: [
-      "A trip across the island, shaped to your crew",
+      "Day excursions and multi-day trips into the island",
       "Trusted drivers, handpicked stays",
       "Recommendations from people who actually live here",
       "Provisioning, fuel, gas, water, repairs — as the boat needs",

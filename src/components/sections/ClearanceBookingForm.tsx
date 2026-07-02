@@ -18,10 +18,10 @@ const WINDOWS = [
 ];
 
 const TRIP_OPTIONS = [
-  { value: "none",  label: "None",   sublabel: "Clearance only" },
-  { value: "3-day", label: "3-Day",  sublabel: "from US $—" },
-  { value: "5-day", label: "5-Day",  sublabel: "from US $—" },
-  { value: "7-day", label: "7-Day",  sublabel: "from US $—" },
+  { value: "none",  label: "None",           sublabel: "Clearance only" },
+  { value: "day",   label: "Day excursion",  sublabel: "from US $70" },
+  { value: "3-day", label: "Safari & Hills", sublabel: "2 nights · US $110" },
+  { value: "5-day", label: "Wilderness",     sublabel: "4 nights · US $140" },
 ];
 
 const STEPS = [
@@ -141,6 +141,7 @@ export function ClearanceBookingForm() {
   const [payment, setPayment] = useState("deposit");
 
   const tripLabel = TRIP_OPTIONS.find(t => t.value === trip)?.label ?? "—";
+  const tripHref = trip === "day" ? "/trips" : `/trips/${trip}`;
 
   const scrollTo = (n: number) => {
     setActiveStep(n);
@@ -297,7 +298,7 @@ export function ClearanceBookingForm() {
 
               {/* Step 3 — Trip */}
               <Reveal id="step-3" className="scroll-mt-28">
-                <StepHeader n={3} label="Add a land trip?" note="Optional — skip if clearing through only" />
+                <StepHeader n={3} label="Add an excursion?" note="Optional — skip if clearing through only" />
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {TRIP_OPTIONS.map(({ value, label, sublabel }) => (
@@ -345,7 +346,7 @@ export function ClearanceBookingForm() {
                     transition={{ duration: 0.3 }}
                   >
                     <Link
-                      href={`/trips/${trip}`}
+                      href={tripHref}
                       className="inline-flex items-center gap-1.5 text-[12px] text-[var(--color-amber)]/70 hover:text-[var(--color-amber)] transition-colors"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
@@ -434,7 +435,7 @@ export function ClearanceBookingForm() {
                 <div className="flex flex-col gap-3 pb-4 mb-4 border-b border-white/[0.07]">
                   <SummaryRow label="Clearance package" value="US $—" />
                   <SummaryRow
-                    label="Land trip"
+                    label="Excursion"
                     value={trip !== "none" ? tripLabel : "—"}
                     muted={trip === "none"}
                   />

@@ -5,28 +5,28 @@ import { Reveal } from "@/components/ui/Reveal";
 
 const TRIPS = [
   {
-    slug: "3-day",
+    href: "/trips",
     number: "01",
-    duration: "Three days",
-    label: "THREE DAYS",
-    subtitle: "Galle, south coast, Ella",
-    tag: "The short one",
+    duration: "Day excursions",
+    label: "ONE DAY",
+    subtitle: "Safari in Yala, or a day through Galle Fort and tea country",
+    tag: "From US$70",
   },
   {
-    slug: "5-day",
+    href: "/trips/3-day",
     number: "02",
-    duration: "Five days",
-    label: "FIVE DAYS",
-    subtitle: "Adding the tea country and Nuwara Eliya",
-    tag: "The full hills",
+    duration: "Safari & Hill Country",
+    label: "2 NIGHTS · 3 DAYS",
+    subtitle: "Yala or Udawalawe, then up into Ella",
+    tag: "US$110",
   },
   {
-    slug: "7-day",
+    href: "/trips/5-day",
     number: "03",
-    duration: "A full week",
-    label: "SEVEN DAYS",
-    subtitle: "Sigiriya, the kings, and home",
-    tag: "The whole island",
+    duration: "Wilderness to Ancient Kingdoms",
+    label: "4 NIGHTS · 5 DAYS",
+    subtitle: "Leopard country, hill country, Kandy, Sigiriya",
+    tag: "US$140",
   },
 ];
 
@@ -50,9 +50,9 @@ export function TripsPreview() {
             className="text-[clamp(2rem,5.5vw,4rem)] font-light text-[var(--color-navy)] leading-[1.1] mb-5"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Three days, five,
+            One day, three,
             <br />
-            <span className="italic text-[var(--color-navy)]/40">or the whole island.</span>
+            <span className="italic text-[var(--color-navy)]/40">or five through the kingdoms.</span>
           </h2>
           <p
             className="text-[14px] text-[var(--color-navy)]/45 leading-relaxed max-w-sm"
@@ -82,10 +82,10 @@ export function TripsPreview() {
 
         {/* Trip list */}
         <div className="flex flex-col border-t border-[var(--color-navy)]/[0.08]">
-          {TRIPS.map(({ slug, number, duration, subtitle, tag }, i) => (
-            <Reveal key={slug} delay={i * 0.09} y={14}>
+          {TRIPS.map(({ href, number, duration, subtitle, tag }, i) => (
+            <Reveal key={href} delay={i * 0.09} y={14}>
               <Link
-                href={`/trips/${slug}`}
+                href={href}
                 className="group relative flex items-center gap-4 sm:gap-8 py-6 sm:py-7 px-4 -mx-4 border-b border-[var(--color-navy)]/[0.08] rounded-xl transition-all duration-300 hover:bg-[var(--color-ivory-dark)] hover:px-6 active:scale-[0.99]"
               >
                 {/* Number */}
@@ -135,7 +135,7 @@ export function TripsPreview() {
             className="group inline-flex items-center gap-2 text-[13.5px] text-[var(--color-navy)]/40 hover:text-[var(--color-navy)] transition-colors"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Or tell us how long you&apos;ve got — we&apos;ll build something around your crew
+            Or tell us what you have in mind — we&apos;ll put something together
             <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </Reveal>

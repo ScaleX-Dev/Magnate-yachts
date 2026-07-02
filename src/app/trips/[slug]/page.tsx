@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Minus } from "lucide-react";
 import { ImgPlaceholder } from "@/components/ui/ImgPlaceholder";
 import { Reveal } from "@/components/ui/Reveal";
-import { TripEnquiryForm } from "@/components/trip/TripEnquiryForm";
-import { TRIPS, getTripBySlug, getTripsBySlug } from "@/lib/trips-data";
+import { TRIPS, getTripBySlug } from "@/lib/trips-data";
+
+const WHATSAPP = "https://wa.me/94XXXXXXXXX";
 
 export function generateStaticParams() {
   return TRIPS.map((t) => ({ slug: t.slug }));
@@ -21,7 +22,7 @@ export async function generateMetadata({
   if (!trip) return {};
   return {
     title: `${trip.shortName} — Magnate Yachts Sri Lanka`,
-    description: trip.about,
+    description: trip.subtitle,
   };
 }
 
@@ -34,18 +35,18 @@ export default async function TripDetailPage({
   const trip = getTripBySlug(slug);
   if (!trip) notFound();
 
-  const shorterTrips = getTripsBySlug(trip.shorterTrips);
-  const longerTrips  = getTripsBySlug(trip.longerTrips);
-
   return (
     <>
-      {/* ── Hero (dark, cinematic) ────────────────────────────────────── */}
-      <section className="min-h-svh bg-[#080e1a] flex flex-col relative">
-
-        {/* Breadcrumb */}
+      {/* ── Hero ──────────────────────────────────────────────────────── */}
+      <section className="bg-[#080e1a] min-h-[60svh] flex flex-col justify-between">
         <div className="container-site flex items-center justify-between pt-5 pb-3">
           <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-amber)]/60">
-            <Link href="/trips" className="hover:text-[var(--color-amber)]/90 transition-colors">Trips</Link>
+            <Link
+              href="/trips"
+              className="hover:text-[var(--color-amber)]/90 transition-colors"
+            >
+              Excursions
+            </Link>
             <span className="text-white/15">/</span>
             <span className="text-[var(--color-amber)]/40">{trip.shortName}</span>
           </div>
@@ -53,62 +54,29 @@ export default async function TripDetailPage({
             href="/trips"
             className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-white/25 hover:text-white/60 transition-colors"
           >
-            <ArrowLeft size={10} /> Back to all trips
+            <ArrowLeft size={10} /> Back
           </Link>
         </div>
 
-        {/* Play button */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <button
-            aria-label="Play with sound"
-            className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center hover:border-white/50 hover:bg-white/[0.04] hover:scale-110 active:scale-95 transition-all duration-300"
-          >
-            <Play size={20} className="text-white ml-1" fill="white" />
-          </button>
-          <p className="text-[9px] uppercase tracking-widest text-white/25">Play with sound</p>
-        </div>
-
-        {/* Title block */}
-        <div className="container-site pb-12 flex items-end justify-between gap-8">
-          <div>
+        <div className="container-site pb-14 pt-12">
+          <Reveal>
+            <span
+              className="inline-block text-[9px] uppercase tracking-[0.28em] border border-white/15 text-white/40 px-3 py-1.5 mb-8"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              {trip.badge}
+            </span>
             <h1
-              className="text-5xl sm:text-7xl lg:text-[5.5rem] font-semibold text-white leading-[1.04] mb-6 whitespace-pre-line"
+              className="text-[clamp(2.5rem,7vw,5.5rem)] font-semibold text-white leading-[1.04] whitespace-pre-line mb-4"
               style={{ fontFamily: "var(--font-display)" }}
             >
               {trip.heroTitle}
             </h1>
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="text-[10px] uppercase tracking-widest border border-white/15 text-white/45 px-3 py-1.5">
-                {trip.badge}
-              </span>
-              {trip.routeTags.map((tag, i) => (
-                <span key={tag} className="flex items-center gap-3">
-                  {i > 0 && <span className="text-white/12">·</span>}
-                  <span className="text-[11px] text-white/30">{tag}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="hidden lg:flex flex-col items-center gap-3 shrink-0 pb-1">
-            <span className="text-[9px] uppercase tracking-widest text-white/20 [writing-mode:vertical-lr] rotate-180">
-              Scroll
-            </span>
-            <div className="w-px h-10 bg-white/12" />
-          </div>
-        </div>
-      </section>
-
-      {/* ── About this trip ───────────────────────────────────────────── */}
-      <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-20">
-          <Reveal>
-            <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-8">
-              About this trip
-            </p>
-            <p className="text-base sm:text-lg text-[var(--color-navy)]/65 leading-relaxed max-w-2xl">
-              {trip.about}
+            <p
+              className="text-[15px] text-white/38 max-w-md leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              {trip.subtitle}
             </p>
           </Reveal>
         </div>
@@ -127,7 +95,10 @@ export default async function TripDetailPage({
               >
                 {/* Number + title */}
                 <Reveal className="flex flex-col justify-end pt-14 pb-6 lg:pb-4" y={16}>
-                  <span className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/35 mb-2">
+                  <span
+                    className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/35 mb-2"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
                     {day.label}
                   </span>
                   <span
@@ -156,7 +127,10 @@ export default async function TripDetailPage({
               </div>
 
               {/* Description */}
-              <p className="mt-7 mb-16 text-sm text-[var(--color-navy)]/55 leading-relaxed max-w-2xl">
+              <p
+                className="mt-7 mb-16 text-sm text-[var(--color-navy)]/55 leading-relaxed max-w-2xl"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
                 {day.description}
               </p>
             </div>
@@ -164,53 +138,52 @@ export default async function TripDetailPage({
         );
       })}
 
-      {/* ── Quote ─────────────────────────────────────────────────────── */}
-      <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-20 lg:py-28">
-          <Reveal>
-            <blockquote className="max-w-3xl">
-              <p
-                className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-[1.2] mb-8"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                &ldquo;{trip.quote}&rdquo;
-              </p>
-              <footer className="flex items-center gap-4">
-                <div className="w-7 h-px bg-white/15" />
-                <cite className="not-italic text-[11px] text-white/35 tracking-wide">
-                  {trip.quoteAttrib}
-                </cite>
-              </footer>
-            </blockquote>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ── What's included / not ─────────────────────────────────────── */}
-      <section className="bg-[var(--color-ivory)]">
+      <section className="bg-white">
         <div className="container-site py-16 lg:py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
             <Reveal>
-              <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-6">
-                What&apos;s included
+              <p
+                className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-6"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                Included
               </p>
               <ul className="flex flex-col gap-4">
                 {trip.included.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/65 leading-relaxed">
-                    <span className="mt-[7px] w-[5px] h-[5px] rounded-full bg-[var(--color-amber)] shrink-0" />
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm text-[var(--color-navy)]/65 leading-relaxed"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    <Check
+                      size={13}
+                      className="text-[var(--color-amber)] shrink-0 mt-[3px]"
+                    />
                     {item}
                   </li>
                 ))}
               </ul>
             </Reveal>
+
             <Reveal delay={0.1}>
-              <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/25 mb-6">
-                What&apos;s not included
+              <p
+                className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/25 mb-6"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                Not included
               </p>
               <ul className="flex flex-col gap-4">
                 {trip.notIncluded.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/40 leading-relaxed">
-                    <span className="mt-[7px] w-[5px] h-[5px] rounded-full bg-[var(--color-navy)]/18 shrink-0" />
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm text-[var(--color-navy)]/40 leading-relaxed"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    <Minus
+                      size={13}
+                      className="text-[var(--color-navy)]/20 shrink-0 mt-[3px]"
+                    />
                     {item}
                   </li>
                 ))}
@@ -220,142 +193,85 @@ export default async function TripDetailPage({
         </div>
       </section>
 
-      {/* ── Honest notes ──────────────────────────────────────────────── */}
-      <section className="bg-white">
+      {/* ── Reserve CTA ───────────────────────────────────────────────── */}
+      <section className="bg-[var(--color-ivory)]">
         <div className="container-site py-16 lg:py-20">
-          <Reveal>
-            <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-10">
-              Honest notes
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/40 mb-4">
-                  This one is right for —
-                </p>
-                <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed">
-                  {trip.honestFor}
-                </p>
-              </div>
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/40 mb-4">
-                  Probably not for —
-                </p>
-                <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed">
-                  {trip.honestNotFor}
-                </p>
-              </div>
+          <Reveal className="flex flex-col sm:flex-row sm:items-center justify-between gap-8">
+            <div>
+              <p
+                className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-amber)] mb-3"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                Reserve your place
+              </p>
+              <p
+                className="text-2xl sm:text-3xl font-light text-[var(--color-navy)] leading-snug"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {trip.shortName}
+              </p>
             </div>
+            <a
+              href={`${WHATSAPP}?text=${encodeURIComponent(
+                `I'd like to reserve the ${trip.shortName} trip (US$${trip.price})`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--color-amber)] text-white text-[14px] font-medium hover:bg-[var(--color-amber-light)] hover:shadow-[0_8px_28px_-6px_rgba(196,146,74,0.45)] hover:-translate-y-px active:scale-[0.97] transition-all duration-300 whitespace-nowrap shrink-0"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Reserve this trip · US${trip.price}
+              <ArrowRight
+                size={14}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </a>
           </Reveal>
         </div>
       </section>
 
-      {/* ── Booking CTA ───────────────────────────────────────────────── */}
-      <section className="bg-[var(--color-ivory-dark)]">
-        <div className="container-site py-16 lg:py-20">
+      {/* ── Want something different? ──────────────────────────────────── */}
+      <section className="bg-[var(--color-navy)]">
+        <div className="container-site py-16 lg:py-24">
           <Reveal>
-            <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-5">
-              Pick a date
+            <p
+              className="text-[10px] uppercase tracking-[0.3em] text-[var(--color-amber)] mb-5"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Something else in mind?
             </p>
             <h2
-              className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-3 max-w-lg leading-snug"
+              className="text-[clamp(1.75rem,4vw,3rem)] font-light text-white leading-[1.2] mb-5 max-w-lg"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Tell us when you&apos;ll be in Sri Lanka.
+              Want something different?
             </h2>
-            <p className="text-sm text-[var(--color-navy)]/50 leading-relaxed mb-8 max-w-lg">
-              We&apos;ll hold the trip on the calendar and confirm pricing for your dates. No deposit yet — that comes when your window firms up.
+            <p
+              className="text-[14px] text-white/40 leading-relaxed max-w-md mb-10"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Every route here can be adjusted — slower, faster, fewer stops,
+              or something that isn&apos;t on this page at all. Tell us what you
+              have in mind and we&apos;ll put it together.
             </p>
-
-            <TripEnquiryForm tripName={trip.shortName} />
-
-            <p className="mt-5 text-xs text-[var(--color-navy)]/35">
-              Or message on{" "}
-              <a
-                href="https://wa.me/94XXXXXXXXX"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-[var(--color-navy)]/65 transition-colors"
-              >
-                WhatsApp →
-              </a>
-            </p>
+            <a
+              href={`${WHATSAPP}?text=${encodeURIComponent(
+                "I'd like to plan a custom trip in Sri Lanka"
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white text-[13.5px] font-medium hover:bg-white/[0.06] hover:border-white/35 transition-all duration-300"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Plan my trip
+              <ArrowRight
+                size={13}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </a>
           </Reveal>
         </div>
       </section>
-
-      {/* ── See also ──────────────────────────────────────────────────── */}
-      {(shorterTrips.length > 0 || longerTrips.length > 0) && (
-        <section className="bg-[var(--color-ivory)]">
-          <div className="container-site py-16">
-            <Reveal>
-            <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-10">
-              On this same passage
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
-
-              {shorterTrips.length > 0 && (
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/30 mb-6">
-                    If you&apos;ve got less time
-                  </p>
-                  <div className="flex flex-col gap-3">
-                    {shorterTrips.map((t) => (
-                      <div
-                        key={t.slug}
-                        className="group border border-[var(--color-ivory-dark)] p-5 flex items-center justify-between gap-4 bg-white transition-all duration-300 hover:border-[var(--color-navy)]/20 hover:shadow-[0_16px_40px_-24px_rgba(11,31,58,0.25)]"
-                      >
-                        <div>
-                          <p className="font-semibold text-[var(--color-navy)] text-[15px] mb-1" style={{ fontFamily: "var(--font-display)" }}>
-                            {t.heroTitle.replace("\n", " ")}
-                          </p>
-                          <p className="text-[11px] text-[var(--color-navy)]/35 uppercase tracking-widest">{t.badge}</p>
-                        </div>
-                        <Link
-                          href={`/trips/${t.slug}`}
-                          className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors whitespace-nowrap shrink-0"
-                        >
-                          See this trip <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {longerTrips.length > 0 && (
-                <div className={shorterTrips.length === 0 ? "md:col-span-2" : ""}>
-                  <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/30 mb-6">
-                    If you can take more time
-                  </p>
-                  <div className="flex flex-col gap-3">
-                    {longerTrips.map((t) => (
-                      <div
-                        key={t.slug}
-                        className="group border border-[var(--color-ivory-dark)] p-5 flex items-center justify-between gap-4 bg-white transition-all duration-300 hover:border-[var(--color-navy)]/20 hover:shadow-[0_16px_40px_-24px_rgba(11,31,58,0.25)]"
-                      >
-                        <div>
-                          <p className="font-semibold text-[var(--color-navy)] text-[15px] mb-1" style={{ fontFamily: "var(--font-display)" }}>
-                            {t.heroTitle.replace("\n", " ")}
-                          </p>
-                          <p className="text-[11px] text-[var(--color-navy)]/35 uppercase tracking-widest">{t.badge}</p>
-                        </div>
-                        <Link
-                          href={`/trips/${t.slug}`}
-                          className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-navy)] hover:text-[var(--color-amber)] transition-colors whitespace-nowrap shrink-0"
-                        >
-                          See this trip <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-            </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
     </>
   );
 }

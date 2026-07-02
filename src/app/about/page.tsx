@@ -24,7 +24,7 @@ const CREDENTIALS = [
   },
   {
     label: "End-to-end operation",
-    detail: "Clearance, provisioning, land trips — one team, one number, one invoice.",
+    detail: "Clearance, provisioning, excursions — one team, one number, one invoice.",
   },
 ];
 
@@ -80,7 +80,7 @@ export default function AboutPage() {
             </h2>
             {[
               "We've been working with international sailing crews arriving in Galle since 2009. What started as clearance grew — crews wanted someone they already trusted to help them see the country. We built the land operation around the same team.",
-              "Today we handle clearance, provisioning, land trips, and marine logistics for more international yachts arriving in Sri Lanka than any other agent. We don't advertise that on billboards — we're known by word of mouth from captain to captain, passage to passage.",
+              "Today we handle clearance, provisioning, excursions, and marine logistics for more international yachts arriving in Sri Lanka than any other agent. We don't advertise that on billboards — we're known by word of mouth from captain to captain, passage to passage.",
               "The fee is fixed and published. The team you speak to before you arrive is the team you meet on the dock.",
             ].map((para, i) => (
               <p
