@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  Flag, ArrowRight, Check, CheckCircle2, MessageCircle, Mail, CreditCard,
+  Flag, ArrowRight, Check, CheckCircle2, MessageCircle, CreditCard,
+  UploadCloud, X, Paperclip,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/ui/Reveal";
@@ -12,7 +13,6 @@ import { Reveal } from "@/components/ui/Reveal";
 /* ── Config — update these before going live ─────────────────────── */
 const WHATSAPP_NUMBER = "94769850115";
 const PAYPAL_ME       = "MagnateYachts";        // replace with PayPal.me username
-const BOOKING_EMAIL   = "info@magnateyachts.com";
 
 /* ── Static data ─────────────────────────────────────────────────── */
 const MONTHS = [
@@ -30,6 +30,14 @@ const TRIP_OPTIONS = [
   { value:"5-day",  label:"Wilderness",     sublabel:"4 nights · US $940",    price:"US $940",     numPrice:940 },
   { value:"custom", label:"Custom trip",    sublabel:"Your itinerary",         price:"On request",  numPrice:0   },
 ];
+const CLEARANCE_DOCS = [
+  { slug: "registration",  label: "Vessel registration" },
+  { slug: "crew-list",     label: "Crew list" },
+  { slug: "passports",     label: "Passport copies (all crew)" },
+  { slug: "nil-list",      label: "NIL list / stores list" },
+  { slug: "medical",       label: "Medical clearance / health docs" },
+];
+
 const STEPS = [
   { n:1, label:"Your boat" },
   { n:2, label:"Arrival"   },
@@ -116,8 +124,27 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
   const [vessel,   setVessel]   = useState({ name: "", type: "", loa: "", crew: "" });
   const [arrival,  setArrival]  = useState({ month: "", window: "", lastPort: "" });
   const [trip,     setTrip]     = useState(initialTrip ?? "none");
-  const [submitted, setSubmitted] = useState(false);
-  const [errs, setErrs] = useState<Record<string, string>>({});
+  const [docs,       setDocs]       = useState<string[]>([]);
+  const [uploads,    setUploads]    = useState<File[]>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitErr,  setSubmitErr]  = useState("");
+  const [submitted,  setSubmitted]  = useState(false);
+  const [errs,       setErrs]       = useState<Record<string, string>>({});
+
+  const toggleDoc = (slug: string) =>
+    setDocs(prev => prev.includes(slug) ? prev.filter(d => d !== slug) : [...prev, slug]);
+
+  const addFiles = (fileList: FileList | null) => {
+    if (!fileList) return;
+    const incoming = Array.from(fileList).filter(f => f.size <= 8 * 1024 * 1024); // 8 MB cap per file
+    setUploads(prev => {
+      const names = new Set(prev.map(f => f.name));
+      return [...prev, ...incoming.filter(f => !names.has(f.name))].slice(0, 10);
+    });
+  };
+
+  const removeFile = (name: string) =>
+    setUploads(prev => prev.filter(f => f.name !== name));
 
   const tripOption  = TRIP_OPTIONS.find(t => t.value === trip)!;
   const tripLabel   = tripOption.label;
@@ -188,22 +215,72 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
     lines.push(`*Captain:* ${contact.name}`);
     lines.push(`*Email:* ${contact.email}`);
     if (contact.phone) lines.push(`*Phone/Sat:* ${contact.phone}`);
+    lines.push(``);
+    lines.push(`*Documents ready:*`);
+    CLEARANCE_DOCS.forEach(d =>
+      lines.push(`${docs.includes(d.slug) ? "✅" : "❌"} ${d.label}`)
+    );
+    if (uploads.length > 0) {
+      lines.push(``);
+      lines.push(`*Uploaded files (${uploads.length}):*`);
+      uploads.forEach(f => lines.push(`📎 ${f.name}`));
+      lines.push(`(Files sent separately via email)`);
+    }
     return encodeURIComponent(lines.join("\n"));
   };
 
   const openWhatsApp = () =>
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMsg()}`, "_blank", "noopener,noreferrer");
 
-  const handleWhatsAppSubmit = () => {
+  /* ── API submit (sends email with attachments) ──────────────────── */
+  const postBooking = async () => {
+    const fd = new FormData();
+    fd.append("vesselName",  vessel.name);
+    fd.append("vesselType",  vessel.type);
+    fd.append("vesselLoa",   vessel.loa);
+    fd.append("vesselCrew",  vessel.crew);
+    fd.append("captainName", contact.name);
+    fd.append("email",       contact.email);
+    fd.append("phone",       contact.phone);
+    fd.append("month",       arrival.month);
+    fd.append("window",      arrival.window);
+    fd.append("lastPort",    arrival.lastPort);
+    fd.append("trip",        trip);
+    fd.append("tripLabel",   tripLabel);
+    fd.append("tripPrice",   tripPrice ?? "");
+    fd.append("docs",        JSON.stringify(CLEARANCE_DOCS.filter(d => docs.includes(d.slug)).map(d => d.label)));
+    uploads.forEach(f => fd.append("documents", f));
+    const res = await fetch("/api/booking", { method: "POST", body: fd });
+    if (!res.ok) throw new Error("Email send failed");
+  };
+
+  const handleWhatsAppSubmit = async () => {
+    setSubmitting(true);
+    setSubmitErr("");
+    try {
+      await postBooking();
+    } catch {
+      // non-fatal — WhatsApp still opens even if email fails
+      setSubmitErr("Email delivery failed — your enquiry was sent via WhatsApp only.");
+    }
     openWhatsApp();
+    setSubmitting(false);
     setSubmitted(true);
   };
 
-  const handlePayPal = () => {
+  const handlePayPal = async () => {
+    setSubmitting(true);
+    setSubmitErr("");
+    try {
+      await postBooking();
+    } catch {
+      setSubmitErr("Email delivery failed — proceed with PayPal to complete your reservation.");
+    }
     if (numPrice > 0) {
       window.open(`https://paypal.me/${PAYPAL_ME}/${numPrice}`, "_blank", "noopener,noreferrer");
     }
     openWhatsApp();
+    setSubmitting(false);
     setSubmitted(true);
   };
 
@@ -551,6 +628,86 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
               {/* ── Step 4: Confirm ───────────────────────────────── */}
               <Reveal id="step-4" className="scroll-mt-28">
 
+                {/* Document checklist + upload — shown for all flows */}
+                <div className="mb-6 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/30 mb-4" style={{ fontFamily: "var(--font-body)" }}>
+                    Documents <span className="normal-case tracking-normal text-white/20 font-normal">(tick ready · upload if you have them — none required)</span>
+                  </p>
+
+                  {/* Checklist */}
+                  <div className="flex flex-col gap-2.5 mb-5">
+                    {CLEARANCE_DOCS.map(({ slug, label }) => (
+                      <label key={slug} className="flex items-center gap-3 cursor-pointer group">
+                        <span
+                          onClick={() => toggleDoc(slug)}
+                          className={cn(
+                            "w-5 h-5 rounded-md border flex items-center justify-center shrink-0 transition-all duration-200",
+                            docs.includes(slug)
+                              ? "bg-[var(--color-amber)] border-[var(--color-amber)]"
+                              : "border-white/[0.15] bg-white/[0.03] group-hover:border-white/30"
+                          )}
+                        >
+                          {docs.includes(slug) && <Check size={11} className="text-white" />}
+                        </span>
+                        <span
+                          onClick={() => toggleDoc(slug)}
+                          className={cn(
+                            "text-[13px] transition-colors duration-200 select-none",
+                            docs.includes(slug) ? "text-white/70" : "text-white/35 group-hover:text-white/50"
+                          )}
+                          style={{ fontFamily: "var(--font-body)" }}
+                        >
+                          {label}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+
+                  {/* File upload zone */}
+                  <label
+                    htmlFor="doc-upload"
+                    className="flex flex-col items-center justify-center gap-2 w-full py-5 rounded-xl border border-dashed border-white/[0.12] bg-white/[0.02] hover:border-[var(--color-amber)]/40 hover:bg-white/[0.04] cursor-pointer transition-all duration-200 group"
+                  >
+                    <UploadCloud size={20} className="text-white/25 group-hover:text-[var(--color-amber)]/60 transition-colors" />
+                    <span className="text-[12.5px] text-white/35 group-hover:text-white/55 transition-colors" style={{ fontFamily: "var(--font-body)" }}>
+                      Click to upload files
+                    </span>
+                    <span className="text-[11px] text-white/20" style={{ fontFamily: "var(--font-body)" }}>
+                      PDF, JPG, PNG, DOCX · max 8 MB each · up to 10 files
+                    </span>
+                    <input
+                      id="doc-upload"
+                      type="file"
+                      multiple
+                      accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                      className="sr-only"
+                      onChange={e => addFiles(e.target.files)}
+                    />
+                  </label>
+
+                  {/* Uploaded file chips */}
+                  {uploads.length > 0 && (
+                    <div className="flex flex-col gap-2 mt-3">
+                      {uploads.map(f => (
+                        <div key={f.name} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.04] border border-white/[0.07]">
+                          <Paperclip size={12} className="text-[var(--color-amber)]/60 shrink-0" />
+                          <span className="text-[12px] text-white/60 truncate flex-1" style={{ fontFamily: "var(--font-body)" }}>{f.name}</span>
+                          <span className="text-[10.5px] text-white/25 shrink-0" style={{ fontFamily: "var(--font-body)" }}>
+                            {(f.size / 1024 / 1024).toFixed(1)} MB
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => removeFile(f.name)}
+                            className="text-white/25 hover:text-red-400/70 transition-colors shrink-0 ml-1"
+                          >
+                            <X size={13} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
                 {/* Clearance-only enquiry */}
                 {!isTrip && (
                   <>
@@ -558,29 +715,22 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
                     <div className="flex items-start gap-3 rounded-xl bg-white/[0.04] border border-white/[0.07] p-4 mb-6">
                       <Check size={13} className="text-[var(--color-amber)] shrink-0 mt-[2px]" />
                       <p className="text-[13px] text-white/55 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                        <strong className="text-white/80 font-medium">Clearance is paid on arrival in Galle</strong> — no upfront payment needed. Send us your details and we&apos;ll confirm your agent slot and send a document checklist within 24 hours.
+                        <strong className="text-white/80 font-medium">Clearance is paid on arrival in Galle</strong> — no upfront payment needed. Send us your details and we’ll confirm your agent slot and send a document checklist within 24 hours.
                       </p>
                     </div>
+                    {submitErr && <p className="text-[12px] text-red-400/70 mb-3" style={{ fontFamily: "var(--font-body)" }}>{submitErr}</p>}
                     <div className="flex flex-col gap-3">
                       <button
                         type="button"
                         onClick={handleWhatsAppSubmit}
-                        className="group w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(37,211,102,0.4)] active:scale-[0.98]"
+                        disabled={submitting}
+                        className="group w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(37,211,102,0.4)] active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none"
                         style={{ fontFamily: "var(--font-body)", background: "#25D366" }}
                       >
                         <MessageCircle size={18} />
-                        Send enquiry on WhatsApp
-                        <ArrowRight size={14} className="opacity-60 transition-transform duration-200 group-hover:translate-x-1" />
+                        {submitting ? "Sending…" : "Send enquiry on WhatsApp"}
+                        {!submitting && <ArrowRight size={14} className="opacity-60 transition-transform duration-200 group-hover:translate-x-1" />}
                       </button>
-                      <a
-                        href={`mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent(`Clearance enquiry — ${vessel.name || "vessel"}`)}&body=${encodeURIComponent(`Hi Magnate Yachts,\n\nVessel: ${vessel.name}${vessel.type ? ` (${vessel.type})` : ""}\nLOA/Flag: ${vessel.loa}\nCrew: ${vessel.crew}\n\nArrival: ${arrival.month}${arrival.window ? ` · ${arrival.window}` : ""}\nLast port: ${arrival.lastPort}\n\nCaptain: ${contact.name}\nEmail: ${contact.email}\nPhone: ${contact.phone}\n\nKind regards`)}`}
-                        onClick={() => setSubmitted(true)}
-                        className="group w-full flex items-center justify-center gap-2 py-3.5 rounded-xl border border-white/[0.1] text-white/45 text-[13px] font-medium hover:border-white/[0.2] hover:text-white/65 transition-all duration-200"
-                        style={{ fontFamily: "var(--font-body)" }}
-                      >
-                        <Mail size={14} />
-                        or email instead
-                      </a>
                     </div>
                   </>
                 )}
@@ -590,28 +740,21 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
                   <>
                     <StepHeader n={4} label="Get a custom quote" />
                     <p className="text-[13.5px] text-white/50 leading-relaxed mb-6" style={{ fontFamily: "var(--font-body)" }}>
-                      Custom itineraries are quoted individually. Send us your details and your ideas — we&apos;ll put together something tailored to your schedule and interests.
+                      Custom itineraries are quoted individually. Send us your details and your ideas — we’ll put together something tailored to your schedule and interests.
                     </p>
+                    {submitErr && <p className="text-[12px] text-red-400/70 mb-3" style={{ fontFamily: "var(--font-body)" }}>{submitErr}</p>}
                     <div className="flex flex-col gap-3">
                       <button
                         type="button"
                         onClick={handleWhatsAppSubmit}
-                        className="group w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(37,211,102,0.4)] active:scale-[0.98]"
+                        disabled={submitting}
+                        className="group w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(37,211,102,0.4)] active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none"
                         style={{ fontFamily: "var(--font-body)", background: "#25D366" }}
                       >
                         <MessageCircle size={18} />
-                        Discuss on WhatsApp
-                        <ArrowRight size={14} className="opacity-60 transition-transform duration-200 group-hover:translate-x-1" />
+                        {submitting ? "Sending…" : "Discuss on WhatsApp"}
+                        {!submitting && <ArrowRight size={14} className="opacity-60 transition-transform duration-200 group-hover:translate-x-1" />}
                       </button>
-                      <a
-                        href={`mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent(`Custom trip enquiry — ${vessel.name || "vessel"}`)}&body=${encodeURIComponent(`Hi Magnate Yachts,\n\nI'd like to enquire about a custom trip.\n\nVessel: ${vessel.name}${vessel.type ? ` (${vessel.type})` : ""}\nLOA/Flag: ${vessel.loa}\nCrew: ${vessel.crew}\n\nArrival: ${arrival.month}${arrival.window ? ` · ${arrival.window}` : ""}\nLast port: ${arrival.lastPort}\n\nCaptain: ${contact.name}\nEmail: ${contact.email}\nPhone: ${contact.phone}\n\nTrip interests:\n`)}`}
-                        onClick={() => setSubmitted(true)}
-                        className="group w-full flex items-center justify-center gap-2 py-3.5 rounded-xl border border-white/[0.1] text-white/45 text-[13px] font-medium hover:border-white/[0.2] hover:text-white/65 transition-all duration-200"
-                        style={{ fontFamily: "var(--font-body)" }}
-                      >
-                        <Mail size={14} />
-                        or email instead
-                      </a>
                     </div>
                   </>
                 )}
@@ -639,17 +782,19 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
                       </p>
                     </div>
 
+                    {submitErr && <p className="text-[12px] text-red-400/70 mb-3" style={{ fontFamily: "var(--font-body)" }}>{submitErr}</p>}
                     <div className="flex flex-col gap-3">
                       {/* PayPal */}
                       <button
                         type="button"
                         onClick={handlePayPal}
-                        className="group w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(0,112,186,0.45)] active:scale-[0.98]"
+                        disabled={submitting}
+                        className="group w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(0,112,186,0.45)] active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none"
                         style={{ fontFamily: "var(--font-body)", background: "#0070BA" }}
                       >
                         <CreditCard size={17} />
-                        Pay {tripPrice} via PayPal
-                        <ArrowRight size={14} className="opacity-60 transition-transform duration-200 group-hover:translate-x-1" />
+                        {submitting ? "Sending…" : `Pay ${tripPrice} via PayPal`}
+                        {!submitting && <ArrowRight size={14} className="opacity-60 transition-transform duration-200 group-hover:translate-x-1" />}
                       </button>
 
                       {/* WhatsApp for questions */}
