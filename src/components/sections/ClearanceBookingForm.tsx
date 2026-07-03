@@ -18,10 +18,11 @@ const WINDOWS = [
 ];
 
 const TRIP_OPTIONS = [
-  { value: "none",  label: "None",           sublabel: "Clearance only" },
+  { value: "none",   label: "None",           sublabel: "Clearance only" },
   { value: "day",   label: "Day excursion",  sublabel: "from US $70" },
   { value: "3-day", label: "Safari & Hills", sublabel: "2 nights · US $110" },
   { value: "5-day", label: "Wilderness",     sublabel: "4 nights · US $140" },
+  { value: "custom", label: "Custom trip",   sublabel: "Your itinerary" },
 ];
 
 const STEPS = [
@@ -133,15 +134,27 @@ function SummaryRow({ label, value, muted }: { label: string; value: string; mut
 }
 
 /* ── Main component ──────────────────────────────────────────────── */
-export function ClearanceBookingForm() {
+export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) {
   const [activeStep, setActiveStep] = useState(1);
   const [vessel, setVessel] = useState({ name: "", type: "", loa: "", crew: "" });
   const [arrival, setArrival] = useState({ month: "", window: "", lastPort: "" });
-  const [trip, setTrip] = useState("none");
+  const [trip, setTrip] = useState(initialTrip ?? "none");
+  const [tripSelected, setTripSelected] = useState(initialTrip !== undefined);
   const [payment, setPayment] = useState("deposit");
 
   const tripLabel = TRIP_OPTIONS.find(t => t.value === trip)?.label ?? "—";
-  const tripHref = trip === "day" ? "/trips" : `/trips/${trip}`;
+  const tripHref =
+    trip === "day" ? "/trips" :
+    trip === "custom" ? "/trips/custom" :
+    `/trips/${trip}`;
+
+  // step completion
+  const stepDone: Record<number, boolean> = {
+    1: vessel.name.trim() !== "",
+    2: arrival.month !== "",
+    3: tripSelected,
+    4: false,
+  };
 
   const scrollTo = (n: number) => {
     setActiveStep(n);
@@ -154,12 +167,6 @@ export function ClearanceBookingForm() {
       <section className="bg-[var(--color-navy)] border-b border-white/[0.07]">
         <div className="container-site py-16 lg:py-20">
           <Reveal>
-            <span
-              className="block text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-6"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Book your agent
-            </span>
             <h1
               className="text-[clamp(2rem,5.5vw,4rem)] font-light text-white mb-8 leading-[1.1]"
               style={{ fontFamily: "var(--font-display)" }}
@@ -179,13 +186,19 @@ export function ClearanceBookingForm() {
                       "flex items-center gap-2 px-4 py-2 rounded-full text-[12.5px] font-medium border transition-all duration-300",
                       activeStep === n
                         ? "bg-[var(--color-amber)] text-white border-[var(--color-amber)] shadow-[0_6px_20px_-6px_rgba(196,146,74,0.45)]"
+                        : stepDone[n]
+                        ? "bg-white/[0.07] text-white/60 border-[var(--color-amber)]/40"
                         : "bg-white/[0.05] text-white/40 border-white/[0.1] hover:border-white/[0.2] hover:text-white/65"
                     )}
                     style={{ fontFamily: "var(--font-body)" }}
                   >
-                    <span className={cn("text-[10px] font-bold", activeStep === n ? "text-white/60" : "text-white/20")}>
-                      {n}
-                    </span>
+                    {stepDone[n] && activeStep !== n ? (
+                      <Check size={11} className="text-[var(--color-amber)] shrink-0" />
+                    ) : (
+                      <span className={cn("text-[10px] font-bold", activeStep === n ? "text-white/60" : "text-white/20")}>
+                        {n}
+                      </span>
+                    )}
                     {label}
                   </button>
                   {i < STEPS.length - 1 && (
@@ -316,7 +329,7 @@ export function ClearanceBookingForm() {
                         name="trip"
                         value={value}
                         checked={trip === value}
-                        onChange={() => setTrip(value)}
+                        onChange={() => { setTrip(value); setTripSelected(true); }}
                         className="sr-only"
                       />
                       <RadioDot active={trip === value} />

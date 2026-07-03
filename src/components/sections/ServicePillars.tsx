@@ -90,12 +90,6 @@ export function ServicePillars() {
 
         {/* Section header */}
         <Reveal className="mb-12 md:mb-16">
-          <span
-            className="block text-[10px] uppercase tracking-[0.3em] text-[var(--color-amber)] mb-6"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            How we work
-          </span>
           <h2
             className="text-[clamp(2rem,5vw,3.5rem)] font-light text-white leading-[1.1]"
             style={{ fontFamily: "var(--font-display)" }}

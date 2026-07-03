@@ -37,15 +37,6 @@ export function TripsPreview() {
 
         {/* Header */}
         <Reveal className="mb-10 md:mb-14">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-8 h-px bg-[var(--color-navy)]/20" />
-            <span
-              className="text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)]"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Into the island
-            </span>
-          </div>
           <h2
             className="text-[clamp(2rem,5.5vw,4rem)] font-light text-[var(--color-navy)] leading-[1.1] mb-5"
             style={{ fontFamily: "var(--font-display)" }}
@@ -65,7 +56,8 @@ export function TripsPreview() {
         {/* Hero image */}
         <Reveal delay={0.08} className="mb-8 md:mb-10">
           <ImgPlaceholder
-            label="Iconic Sri Lanka — Sigiriya at sunrise, or Nine Arch Bridge, or panoramic tea country"
+            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600&auto=format&fit=crop&q=80"
+            label="Sigiriya rock fortress, Sri Lanka"
             aspectRatio="aspect-[21/9]"
             className="rounded-2xl shadow-[0_24px_60px_-24px_rgba(6,12,24,0.28)]"
           />

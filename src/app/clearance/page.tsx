@@ -56,12 +56,6 @@ export default function ClearancePage() {
       <section className="bg-[var(--color-navy)]">
         <div className="container-site py-20 lg:py-28">
           <Reveal>
-            <span
-              className="block text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-7"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Galle · Sri Lanka
-            </span>
             <h1
               className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white leading-[1.1] mb-6 max-w-lg"
               style={{ fontFamily: "var(--font-display)" }}

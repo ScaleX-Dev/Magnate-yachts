@@ -18,13 +18,6 @@ export function FinalCTA() {
 
       <div className="relative z-10 container-site py-24 md:py-32 lg:py-40">
         <Reveal y={30} className="max-w-3xl">
-          <span
-            className="block text-[10px] uppercase tracking-[0.3em] text-[var(--color-amber)] mb-8"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            Get in touch
-          </span>
-
           <h2
             className="text-[clamp(2rem,6vw,4.5rem)] font-light text-white leading-[1.1] mb-5"
             style={{ fontFamily: "var(--font-display)" }}

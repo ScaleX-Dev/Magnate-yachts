@@ -43,8 +43,10 @@ export function HeroSection() {
           transition={{ duration: 1.1, ease: EASE_EXPO }}
         >
           <ImgPlaceholder
-            label="Hero Image — Sri Lanka moment"
+            src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1600&auto=format&fit=crop&q=80"
+            label="Sailing yacht at sea — Sri Lanka"
             aspectRatio="aspect-[16/9]"
+            priority
             className="rounded-2xl shadow-[0_20px_60px_-20px_rgba(6,12,24,0.18)]"
           />
         </motion.div>

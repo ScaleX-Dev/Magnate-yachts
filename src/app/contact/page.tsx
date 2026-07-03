@@ -44,12 +44,6 @@ export default function ContactPage() {
       <section className="bg-[var(--color-navy)]">
         <div className="container-site py-20 lg:py-28">
           <Reveal>
-            <span
-              className="block text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-7"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Get in touch
-            </span>
             <h1
               className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white max-w-2xl leading-[1.1] mb-6"
               style={{ fontFamily: "var(--font-display)" }}

@@ -1,230 +1,211 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check, Minus } from "lucide-react";
-import { ImgPlaceholder } from "@/components/ui/ImgPlaceholder";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { DAY_TRIPS, TRIPS } from "@/lib/trips-data";
 
 export const metadata: Metadata = {
-  title: "Excursions — Magnate Yachts Sri Lanka",
+  title: "Trips — Magnate Yachts Sri Lanka",
   description:
-    "One day excursions from Galle. Safari in Yala or a full day through Galle Fort, tea country, and spice gardens.",
+    "Day trips and multi-day tours from Galle. Safari in Yala, Galle Fort, tea country, Ella, Sigiriya and more.",
 };
 
-const WHATSAPP = "https://wa.me/94XXXXXXXXX";
+const CUSTOM = {
+  slug: "custom",
+  badge: "BESPOKE",
+  shortName: "Custom Itinerary",
+  subtitle:
+    "Something off the beaten track, a slower pace, or a route we haven't written down yet — tell us.",
+  image:
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&auto=format&fit=crop&q=80",
+};
 
-export default function ExcursionsPage() {
+export default function TripsPage() {
   return (
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy)]">
         <div className="container-site py-20 lg:py-28">
           <Reveal>
-            <span
-              className="block text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-7"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Excursions · Sri Lanka
-            </span>
             <h1
               className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white leading-[1.1] mb-4 max-w-lg"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              One Day
+              Trips &amp;
               <br />
-              <span className="italic text-white/40">Excursions</span>
+              <span className="italic text-white/40">Land Excursions</span>
             </h1>
             <p
               className="text-[14.5px] text-white/40 max-w-xs leading-relaxed"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Day trip, two ways to spend it.
+              One day, three, or five through the kingdoms.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ── Day trips ─────────────────────────────────────────────────── */}
-      {DAY_TRIPS.map((trip, i) => {
-        const imageLeft = i % 2 === 0;
-        return (
-          <section
-            key={trip.slug}
-            className={i % 2 === 0 ? "bg-[var(--color-ivory)]" : "bg-white"}
-          >
-            <div className="container-site py-16 lg:py-24">
-              <div
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start ${
-                  imageLeft ? "" : "lg:[direction:rtl] [&>*]:[direction:ltr]"
-                }`}
-              >
-                {/* Image */}
-                <Reveal delay={0.05}>
-                  <ImgPlaceholder
-                    label={trip.imageLabel}
-                    aspectRatio="aspect-[4/3]"
-                    className="rounded-xl shadow-[0_24px_60px_-30px_rgba(11,31,58,0.25)]"
-                  />
-                </Reveal>
-
-                {/* Content */}
-                <Reveal delay={0.1} className="flex flex-col gap-6">
-                  <h2
-                    className="text-3xl sm:text-4xl font-semibold text-[var(--color-navy)] leading-tight"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {trip.name}
-                  </h2>
-
-                  <div className="flex flex-col gap-4">
-                    {trip.paragraphs.map((para, j) => (
+      {/* ── Day excursions ────────────────────────────────────────────── */}
+      <section className="bg-[var(--color-ivory)]">
+        <div className="container-site py-16 lg:py-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {DAY_TRIPS.map((trip, i) => (
+              <Reveal key={trip.slug} delay={i * 0.08}>
+                <Link
+                  href={`/trips/${trip.slug}`}
+                  className="group relative overflow-hidden rounded-2xl shadow-[0_16px_48px_-20px_rgba(6,12,24,0.22)] block transition-transform duration-300 hover:-translate-y-1"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={trip.image}
+                      alt={trip.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
                       <p
-                        key={j}
-                        className="text-[14px] text-[var(--color-navy)]/58 leading-relaxed"
+                        className="text-[9px] uppercase tracking-[0.24em] text-[var(--color-amber)] mb-1.5"
                         style={{ fontFamily: "var(--font-body)" }}
                       >
-                        {para}
+                        One day · US${trip.price} per vehicle
                       </p>
-                    ))}
+                      <h2
+                        className="text-2xl font-semibold text-white leading-tight"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {trip.name}
+                      </h2>
+                    </div>
                   </div>
-
-                  {/* Included */}
-                  <div className="pt-5 border-t border-[var(--color-ivory-dark)]">
+                  <div className="bg-white p-5 flex items-center justify-between gap-4">
                     <p
-                      className="text-[9px] uppercase tracking-[0.22em] text-[var(--color-amber)] mb-3"
+                      className="text-[13px] text-[var(--color-navy)]/55 leading-relaxed flex-1 line-clamp-2"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
-                      Included
+                      {trip.paragraphs[0]}
                     </p>
-                    <ul className="flex flex-col gap-2.5">
-                      {trip.included.map((item) => (
-                        <li
-                          key={item}
-                          className="flex items-start gap-2.5 text-[13px] text-[var(--color-navy)]/60 leading-relaxed"
-                          style={{ fontFamily: "var(--font-body)" }}
-                        >
-                          <Check
-                            size={12}
-                            className="text-[var(--color-amber)] shrink-0 mt-[3px]"
-                          />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                    <ArrowRight
+                      size={16}
+                      className="text-[var(--color-amber)] shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                    />
                   </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                  {/* Not included */}
-                  <div>
-                    <p
-                      className="text-[9px] uppercase tracking-[0.22em] text-[var(--color-navy)]/30 mb-3"
+      {/* ── Multi-day trips ───────────────────────────────────────────── */}
+      <section className="bg-[var(--color-navy)]">
+        <div className="container-site py-16 lg:py-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {TRIPS.map((trip, i) => (
+              <Reveal key={trip.slug} delay={i * 0.08}>
+                <Link
+                  href={`/trips/${trip.slug}`}
+                  className="group relative overflow-hidden rounded-2xl block transition-transform duration-300 hover:-translate-y-1"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={trip.image}
+                      alt={trip.shortName}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <p
+                        className="text-[9px] uppercase tracking-[0.24em] text-[var(--color-amber)] mb-1.5"
+                        style={{ fontFamily: "var(--font-body)" }}
+                      >
+                        {trip.badge} · US${trip.price}
+                      </p>
+                      <h2
+                        className="text-xl font-semibold text-white leading-tight"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {trip.shortName}
+                      </h2>
+                      <p
+                        className="text-[12px] text-white/55 mt-1.5 leading-relaxed line-clamp-2"
+                        style={{ fontFamily: "var(--font-body)" }}
+                      >
+                        {trip.subtitle}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="bg-[var(--color-navy-mid)] p-4 flex items-center justify-between">
+                    <span
+                      className="text-[12px] text-white/40"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
-                      Not included
-                    </p>
-                    <ul className="flex flex-col gap-2.5">
-                      {trip.notIncluded.map((item) => (
-                        <li
-                          key={item}
-                          className="flex items-start gap-2.5 text-[13px] text-[var(--color-navy)]/40 leading-relaxed"
-                          style={{ fontFamily: "var(--font-body)" }}
-                        >
-                          <Minus
-                            size={12}
-                            className="text-[var(--color-navy)]/22 shrink-0 mt-[3px]"
-                          />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* CTA */}
-                  <a
-                    href={`${WHATSAPP}?text=${encodeURIComponent(
-                      `I'd like to reserve the ${trip.name} day trip (US$${trip.price})`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 px-7 py-4 rounded-full bg-[var(--color-amber)] text-white text-[13.5px] font-medium hover:bg-[var(--color-amber-light)] hover:shadow-[0_8px_28px_-6px_rgba(196,146,74,0.45)] hover:-translate-y-px active:scale-[0.97] transition-all duration-300 w-fit mt-1"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    Reserve this trip · US${trip.price}
+                      View full itinerary
+                    </span>
                     <ArrowRight
                       size={14}
-                      className="transition-transform duration-300 group-hover:translate-x-1"
+                      className="text-[var(--color-amber)] shrink-0 transition-transform duration-300 group-hover:translate-x-1"
                     />
-                  </a>
-                </Reveal>
-              </div>
-            </div>
-          </section>
-        );
-      })}
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
 
-      {/* ── Multi-day options ─────────────────────────────────────────── */}
-      <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-16 lg:py-24">
-          <Reveal>
-            <p
-              className="text-[10px] uppercase tracking-[0.3em] text-[var(--color-amber)] mb-5"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              More time in Sri Lanka?
-            </p>
-            <h2
-              className="text-[clamp(1.75rem,4vw,3rem)] font-light text-white leading-[1.15] mb-10"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Multi-day trips
-            </h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {TRIPS.map((trip) => (
-                <div
-                  key={trip.slug}
-                  className="group border border-white/[0.09] rounded-xl p-7 flex flex-col gap-4 hover:border-white/20 hover:bg-white/[0.03] transition-all duration-300"
-                >
-                  <span
-                    className="text-[9px] uppercase tracking-[0.24em] text-[var(--color-amber)]/60"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {trip.badge}
-                  </span>
-                  <h3
-                    className="text-2xl font-semibold text-white leading-tight"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {trip.shortName}
-                  </h3>
-                  <p
-                    className="text-[13px] text-white/40 leading-relaxed flex-1"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {trip.subtitle}
-                  </p>
-                  <div className="flex items-center justify-between pt-2 border-t border-white/[0.07]">
-                    <span
-                      className="text-[12px] text-white/28 font-medium"
+            {/* Custom trip card */}
+            <Reveal delay={TRIPS.length * 0.08}>
+              <Link
+                href="/trips/custom"
+                className="group relative overflow-hidden rounded-2xl block transition-transform duration-300 hover:-translate-y-1"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={CUSTOM.image}
+                    alt="Custom trip"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <p
+                      className="text-[9px] uppercase tracking-[0.24em] text-[var(--color-amber)] mb-1.5"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
-                      from US${trip.price}
-                    </span>
-                    <Link
-                      href={`/trips/${trip.slug}`}
-                      className="inline-flex items-center gap-1.5 text-[12px] font-medium text-white/45 hover:text-white transition-colors duration-200"
+                      {CUSTOM.badge}
+                    </p>
+                    <h2
+                      className="text-xl font-semibold text-white leading-tight"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {CUSTOM.shortName}
+                    </h2>
+                    <p
+                      className="text-[12px] text-white/55 mt-1.5 leading-relaxed line-clamp-2"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
-                      See this trip{" "}
-                      <ArrowRight
-                        size={12}
-                        className="transition-transform duration-300 group-hover:translate-x-1"
-                      />
-                    </Link>
+                      {CUSTOM.subtitle}
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </Reveal>
+                <div className="bg-[var(--color-navy-mid)] p-4 flex items-center justify-between">
+                  <span
+                    className="text-[12px] text-white/40"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    Plan a custom trip
+                  </span>
+                  <ArrowRight
+                    size={14}
+                    className="text-[var(--color-amber)] shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </div>
+              </Link>
+            </Reveal>
+          </div>
         </div>
       </section>
     </>

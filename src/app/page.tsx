@@ -1,9 +1,8 @@
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ServicePillars } from "@/components/sections/ServicePillars";
 import { TripsPreview } from "@/components/sections/TripsPreview";
-import { TrustSignals } from "@/components/sections/TrustSignals";
+import { ClearanceSection } from "@/components/sections/ClearanceSection";
 import { TestimonialSection } from "@/components/sections/TestimonialSection";
-import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function HomePage() {
   return (
@@ -11,9 +10,8 @@ export default function HomePage() {
       <HeroSection />
       <ServicePillars />
       <TripsPreview />
-      <TrustSignals />
+      <ClearanceSection />
       <TestimonialSection />
-      <FinalCTA />
     </>
   );
 }

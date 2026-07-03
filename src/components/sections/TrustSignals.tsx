@@ -28,12 +28,6 @@ export function TrustSignals() {
         {/* Top row */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-20 items-end mb-14 md:mb-16">
           <Reveal>
-            <span
-              className="block text-[10px] uppercase tracking-[0.3em] text-[var(--color-amber)] mb-6"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Why Magnate
-            </span>
             <h2
               className="text-[clamp(2rem,5vw,3.5rem)] font-light text-white leading-[1.1]"
               style={{ fontFamily: "var(--font-display)" }}
