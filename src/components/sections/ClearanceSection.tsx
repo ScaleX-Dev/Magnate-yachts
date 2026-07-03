@@ -21,7 +21,7 @@ export function ClearanceSection() {
           {/* Left: image */}
           <Reveal className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-[0_32px_80px_-28px_rgba(6,12,24,0.22)]">
             <Image
-              src="/images/site/clearance-harbour.jpg"
+              src="/images/site/5day-day3-kandy.jpg"
               alt="Sailing yachts moored in Galle harbour"
               fill
               className="object-cover transition-transform duration-700 hover:scale-105"

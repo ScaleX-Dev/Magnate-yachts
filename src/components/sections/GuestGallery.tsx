@@ -2,9 +2,9 @@ import { ImgPlaceholder } from "@/components/ui/ImgPlaceholder";
 
 const PHOTOS = [
   {
-    label: "Crew aboard at anchor, Galle harbour",
+    label: "Yachts at berth, Galle harbour",
     tall: false,
-    src: "/images/site/clearance-harbour.jpg",
+    src: "/images/site/about-story.jpg",
   },
   {
     label: "Elephant safari, Udawalawe National Park",
@@ -14,12 +14,12 @@ const PHOTOS = [
   {
     label: "Nine Arch Bridge at sunrise, Ella",
     tall: false,
-    src: "/images/site/3day-day2-ella.jpg",
+    src: "/images/site/clearance-harbour.jpg",
   },
   {
-    label: "Galle Fort lighthouse, southern coast",
+    label: "Dutch Quarter at dusk, Galle Fort",
     tall: false,
-    src: "/images/site/gallery-galle-street.jpg",
+    src: "/images/site/5day-day4-sigiriya.jpg",
   },
   {
     label: "Sigiriya rock fortress at sunrise",

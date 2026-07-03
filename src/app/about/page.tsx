@@ -131,8 +131,8 @@ export default function AboutPage() {
           <Reveal>
             <div className="relative aspect-[21/8] w-full overflow-hidden rounded-2xl shadow-[0_24px_60px_-28px_rgba(6,12,24,0.25)]">
               <Image
-                src="/images/site/hu-chen-3yd8oXGoLqM-unsplash.jpg"
-                alt="Sailboats and yachts docked at the marina"
+                src="/images/site/port-galle-banner.jpg"
+                alt="Aerial view of Galle Fort peninsula, Sri Lanka"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="100vw"
