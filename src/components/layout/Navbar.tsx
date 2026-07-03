@@ -210,7 +210,7 @@ export function Navbar() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.55 }}
               >
-                VHF 16 · hello@magnateyachts.com
+                hello@magnateyachts.com
               </motion.p>
             </div>
           </motion.div>

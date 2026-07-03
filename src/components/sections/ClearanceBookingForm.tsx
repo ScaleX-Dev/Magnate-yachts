@@ -425,12 +425,6 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
                   </span>
                 </div>
 
-                <p
-                  className="mt-4 text-[11.5px] text-white/25 leading-relaxed max-w-lg"
-                  style={{ fontFamily: "var(--font-body)" }}
-                >
-                  Refund &amp; cancellation policy covers late arrival, no-show, and weather delays — shown clearly before you confirm.
-                </p>
               </Reveal>
 
             </div>
@@ -486,24 +480,6 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
                 </p>
               </div>
 
-              {/* Trust items */}
-              <div className="mt-5 flex flex-col gap-2.5">
-                {[
-                  "Fixed published fee — no surprises",
-                  "Met at the dock in Galle or Trincomalee",
-                  "Cancel up to 14 days before arrival",
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-2.5">
-                    <Check size={12} className="text-[var(--color-amber)]/60 shrink-0 mt-[3px]" />
-                    <span
-                      className="text-[11.5px] text-white/35 leading-relaxed"
-                      style={{ fontFamily: "var(--font-body)" }}
-                    >
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
 
               <p className="mt-6 text-center">
                 <Link

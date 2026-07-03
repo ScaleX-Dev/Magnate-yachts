@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Radio } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/trips",      label: "Trips" },
@@ -84,8 +84,8 @@ export function Footer() {
                 className="flex items-center gap-2.5 text-[13.5px] text-white/45"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                <Radio size={12} className="text-[var(--color-amber)]/50 shrink-0" />
-                VHF&nbsp;16&nbsp;&nbsp;·&nbsp;&nbsp;WhatsApp +94&nbsp;···
+                <MessageCircle size={12} className="text-[var(--color-amber)]/50 shrink-0" />
+                WhatsApp +94&nbsp;76&nbsp;985&nbsp;0115
               </span>
               <a
                 href="mailto:info@magnateyachts.com"

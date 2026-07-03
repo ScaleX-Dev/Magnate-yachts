@@ -59,7 +59,7 @@ export function FinalCTA() {
             className="mt-8 text-[12px] text-white/25 tracking-wide"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Or VHF&nbsp;16&nbsp;&nbsp;·&nbsp;&nbsp;WhatsApp&nbsp;+94&nbsp;···
+            Or WhatsApp&nbsp;+94&nbsp;76&nbsp;985&nbsp;0115
           </p>
         </Reveal>
       </div>

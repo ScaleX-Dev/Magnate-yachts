@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Radio, MapPin, MessageCircle } from "lucide-react";
+import { MapPin, MessageCircle } from "lucide-react";
 
 export function UtilityBar() {
   return (
@@ -13,13 +13,6 @@ export function UtilityBar() {
             <MapPin size={9} className="shrink-0 text-[var(--color-amber)]/50" />
             Galle &amp; Trincomalee, Sri Lanka
           </span>
-          <span
-            className="flex items-center gap-1.5 text-[10.5px] text-white/30"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            <Radio size={9} className="shrink-0 text-[var(--color-amber)]/50" />
-            Monitoring VHF&nbsp;16
-          </span>
           <Link
             href="https://wa.me/94769850115"
             target="_blank"
@@ -28,7 +21,7 @@ export function UtilityBar() {
             style={{ fontFamily: "var(--font-body)" }}
           >
             <MessageCircle size={9} className="shrink-0 text-[var(--color-amber)]/50" />
-            WhatsApp +94&nbsp;···
+            WhatsApp +94&nbsp;76&nbsp;985&nbsp;0115
           </Link>
         </div>
         <div className="flex items-center gap-3 shrink-0">

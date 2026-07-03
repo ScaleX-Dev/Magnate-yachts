@@ -4,7 +4,6 @@ import { Reveal } from "@/components/ui/Reveal";
 
 const PILLARS = [
   {
-    number: "01",
     tag: "On arrival",
     title: "Before you've finished tying up.",
     items: [
@@ -15,7 +14,6 @@ const PILLARS = [
     ],
   },
   {
-    number: "02",
     tag: "At stay",
     title: "Your week ashore, and the boat in between.",
     items: [
@@ -26,7 +24,6 @@ const PILLARS = [
     ],
   },
   {
-    number: "03",
     tag: "On departure",
     title: "Out cleanly, on your timetable.",
     items: [
@@ -38,23 +35,15 @@ const PILLARS = [
   },
 ];
 
-function PillarCard({ number, tag, title, items }: (typeof PILLARS)[0]) {
+function PillarCard({ tag, title, items }: (typeof PILLARS)[0]) {
   return (
     <div className="relative flex flex-col gap-6 bg-white/[0.04] border border-white/[0.08] rounded-2xl p-7 md:p-8 overflow-hidden transition-all duration-500 hover:bg-white/[0.07] hover:border-white/[0.15] hover:-translate-y-1 group">
-      {/* Watermark number */}
-      <span
-        className="absolute -top-5 -right-1 text-[7rem] md:text-[9rem] font-bold text-white/[0.03] leading-none select-none pointer-events-none transition-all duration-500 group-hover:text-white/[0.055]"
-        style={{ fontFamily: "var(--font-display)" }}
-      >
-        {number}
-      </span>
-
       <div className="flex flex-col gap-2">
         <span
           className="text-[9.5px] uppercase tracking-[0.28em] text-[var(--color-amber)]"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          {number}&nbsp;&nbsp;·&nbsp;&nbsp;{tag}
+          {tag}
         </span>
         <h3
           className="text-[1.35rem] md:text-[1.45rem] font-medium text-white leading-snug"
@@ -104,7 +93,7 @@ export function ServicePillars() {
         <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-[var(--section-padding-x)] px-[var(--section-padding-x)] pb-5 lg:hidden scrollbar-none">
           {PILLARS.map((pillar) => (
             <div
-              key={pillar.number}
+              key={pillar.tag}
               className="snap-start shrink-0 w-[85vw] max-w-[360px]"
             >
               <PillarCard {...pillar} />
@@ -117,7 +106,7 @@ export function ServicePillars() {
         {/* Desktop: 3-column grid */}
         <div className="hidden lg:grid grid-cols-3 gap-5">
           {PILLARS.map((pillar, i) => (
-            <Reveal key={pillar.number} delay={i * 0.12}>
+            <Reveal key={pillar.tag} delay={i * 0.12}>
               <PillarCard {...pillar} />
             </Reveal>
           ))}
