@@ -12,7 +12,7 @@ import { Reveal } from "@/components/ui/Reveal";
 /* ── Config — update these before going live ─────────────────────── */
 const WHATSAPP_NUMBER = "94769850115";
 const PAYPAL_ME       = "MagnateYachts";        // replace with PayPal.me username
-const BOOKING_EMAIL   = "hello@magnateyachts.com";
+const BOOKING_EMAIL   = "info@magnateyachts.com";
 
 /* ── Static data ─────────────────────────────────────────────────── */
 const MONTHS = [
