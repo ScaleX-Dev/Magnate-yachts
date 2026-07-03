@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, MapPin, MessageCircle, Radio } from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail, MapPin, MessageCircle, Radio } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
 const schema = z.object({
@@ -195,16 +195,25 @@ export default function ContactPage() {
                   <span>
                     WhatsApp:{" "}
                     <a
-                      href="https://wa.me/94XXXXXXXXX"
+                      href="https://wa.me/94769850115"
                       className="text-[var(--color-navy)] underline underline-offset-2 hover:text-[var(--color-amber)] transition-colors"
                     >
-                      +94 XX XXX XXXX
+                      +94 76 985 0115
                     </a>
                   </span>
                 </li>
                 <li className="flex gap-3 text-sm text-[var(--color-navy)]/65">
                   <Radio size={14} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
                   VHF Channel 16 on approach
+                </li>
+                <li className="flex gap-3 text-sm text-[var(--color-navy)]/65">
+                  <Mail size={14} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
+                  <a
+                    href="mailto:info@magnateyachts.com"
+                    className="text-[var(--color-navy)] underline underline-offset-2 hover:text-[var(--color-amber)] transition-colors"
+                  >
+                    info@magnateyachts.com
+                  </a>
                 </li>
                 <li className="flex gap-3 text-sm text-[var(--color-navy)]/65">
                   <MapPin size={14} className="text-[var(--color-amber)] shrink-0 mt-0.5" />

@@ -88,12 +88,12 @@ export function Footer() {
                 VHF&nbsp;16&nbsp;&nbsp;·&nbsp;&nbsp;WhatsApp +94&nbsp;···
               </span>
               <a
-                href="mailto:hello@magnateyachts.com"
+                href="mailto:info@magnateyachts.com"
                 className="flex items-center gap-2.5 text-[13.5px] text-white/45 hover:text-white/80 transition-colors w-fit"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 <Mail size={12} className="text-[var(--color-amber)]/50 shrink-0" />
-                hello@magnateyachts.com
+                info@magnateyachts.com
               </a>
             </div>
           </div>

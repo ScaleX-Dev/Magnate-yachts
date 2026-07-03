@@ -10,7 +10,7 @@ const TRIPS = [
     duration: "Day excursions",
     label: "ONE DAY",
     subtitle: "Safari in Yala, or a day through Galle Fort and tea country",
-    tag: "From US$70",
+    tag: "From US$75",
   },
   {
     href: "/trips/3-day",
@@ -18,7 +18,7 @@ const TRIPS = [
     duration: "Safari & Hill Country",
     label: "2 NIGHTS · 3 DAYS",
     subtitle: "Yala or Udawalawe, then up into Ella",
-    tag: "US$110",
+    tag: "US$560",
   },
   {
     href: "/trips/5-day",
@@ -26,7 +26,7 @@ const TRIPS = [
     duration: "Wilderness to Ancient Kingdoms",
     label: "4 NIGHTS · 5 DAYS",
     subtitle: "Leopard country, hill country, Kandy, Sigiriya",
-    tag: "US$140",
+    tag: "US$940",
   },
 ];
 

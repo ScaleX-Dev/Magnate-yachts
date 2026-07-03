@@ -3,6 +3,7 @@ export interface DayTrip {
   name: string;
   paragraphs: string[];
   price: number;
+  priceNote: string;
   included: string[];
   notIncluded: string[];
   imageLabel: string;
@@ -26,6 +27,7 @@ export interface Trip {
   subtitle: string;
   days: TripDay[];
   price: number;
+  priceNote: string;
   included: string[];
   notIncluded: string[];
   image: string;
@@ -42,12 +44,13 @@ export const DAY_TRIPS: DayTrip[] = [
       "The day continues in this way. Elephants move in loose, companionable herds along the tree line. Crocodiles do what crocodiles do best — which is to say, remarkably little — along the banks of a tank. And somewhere above, birds you cannot yet name go about their business, entirely indifferent to being watched.",
       "You need only sit back. The vehicle, private and cool, will carry you there and back, timed precisely for the hours when the park is at its most alive.",
     ],
-    price: 70,
+    price: 190,
     included: [
       "Private vehicle and driver, door to door",
       "Fuel and toll charges",
     ],
     notIncluded: ["Park entrance and safari jeep tickets"],
+    priceNote: "up to 4 people",
     imageLabel: "Leopard crossing the track, Yala National Park",
   },
   {
@@ -59,13 +62,14 @@ export const DAY_TRIPS: DayTrip[] = [
       "Beyond the fort, the land begins to climb, and something remarkable happens to the colour green. Tea bushes cover the hillsides in row upon row, tended still, as they have been for generations, by workers moving quietly through them with baskets on their backs. Inside the factory, the leaf is dried, rolled, and sorted — and within the hour, what was growing on the bush that very morning arrives, transformed, in your cup.",
       "Further on, the spice gardens offer their own quiet theatre: cinnamon bark peeled in long curls from the tree, cardamom pods split to release a scent that seems to belong to no other place on earth. And nearby, craftsmen bend low over gemstones and handicrafts, shaping them by hand in a tradition that predates the fort itself by a very great many years.",
     ],
-    price: 70,
+    price: 75,
     included: [
       "Private vehicle and driver",
       "Fuel and toll charges",
       "A full-day route through Galle Fort, tea country, spice gardens, and artisan workshops",
     ],
     notIncluded: ["Individual site entrance fees"],
+    priceNote: "up to 4 people",
     imageLabel: "Dutch colonial gateway, Galle Fort, Sri Lanka",
   },
 ];
@@ -109,7 +113,8 @@ export const TRIPS: Trip[] = [
         imageLabel: "Southern coast road at dawn, Sri Lanka",
       },
     ],
-    price: 110,
+    price: 560,
+    priceNote: "for 2 people",
     included: [
       "Private vehicle and driver for all three days",
       "Fuel and toll charges",
@@ -169,7 +174,8 @@ export const TRIPS: Trip[] = [
         imageLabel: "Tea country, central Sri Lanka",
       },
     ],
-    price: 140,
+    price: 940,
+    priceNote: "for 2 people",
     included: [
       "Private vehicle and driver for all five days",
       "Fuel and toll charges",

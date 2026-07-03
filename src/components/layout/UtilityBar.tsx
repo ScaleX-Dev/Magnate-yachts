@@ -21,7 +21,7 @@ export function UtilityBar() {
             Monitoring VHF&nbsp;16
           </span>
           <Link
-            href="https://wa.me/94XXXXXXXXX"
+            href="https://wa.me/94769850115"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-[10.5px] text-white/30 hover:text-white/60 transition-colors"

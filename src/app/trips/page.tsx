@@ -70,7 +70,7 @@ export default function TripsPage() {
                         className="text-[9px] uppercase tracking-[0.24em] text-[var(--color-amber)] mb-1.5"
                         style={{ fontFamily: "var(--font-body)" }}
                       >
-                        One day · US${trip.price} per vehicle
+                        One day · US${trip.price} · {trip.priceNote}
                       </p>
                       <h2
                         className="text-2xl font-semibold text-white leading-tight"
@@ -123,7 +123,7 @@ export default function TripsPage() {
                         className="text-[9px] uppercase tracking-[0.24em] text-[var(--color-amber)] mb-1.5"
                         style={{ fontFamily: "var(--font-body)" }}
                       >
-                        {trip.badge} · US${trip.price}
+                        {trip.badge} · US${trip.price} · {trip.priceNote}
                       </p>
                       <h2
                         className="text-xl font-semibold text-white leading-tight"

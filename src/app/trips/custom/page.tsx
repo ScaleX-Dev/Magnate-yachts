@@ -6,7 +6,7 @@ import Image from "next/image";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
-const WHATSAPP = "https://wa.me/94XXXXXXXXX";
+const WHATSAPP = "https://wa.me/94769850115";
 
 export default function CustomTripPage() {
   const [form, setForm] = useState({

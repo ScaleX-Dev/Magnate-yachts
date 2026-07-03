@@ -19,9 +19,9 @@ const WINDOWS = [
 
 const TRIP_OPTIONS = [
   { value: "none",   label: "None",           sublabel: "Clearance only" },
-  { value: "day",   label: "Day excursion",  sublabel: "from US $70" },
-  { value: "3-day", label: "Safari & Hills", sublabel: "2 nights · US $110" },
-  { value: "5-day", label: "Wilderness",     sublabel: "4 nights · US $140" },
+  { value: "day",    label: "Day excursion",  sublabel: "from US $75" },
+  { value: "3-day",  label: "Safari & Hills", sublabel: "2 nights · US $560" },
+  { value: "5-day",  label: "Wilderness",     sublabel: "4 nights · US $940" },
   { value: "custom", label: "Custom trip",   sublabel: "Your itinerary" },
 ];
 

@@ -63,7 +63,7 @@ export default async function TripDetailPage({
           <div className="container-site pb-14 pt-10">
             <Reveal>
               <span className="inline-block text-[9px] uppercase tracking-[0.28em] border border-white/15 text-white/40 px-3 py-1.5 mb-8" style={{ fontFamily: "var(--font-body)" }}>
-                One day · US${dayTrip.price} per vehicle
+                One day · US${dayTrip.price} · {dayTrip.priceNote}
               </span>
               <h1 className="text-[clamp(2.5rem,7vw,5.5rem)] font-semibold text-white leading-[1.04] mb-4" style={{ fontFamily: "var(--font-display)" }}>
                 {dayTrip.name}
@@ -128,7 +128,7 @@ export default async function TripDetailPage({
                 <p className="text-2xl sm:text-3xl font-light text-[var(--color-navy)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>{dayTrip.name}</p>
               </div>
               <Link href="/book?trip=day" className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--color-amber)] text-white text-[14px] font-medium hover:bg-[var(--color-amber-light)] hover:shadow-[0_8px_28px_-6px_rgba(196,146,74,0.45)] hover:-translate-y-px active:scale-[0.97] transition-all duration-300 whitespace-nowrap shrink-0" style={{ fontFamily: "var(--font-body)" }}>
-                Reserve · US${dayTrip.price}
+                Reserve · US${dayTrip.price} · {dayTrip.priceNote}
                 <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </Reveal>
@@ -230,7 +230,7 @@ export default async function TripDetailPage({
               <p className="text-2xl sm:text-3xl font-light text-[var(--color-navy)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>{trip!.shortName}</p>
             </div>
             <Link href={"/book?trip=" + trip!.slug} className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--color-amber)] text-white text-[14px] font-medium hover:bg-[var(--color-amber-light)] hover:shadow-[0_8px_28px_-6px_rgba(196,146,74,0.45)] hover:-translate-y-px active:scale-[0.97] transition-all duration-300 whitespace-nowrap shrink-0" style={{ fontFamily: "var(--font-body)" }}>
-              Reserve this trip · US${trip!.price}
+              Reserve this trip · US${trip!.price} · {trip!.priceNote}
               <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </Reveal>

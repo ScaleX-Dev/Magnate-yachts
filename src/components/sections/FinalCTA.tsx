@@ -46,7 +46,7 @@ export function FinalCTA() {
               <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
-              href="mailto:hello@magnateyachts.com"
+              href="mailto:info@magnateyachts.com"
               className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 text-white/65 text-[13.5px] font-medium tracking-wide hover:border-white/35 hover:text-white hover:bg-white/[0.06] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
               style={{ fontFamily: "var(--font-body)" }}
             >
