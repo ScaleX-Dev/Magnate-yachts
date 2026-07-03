@@ -515,6 +515,22 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
                   </p>
                 </div>
 
+                {/* Visa reminder */}
+                <div className="flex items-start gap-3 rounded-xl bg-white/[0.04] border border-white/[0.07] p-4 mb-5">
+                  <Flag size={12} className="text-white/30 shrink-0 mt-[3px]" />
+                  <p className="text-[12.5px] text-white/50 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                    <strong className="font-semibold text-white/70">Visa required before arrival</strong> — all crew must apply online before reaching Sri Lanka.{" "}
+                    <a
+                      href="https://www.eta.gov.lk/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--color-amber)]/70 hover:text-[var(--color-amber)] underline underline-offset-2 transition-colors"
+                    >
+                      Apply at eta.gov.lk →
+                    </a>
+                  </p>
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <Field label="Arrival month" required error={errs["arrival.month"]}>
                     <select

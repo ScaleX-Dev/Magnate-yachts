@@ -160,8 +160,16 @@ export default function ClearancePage() {
           <Reveal delay={0.2} className="mt-5 flex items-start gap-3 border border-[var(--color-ivory-dark)] rounded-xl p-5 bg-white">
             <Flag size={13} className="text-[var(--color-navy)]/35 shrink-0 mt-[2px]" />
             <p className="text-xs text-[var(--color-navy)]/55 leading-relaxed">
-              <strong className="font-semibold text-[var(--color-navy)]/75">Note:</strong>{" "}
-              the visa application is the owner&apos;s responsibility (apply online before arrival).
+              <strong className="font-semibold text-[var(--color-navy)]/75">Visa required before arrival —</strong>{" "}
+              the visa application is the owner&apos;s responsibility and must be completed online before you arrive in Sri Lanka.{" "}
+              <a
+                href="https://www.eta.gov.lk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[var(--color-navy)] underline underline-offset-2 hover:text-[var(--color-amber)] transition-colors"
+              >
+                Apply at eta.gov.lk →
+              </a>
             </p>
           </Reveal>
         </div>

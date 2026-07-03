@@ -565,6 +565,17 @@ export default function PortGuidePage() {
               <p className="text-sm text-white/40 leading-relaxed">
                 Sri Lanka requires all visiting yachts to appoint a licensed clearing agent ahead of arrival. Magnate handles clearance at both Galle and Trincomalee — fixed fee, met at the dock.
               </p>
+              <p className="text-sm text-white/40 leading-relaxed mt-3">
+                <strong className="text-white/60">Visa required before arrival</strong> — all crew must apply online before reaching Sri Lanka.{" "}
+                <a
+                  href="https://www.eta.gov.lk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--color-amber)]/70 hover:text-[var(--color-amber)] underline underline-offset-2 transition-colors"
+                >
+                  Apply at eta.gov.lk →
+                </a>
+              </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 shrink-0">
