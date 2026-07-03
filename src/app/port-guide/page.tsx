@@ -247,6 +247,7 @@ export default function PortGuidePage() {
           {/* Image */}
           <Reveal delay={0.05} className="mb-14">
             <ImgPlaceholder
+              src="/images/site/port-galle-banner.jpg"
               label="Galle Fort aerial — south coast Sri Lanka"
               aspectRatio="aspect-[21/9]"
               className="rounded-xl w-full"

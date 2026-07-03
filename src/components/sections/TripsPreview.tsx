@@ -56,7 +56,7 @@ export function TripsPreview() {
         {/* Hero image */}
         <Reveal delay={0.08} className="mb-8 md:mb-10">
           <ImgPlaceholder
-            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600&auto=format&fit=crop&q=80"
+            src="/images/site/trips-preview-banner.jpg"
             label="Sigiriya rock fortress, Sri Lanka"
             aspectRatio="aspect-[21/9]"
             className="rounded-2xl shadow-[0_24px_60px_-24px_rgba(6,12,24,0.28)]"

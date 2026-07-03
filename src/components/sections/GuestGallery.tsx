@@ -4,32 +4,32 @@ const PHOTOS = [
   {
     label: "Crew aboard at anchor, Galle harbour",
     tall: false,
-    src: "https://images.unsplash.com/photo-1656347440710-70039fa0bd0a?w=800&auto=format&fit=crop&q=80",
+    src: "/images/site/clearance-harbour.jpg",
   },
   {
     label: "Elephant safari, Udawalawe National Park",
     tall: true,
-    src: "https://images.unsplash.com/photo-1551189014-fe516b2fe26e?w=800&auto=format&fit=crop&q=80",
+    src: "/images/site/gallery-elephant-safari.jpg",
   },
   {
     label: "Nine Arch Bridge at sunrise, Ella",
     tall: false,
-    src: "https://images.unsplash.com/photo-1583393514703-95048c56bed0?w=800&auto=format&fit=crop&q=80",
+    src: "/images/site/3day-day2-ella.jpg",
   },
   {
     label: "Galle Fort lighthouse, southern coast",
     tall: false,
-    src: "https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=800&auto=format&fit=crop&q=80",
+    src: "/images/site/gallery-galle-street.jpg",
   },
   {
     label: "Sigiriya rock fortress at sunrise",
     tall: true,
-    src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&auto=format&fit=crop&q=80",
+    src: "/images/site/gallery-sigiriya.jpg",
   },
   {
     label: "Tea country, central Sri Lanka",
     tall: false,
-    src: "https://images.unsplash.com/photo-1559095174-bfb4a7f19e02?w=800&auto=format&fit=crop&q=80",
+    src: "/images/site/gallery-tea-country.jpg",
   },
 ];
 

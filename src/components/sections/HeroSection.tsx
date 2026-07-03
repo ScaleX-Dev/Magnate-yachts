@@ -43,7 +43,7 @@ export function HeroSection() {
           transition={{ duration: 1.1, ease: EASE_EXPO }}
         >
           <ImgPlaceholder
-            src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1600&auto=format&fit=crop&q=80"
+            src="/images/site/hero-main.jpg"
             label="Sailing yacht at sea — Sri Lanka"
             aspectRatio="aspect-[16/9]"
             priority

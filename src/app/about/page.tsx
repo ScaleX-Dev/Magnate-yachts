@@ -57,7 +57,7 @@ export default function AboutPage() {
         <div className="container-site py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <Reveal className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-[0_32px_80px_-28px_rgba(6,12,24,0.3)]">
             <Image
-              src="https://images.unsplash.com/photo-1656347440710-70039fa0bd0a?q=80&w=1200&auto=format&fit=crop"
+              src="/images/site/about-story.jpg"
               alt="Sailing yachts moored in a calm harbour"
               fill
               className="object-cover transition-transform duration-700 hover:scale-105"
@@ -131,7 +131,7 @@ export default function AboutPage() {
           <Reveal>
             <div className="relative aspect-[21/8] w-full overflow-hidden rounded-2xl shadow-[0_24px_60px_-28px_rgba(6,12,24,0.25)]">
               <Image
-                src="https://images.unsplash.com/photo-1763151426912-92383702ab3f?q=80&w=2400&auto=format&fit=crop"
+                src="/images/site/hu-chen-3yd8oXGoLqM-unsplash.jpg"
                 alt="Sailboats and yachts docked at the marina"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"

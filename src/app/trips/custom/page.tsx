@@ -32,7 +32,7 @@ export default function CustomTripPage() {
       <section className="relative bg-[#080e1a] min-h-[55svh] flex flex-col justify-between overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&auto=format&fit=crop&q=80"
+            src="/images/site/trip-custom-card.jpg"
             alt="Sri Lanka landscape"
             fill
             className="object-cover opacity-25"

@@ -18,7 +18,7 @@ const CUSTOM = {
   subtitle:
     "Something off the beaten track, a slower pace, or a route we haven't written down yet — tell us.",
   image:
-    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&auto=format&fit=crop&q=80",
+    "/images/site/trip-custom-card.jpg",
 };
 
 export default function TripsPage() {

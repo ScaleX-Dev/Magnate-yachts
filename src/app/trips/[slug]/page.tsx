@@ -76,7 +76,7 @@ export default async function TripDetailPage({
           <div className="container-site pt-12">
             <Reveal>
               <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl shadow-[0_32px_80px_-28px_rgba(6,12,24,0.3)]">
-                <Image src={dayTrip.image} alt={dayTrip.name} fill className="object-cover" sizes="(max-width: 1280px) 100vw, 1280px" priority />
+                <Image src={dayTrip.heroImage ?? dayTrip.image} alt={dayTrip.name} fill className="object-cover" sizes="(max-width: 1280px) 100vw, 1280px" priority />
               </div>
             </Reveal>
           </div>
