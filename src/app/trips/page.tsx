@@ -5,6 +5,8 @@ import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { DAY_TRIPS, TRIPS } from "@/lib/trips-data";
 
+const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYzJiM2UiLz48L3N2Zz4=";
+
 export const metadata: Metadata = {
   title: "Trips — Magnate Yachts Sri Lanka",
   description:
@@ -61,6 +63,9 @@ export default function TripsPage() {
                       src={trip.image}
                       alt={trip.name}
                       fill
+                      priority={i === 0}
+                      placeholder="blur"
+                      blurDataURL={BLUR}
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, 50vw"
                     />
@@ -114,6 +119,8 @@ export default function TripsPage() {
                       src={trip.image}
                       alt={trip.shortName}
                       fill
+                      placeholder="blur"
+                      blurDataURL={BLUR}
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
@@ -166,6 +173,8 @@ export default function TripsPage() {
                     src={CUSTOM.image}
                     alt="Custom trip"
                     fill
+                    placeholder="blur"
+                    blurDataURL={BLUR}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />

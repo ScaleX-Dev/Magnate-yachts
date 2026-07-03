@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, Check, Minus } from "lucide-react";
+
+const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYzJiM2UiLz48L3N2Zz4=";
 import { Reveal } from "@/components/ui/Reveal";
 import {
   TRIPS,
@@ -76,7 +78,7 @@ export default async function TripDetailPage({
           <div className="container-site pt-12">
             <Reveal>
               <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl shadow-[0_32px_80px_-28px_rgba(6,12,24,0.3)]">
-                <Image src={dayTrip.heroImage ?? dayTrip.image} alt={dayTrip.name} fill className="object-cover" sizes="(max-width: 1280px) 100vw, 1280px" priority />
+                <Image src={dayTrip.heroImage ?? dayTrip.image} alt={dayTrip.name} fill className="object-cover" sizes="(max-width: 1280px) 100vw, 1280px" priority placeholder="blur" blurDataURL={BLUR} />
               </div>
             </Reveal>
           </div>
@@ -183,7 +185,7 @@ export default async function TripDetailPage({
                 </Reveal>
                 <Reveal className="lg:pt-14 lg:pl-8" delay={0.1} y={16}>
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl shadow-[0_24px_60px_-30px_rgba(11,31,58,0.3)]">
-                    <Image src={day.image} alt={day.imageLabel} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                    <Image src={day.image} alt={day.imageLabel} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" placeholder="blur" blurDataURL={BLUR} />
                   </div>
                 </Reveal>
               </div>

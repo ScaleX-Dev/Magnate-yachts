@@ -3,6 +3,8 @@ import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
+const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYzJiM2UiLz48L3N2Zz4=";
+
 const INCLUDED = [
   "Immigration formalities & visa collection on arrival",
   "Customs clearance",
@@ -24,6 +26,8 @@ export function ClearanceSection() {
               src="/images/site/5day-day3-kandy.jpg"
               alt="Sailing yachts moored in Galle harbour"
               fill
+              placeholder="blur"
+              blurDataURL={BLUR}
               className="object-cover transition-transform duration-700 hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />

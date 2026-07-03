@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+
+const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYzJiM2UiLz48L3N2Zz4=";
 import { Reveal } from "@/components/ui/Reveal";
 
 const WHATSAPP = "https://wa.me/94769850115";
@@ -37,6 +39,8 @@ export default function CustomTripPage() {
             fill
             className="object-cover opacity-25"
             priority
+            placeholder="blur"
+            blurDataURL={BLUR}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#080e1a]/60 to-[#080e1a]" />
         </div>

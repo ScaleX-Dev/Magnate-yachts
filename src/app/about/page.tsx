@@ -3,6 +3,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
+const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYzJiM2UiLz48L3N2Zz4=";
+
 export const metadata: Metadata = {
   title: "About — Magnate Yachts Sri Lanka",
   description:
@@ -60,6 +62,8 @@ export default function AboutPage() {
               src="/images/site/about-story.jpg"
               alt="Sailing yachts moored in a calm harbour"
               fill
+              placeholder="blur"
+              blurDataURL={BLUR}
               className="object-cover transition-transform duration-700 hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
@@ -134,6 +138,8 @@ export default function AboutPage() {
                 src="/images/site/port-galle-banner.jpg"
                 alt="Aerial view of Galle Fort peninsula, Sri Lanka"
                 fill
+                placeholder="blur"
+                blurDataURL={BLUR}
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="100vw"
               />
