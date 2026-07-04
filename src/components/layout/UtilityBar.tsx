@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { MapPin, MessageCircle } from "lucide-react";
+import { MapPin, MessageCircle, Mail } from "lucide-react";
 
 export function UtilityBar() {
   return (
     <div className="hidden lg:block w-full bg-[var(--color-midnight)] border-b border-white/[0.05]">
       <div className="container-site flex items-center justify-between h-8">
-        <div className="flex items-center gap-6 overflow-x-auto whitespace-nowrap scrollbar-none">
+        <div className="flex items-center gap-6">
           <span
             className="flex items-center gap-1.5 text-[10.5px] text-white/30"
             style={{ fontFamily: "var(--font-body)" }}
@@ -24,21 +24,14 @@ export function UtilityBar() {
             WhatsApp +94&nbsp;76&nbsp;985&nbsp;0115
           </Link>
         </div>
-        <div className="flex items-center gap-3 shrink-0">
-          <button
-            className="text-[10.5px] text-white/25 hover:text-white/50 transition-colors"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            USD ▾
-          </button>
-          <span className="text-white/10">|</span>
-          <button
-            className="text-[10.5px] text-white/25 hover:text-white/50 transition-colors"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            EN ▾
-          </button>
-        </div>
+        <a
+          href="mailto:info@magnateyachts.com"
+          className="flex items-center gap-1.5 text-[10.5px] text-white/25 hover:text-white/50 transition-colors"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          <Mail size={9} className="shrink-0 text-[var(--color-amber)]/40" />
+          info@magnateyachts.com
+        </a>
       </div>
     </div>
   );

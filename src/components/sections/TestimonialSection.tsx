@@ -11,16 +11,10 @@ export function TestimonialSection() {
         }}
       />
 
-      <div className="relative z-10 container-site py-24 md:py-36 lg:py-40">
+      <div className="relative z-10 container-site py-16 md:py-24 lg:py-28">
         <Reveal y={30}>
           <div className="max-w-4xl">
-            {/* Decorative opening quote */}
-            <span
-              className="block text-[7rem] md:text-[10rem] leading-[0.7] text-[var(--color-amber)]/12 mb-2 md:mb-4 select-none"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              &ldquo;
-            </span>
+            <div className="w-10 h-px bg-[var(--color-amber)]/50 mb-12 md:mb-16" />
 
             <blockquote>
               <p
@@ -30,7 +24,7 @@ export function TestimonialSection() {
                 We&apos;d planned to stop in Galle for fuel. We stayed three weeks. The kids are still asking when we go back.
               </p>
               <footer className="flex items-center gap-5">
-                <div className="w-12 h-px bg-[var(--color-amber)]/30 flex-shrink-0" />
+                <div className="w-8 h-px bg-[var(--color-amber)]/30 flex-shrink-0" />
                 <div>
                   <p
                     className="text-[15px] font-medium text-white/70"

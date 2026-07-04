@@ -82,7 +82,7 @@ export default async function TripDetailPage({
               </div>
             </Reveal>
           </div>
-          <div className="container-site py-16 lg:py-20">
+          <div className="container-site py-10 lg:py-14">
             <div className="max-w-2xl flex flex-col gap-6">
               {dayTrip.paragraphs.map((para, i) => (
                 <Reveal key={i} delay={i * 0.05}>
@@ -94,7 +94,7 @@ export default async function TripDetailPage({
         </section>
 
         <section className="bg-white">
-          <div className="container-site py-16 lg:py-20">
+          <div className="container-site py-10 lg:py-14">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
               <Reveal>
                 <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-6" style={{ fontFamily: "var(--font-body)" }}>Included</p>
@@ -123,7 +123,7 @@ export default async function TripDetailPage({
         </section>
 
         <section className="bg-[var(--color-ivory)]">
-          <div className="container-site py-16 lg:py-20">
+          <div className="container-site py-10 lg:py-14">
             <Reveal className="flex flex-col sm:flex-row sm:items-center justify-between gap-8">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-amber)] mb-3" style={{ fontFamily: "var(--font-body)" }}>Reserve your place</p>
@@ -189,7 +189,7 @@ export default async function TripDetailPage({
                   </div>
                 </Reveal>
               </div>
-              <p className="mt-7 mb-16 text-sm text-[var(--color-navy)]/55 leading-relaxed max-w-2xl" style={{ fontFamily: "var(--font-body)" }}>
+              <p className="mt-7 mb-10 text-sm text-[var(--color-navy)]/55 leading-relaxed max-w-2xl" style={{ fontFamily: "var(--font-body)" }}>
                 {day.description}
               </p>
             </div>
@@ -198,7 +198,7 @@ export default async function TripDetailPage({
       })}
 
       <section className="bg-white">
-        <div className="container-site py-16 lg:py-20">
+        <div className="container-site py-10 lg:py-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
             <Reveal>
               <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-6" style={{ fontFamily: "var(--font-body)" }}>Included</p>
@@ -225,7 +225,7 @@ export default async function TripDetailPage({
       </section>
 
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-16 lg:py-20">
+        <div className="container-site py-10 lg:py-14">
           <Reveal className="flex flex-col sm:flex-row sm:items-center justify-between gap-8">
             <div>
               <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-amber)] mb-3" style={{ fontFamily: "var(--font-body)" }}>Reserve your place</p>
@@ -240,7 +240,7 @@ export default async function TripDetailPage({
       </section>
 
       <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-16 lg:py-24">
+        <div className="container-site py-10 lg:py-16">
           <Reveal>
             <h2 className="text-[clamp(1.75rem,4vw,3rem)] font-light text-white leading-[1.2] mb-5 max-w-lg" style={{ fontFamily: "var(--font-display)" }}>
               Every route can be adjusted.

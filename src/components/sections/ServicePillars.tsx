@@ -37,7 +37,7 @@ const PILLARS = [
 
 function PillarCard({ tag, title, items }: (typeof PILLARS)[0]) {
   return (
-    <div className="relative flex flex-col gap-6 bg-white/[0.04] border border-white/[0.08] rounded-2xl p-7 md:p-8 overflow-hidden transition-all duration-500 hover:bg-white/[0.07] hover:border-white/[0.15] hover:-translate-y-1 group">
+    <div className="relative flex flex-col gap-8 bg-white/[0.04] border border-white/[0.08] rounded-2xl p-7 md:p-8 overflow-hidden transition-all duration-500 hover:bg-white/[0.07] hover:border-white/[0.15] hover:-translate-y-1 group">
       <div className="flex flex-col gap-2">
         <span
           className="text-[9.5px] uppercase tracking-[0.28em] text-[var(--color-amber)]"
@@ -52,8 +52,6 @@ function PillarCard({ tag, title, items }: (typeof PILLARS)[0]) {
           {title}
         </h3>
       </div>
-
-      <div className="w-8 h-px bg-[var(--color-amber)]/35" />
 
       <ul className="flex flex-col gap-3.5">
         {items.map((item) => (
@@ -75,10 +73,10 @@ function PillarCard({ tag, title, items }: (typeof PILLARS)[0]) {
 export function ServicePillars() {
   return (
     <section className="bg-[var(--color-navy)] overflow-hidden">
-      <div className="container-site py-20 md:py-28 lg:py-32">
+      <div className="container-site py-12 md:py-16 lg:py-20">
 
         {/* Section header */}
-        <Reveal className="mb-12 md:mb-16">
+        <Reveal className="mb-10 md:mb-12">
           <h2
             className="text-[clamp(2rem,5vw,3.5rem)] font-light text-white leading-[1.1]"
             style={{ fontFamily: "var(--font-display)" }}

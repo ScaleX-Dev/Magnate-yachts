@@ -28,7 +28,7 @@ export default function TripsPage() {
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-20 lg:py-28">
+        <div className="container-site py-10 lg:py-14">
           <Reveal>
             <h1
               className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white leading-[1.1] mb-4 max-w-lg"
@@ -50,7 +50,7 @@ export default function TripsPage() {
 
       {/* ── Day excursions ────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-16 lg:py-20">
+        <div className="container-site py-10 lg:py-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {DAY_TRIPS.map((trip, i) => (
               <Reveal key={trip.slug} delay={i * 0.08}>
@@ -106,7 +106,7 @@ export default function TripsPage() {
 
       {/* ── Multi-day trips ───────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-16 lg:py-20">
+        <div className="container-site py-10 lg:py-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {TRIPS.map((trip, i) => (
               <Reveal key={trip.slug} delay={i * 0.08}>

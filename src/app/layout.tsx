@@ -5,6 +5,7 @@ import { UtilityBar } from "@/components/layout/UtilityBar";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -53,6 +54,9 @@ export default function RootLayout({
           <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
+        {/* Spacer so footer content isn't hidden behind mobile sticky bar */}
+        <div className="h-14 lg:hidden" aria-hidden="true" />
+        <MobileCtaBar />
       </body>
     </html>
   );

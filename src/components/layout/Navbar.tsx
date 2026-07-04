@@ -175,14 +175,6 @@ export function Navbar() {
                       >
                         {label}
                       </span>
-                      {pathname === href && (
-                        <span
-                          className="ml-4 text-[11px] uppercase tracking-widest text-[var(--color-amber)] align-middle"
-                          style={{ fontFamily: "var(--font-body)" }}
-                        >
-                          Current
-                        </span>
-                      )}
                     </Link>
                   </motion.div>
                 ))}

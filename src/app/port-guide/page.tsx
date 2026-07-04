@@ -123,7 +123,7 @@ export default function PortGuidePage() {
           }}
         />
 
-        <div className="container-site relative pt-24 pb-20 lg:pt-32 lg:pb-28">
+        <div className="container-site relative pt-14 pb-12 lg:pt-20 lg:pb-16">
           <Reveal>
             <span
               className="block text-[10px] font-medium uppercase tracking-[0.35em] text-[var(--color-amber)] mb-8"
@@ -214,10 +214,10 @@ export default function PortGuidePage() {
         {/* Subtle divider line */}
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-amber)]/20 to-transparent" />
 
-        <div className="container-site py-20 lg:py-28">
+        <div className="container-site py-12 lg:py-16">
 
           {/* Port header */}
-          <Reveal className="mb-14">
+          <Reveal className="mb-8">
             <div className="flex items-start gap-6">
               <div
                 className="w-10 h-10 rounded-full bg-[var(--color-amber)]/10 border border-[var(--color-amber)]/25 flex items-center justify-center shrink-0 mt-1"
@@ -245,7 +245,7 @@ export default function PortGuidePage() {
           </Reveal>
 
           {/* Image */}
-          <Reveal delay={0.05} className="mb-14">
+          <Reveal delay={0.05} className="mb-8">
             <ImgPlaceholder
               src="/images/site/port-galle-banner.jpg"
               label="Galle Fort aerial — south coast Sri Lanka"
@@ -303,7 +303,7 @@ export default function PortGuidePage() {
           </div>
 
           {/* Facilities */}
-          <Reveal delay={0.1} className="mt-14">
+          <Reveal delay={0.1} className="mt-8">
             <h3
               className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-amber)] mb-6"
               style={{ fontFamily: "var(--font-body)" }}
@@ -358,10 +358,10 @@ export default function PortGuidePage() {
       >
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-turquoise)]/20 to-transparent" />
 
-        <div className="container-site py-20 lg:py-28">
+        <div className="container-site py-12 lg:py-16">
 
           {/* Port header */}
-          <Reveal className="mb-14">
+          <Reveal className="mb-8">
             <div className="flex items-start gap-6">
               <div
                 className="w-10 h-10 rounded-full bg-[var(--color-turquoise)]/10 border border-[var(--color-turquoise)]/25 flex items-center justify-center shrink-0 mt-1"
@@ -389,7 +389,7 @@ export default function PortGuidePage() {
           </Reveal>
 
           {/* Image */}
-          <Reveal delay={0.05} className="mb-14">
+          <Reveal delay={0.05} className="mb-8">
             <ImgPlaceholder
               label="Trincomalee harbour — east coast Sri Lanka"
               aspectRatio="aspect-[21/9]"
@@ -446,7 +446,7 @@ export default function PortGuidePage() {
           </div>
 
           {/* Facilities */}
-          <Reveal delay={0.1} className="mt-14">
+          <Reveal delay={0.1} className="mt-8">
             <h3
               className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-turquoise)] mb-6"
               style={{ fontFamily: "var(--font-body)" }}
@@ -493,7 +493,7 @@ export default function PortGuidePage() {
       {/* ── Seasonal comparison ────────────────────────────────────── */}
       <section className="relative" style={{ background: "var(--color-navy-dark)" }}>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
-        <div className="container-site py-16 lg:py-20">
+        <div className="container-site py-10 lg:py-14">
           <Reveal className="mb-10">
             <div className="flex items-center gap-3 mb-3">
               <Wind size={14} className="text-[var(--color-amber)]" />
@@ -545,7 +545,7 @@ export default function PortGuidePage() {
       {/* ── Clearance CTA ─────────────────────────────────────────── */}
       <section className="relative" style={{ background: "var(--color-navy)" }}>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
-        <div className="container-site py-16 lg:py-20">
+        <div className="container-site py-10 lg:py-14">
           <Reveal className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
             <div className="max-w-lg">
               <p

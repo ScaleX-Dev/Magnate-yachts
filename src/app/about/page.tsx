@@ -35,7 +35,7 @@ export default function AboutPage() {
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-20 lg:py-28">
+        <div className="container-site py-12 lg:py-16">
           <Reveal>
             <h1
               className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white max-w-3xl leading-[1.1] mb-7"
@@ -56,7 +56,7 @@ export default function AboutPage() {
 
       {/* ── Story ─────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="container-site py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <Reveal className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-[0_32px_80px_-28px_rgba(6,12,24,0.3)]">
             <Image
               src="/images/site/about-story.jpg"
@@ -95,10 +95,10 @@ export default function AboutPage() {
 
       {/* ── Credentials ───────────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy-dark)]">
-        <div className="container-site py-20">
+        <div className="container-site py-12">
           <Reveal>
             <h2
-              className="text-[clamp(1.75rem,4vw,3rem)] font-light text-white mb-12"
+              className="text-[clamp(1.75rem,4vw,3rem)] font-light text-white mb-8"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Our credentials
@@ -131,7 +131,7 @@ export default function AboutPage() {
 
       {/* ── Team photo ────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-14">
+        <div className="container-site py-10">
           <Reveal>
             <div className="relative aspect-[21/8] w-full overflow-hidden rounded-2xl shadow-[0_24px_60px_-28px_rgba(6,12,24,0.25)]">
               <Image
@@ -156,7 +156,7 @@ export default function AboutPage() {
 
       {/* ── CTA ───────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-16 md:py-20 flex flex-col sm:flex-row items-start sm:items-center gap-10 justify-between">
+        <div className="container-site py-10 md:py-14 flex flex-col sm:flex-row items-start sm:items-center gap-10 justify-between">
           <Reveal>
             <h2
               className="text-[clamp(1.5rem,4vw,2.75rem)] font-light text-white leading-[1.15]"

@@ -33,10 +33,10 @@ const TRIPS = [
 export function TripsPreview() {
   return (
     <section className="bg-[var(--color-ivory)]">
-      <div className="container-site py-20 md:py-28 lg:py-32">
+      <div className="container-site py-12 md:py-16 lg:py-20">
 
         {/* Header */}
-        <Reveal className="mb-10 md:mb-14">
+        <Reveal className="mb-8 md:mb-10">
           <h2
             className="text-[clamp(2rem,5.5vw,4rem)] font-light text-[var(--color-navy)] leading-[1.1] mb-5"
             style={{ fontFamily: "var(--font-display)" }}

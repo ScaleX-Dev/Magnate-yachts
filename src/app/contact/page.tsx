@@ -42,7 +42,7 @@ export default function ContactPage() {
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-20 lg:py-28">
+        <div className="container-site py-12 lg:py-16">
           <Reveal>
             <h1
               className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white max-w-2xl leading-[1.1] mb-6"
@@ -63,7 +63,7 @@ export default function ContactPage() {
 
       {/* ── Form + sidebar ─────────────────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="container-site py-8 lg:py-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           {/* Form */}
           <div className="lg:col-span-2">

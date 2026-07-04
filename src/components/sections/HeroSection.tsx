@@ -33,7 +33,7 @@ function LineReveal({
 export function HeroSection() {
   return (
     <section className="bg-[var(--color-ivory)]">
-      <div className="container-site pt-5 md:pt-6 pb-14 md:pb-20">
+      <div className="container-site pt-5 md:pt-6 pb-10 md:pb-14">
 
         {/* Hero image */}
         <motion.div
@@ -94,7 +94,7 @@ export function HeroSection() {
         >
           <Link
             href="/book"
-            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-xl bg-[var(--color-navy)] text-white text-[13.5px] font-medium tracking-wide hover:bg-[var(--color-navy-dark)] hover:shadow-[0_16px_48px_-8px_rgba(6,12,24,0.35)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
+            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-navy)] text-white text-[13.5px] font-medium tracking-wide hover:bg-[var(--color-navy-dark)] hover:shadow-[0_16px_48px_-8px_rgba(6,12,24,0.35)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Plan your stay
@@ -102,7 +102,7 @@ export function HeroSection() {
           </Link>
           <Link
             href="/clearance"
-            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-xl border border-[var(--color-navy)]/22 text-[var(--color-navy)] text-[13.5px] font-medium tracking-wide hover:border-[var(--color-navy)]/45 hover:bg-[var(--color-navy)]/[0.04] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
+            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full border border-[var(--color-navy)]/22 text-[var(--color-navy)] text-[13.5px] font-medium tracking-wide hover:border-[var(--color-navy)]/45 hover:bg-[var(--color-navy)]/[0.04] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Arrange Clearance

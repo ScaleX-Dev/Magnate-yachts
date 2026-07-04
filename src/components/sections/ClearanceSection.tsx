@@ -17,13 +17,13 @@ const INCLUDED = [
 export function ClearanceSection() {
   return (
     <section className="bg-[var(--color-ivory)]">
-      <div className="container-site py-20 md:py-28 lg:py-32">
+      <div className="container-site py-12 md:py-16 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
           {/* Left: image */}
           <Reveal className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-[0_32px_80px_-28px_rgba(6,12,24,0.22)]">
             <Image
-              src="/images/site/5day-day3-kandy.jpg"
+              src="/images/site/clearance-harbour.jpg"
               alt="Sailing yachts moored in Galle harbour"
               fill
               placeholder="blur"

@@ -289,7 +289,7 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
     return (
       <>
         <section className="bg-[var(--color-navy)] border-b border-white/[0.07]">
-          <div className="container-site py-16 lg:py-20">
+          <div className="container-site py-10 lg:py-14">
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[var(--color-amber)] mb-4" style={{ fontFamily: "var(--font-body)" }}>
               {needsPayment ? "Booking initiated" : "Enquiry sent"}
             </p>
@@ -367,7 +367,7 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
     <>
       {/* Page header */}
       <section className="bg-[var(--color-navy)] border-b border-white/[0.07]">
-        <div className="container-site py-16 lg:py-20">
+        <div className="container-site py-10 lg:py-14">
           <Reveal>
             <h1
               className="text-[clamp(2rem,5.5vw,4rem)] font-light text-white mb-8 leading-[1.1]"

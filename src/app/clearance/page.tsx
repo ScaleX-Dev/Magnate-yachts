@@ -54,7 +54,7 @@ export default function ClearancePage() {
     <>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-20 lg:py-28">
+        <div className="container-site py-12 lg:py-16">
           <Reveal>
             <h1
               className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white leading-[1.1] mb-6 max-w-lg"
@@ -76,7 +76,7 @@ export default function ClearancePage() {
 
       {/* ── What clearance includes ───────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-10 lg:py-14">
+        <div className="container-site py-8 lg:py-12">
           <Reveal>
             <h2
               className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-10"
@@ -130,7 +130,7 @@ export default function ClearancePage() {
 
       {/* ── What we'll need from you ──────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
-        <div className="container-site py-10 lg:py-14">
+        <div className="container-site py-8 lg:py-12">
           <Reveal>
             <h2
               className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-2"
@@ -177,7 +177,7 @@ export default function ClearancePage() {
 
       {/* ── How arrival works ─────────────────────────────────────────── */}
       <section className="bg-white">
-        <div className="container-site py-10 lg:py-14">
+        <div className="container-site py-8 lg:py-12">
           <Reveal>
             <h2
               className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mb-12"
