@@ -75,7 +75,7 @@ export function HeroSection() {
             <span>here.</span>
             <motion.span
               className="inline-flex items-center gap-2 ml-4 sm:ml-6 text-[clamp(0.6rem,1.35vw,0.875rem)] font-medium uppercase tracking-[0.22em] text-[var(--color-amber)] align-middle"
-              style={{ fontFamily: "var(--font-body)", verticalAlign: "middle", transform: "translateY(-0.1em)" }}
+              style={{ fontFamily: "var(--font-accent)", verticalAlign: "middle", transform: "translateY(-0.1em)" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.82 }}

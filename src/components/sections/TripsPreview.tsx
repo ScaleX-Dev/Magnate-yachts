@@ -66,7 +66,7 @@ export function TripsPreview() {
         <Reveal delay={0.12}>
           <span
             className="block text-[9.5px] font-medium uppercase tracking-[0.25em] text-[var(--color-navy)]/30 mb-6"
-            style={{ fontFamily: "var(--font-body)" }}
+            style={{ fontFamily: "var(--font-accent)" }}
           >
             Where Magnate would take you
           </span>
@@ -107,7 +107,7 @@ export function TripsPreview() {
                 {/* CTA */}
                 <span
                   className="hidden sm:inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-navy)]/30 group-hover:text-[var(--color-amber)] transition-colors whitespace-nowrap shrink-0"
-                  style={{ fontFamily: "var(--font-body)" }}
+                  style={{ fontFamily: "var(--font-accent)" }}
                 >
                   View trip
                   <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />

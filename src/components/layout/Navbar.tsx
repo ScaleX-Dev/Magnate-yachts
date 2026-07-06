@@ -62,7 +62,7 @@ export function Navbar() {
               <span className="hidden sm:block w-px h-4 bg-white/15" />
               <span
                 className="hidden sm:block text-[9px] font-medium uppercase tracking-[0.25em] text-white/35 transition-opacity duration-200 group-hover:opacity-60"
-                style={{ fontFamily: "var(--font-body)" }}
+                style={{ fontFamily: "var(--font-accent)" }}
               >
                 Yachts
               </span>
@@ -82,7 +82,7 @@ export function Navbar() {
                         ? "text-white font-medium"
                         : "text-white/45 hover:text-white/80 font-normal"
                     )}
-                    style={{ fontFamily: "var(--font-body)" }}
+                    style={{ fontFamily: "var(--font-accent)" }}
                   >
                     {active && (
                       <motion.span

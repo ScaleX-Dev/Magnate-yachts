@@ -8,7 +8,7 @@ export function UtilityBar() {
         <div className="flex items-center gap-6">
           <span
             className="flex items-center gap-1.5 text-[10.5px] text-white/30"
-            style={{ fontFamily: "var(--font-body)" }}
+            style={{ fontFamily: "var(--font-accent)" }}
           >
             <MapPin size={9} className="shrink-0 text-[var(--color-amber)]/50" />
             Galle &amp; Trincomalee, Sri Lanka
@@ -18,7 +18,7 @@ export function UtilityBar() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-[10.5px] text-white/30 hover:text-white/60 transition-colors"
-            style={{ fontFamily: "var(--font-body)" }}
+            style={{ fontFamily: "var(--font-accent)" }}
           >
             <MessageCircle size={9} className="shrink-0 text-[var(--color-amber)]/50" />
             WhatsApp +94&nbsp;76&nbsp;985&nbsp;0115
@@ -27,7 +27,7 @@ export function UtilityBar() {
         <a
           href="mailto:info@magnateyachts.com"
           className="flex items-center gap-1.5 text-[10.5px] text-white/25 hover:text-white/50 transition-colors"
-          style={{ fontFamily: "var(--font-body)" }}
+          style={{ fontFamily: "var(--font-accent)" }}
         >
           <Mail size={9} className="shrink-0 text-[var(--color-amber)]/40" />
           info@magnateyachts.com

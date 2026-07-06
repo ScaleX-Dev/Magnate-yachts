@@ -27,7 +27,7 @@ export function Footer() {
               </span>
               <span
                 className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/25"
-                style={{ fontFamily: "var(--font-body)" }}
+                style={{ fontFamily: "var(--font-accent)" }}
               >
                 Yachts
               </span>
@@ -42,7 +42,7 @@ export function Footer() {
               <span className="w-6 h-px bg-[var(--color-amber)]/40" />
               <span
                 className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-amber)]/60"
-                style={{ fontFamily: "var(--font-body)" }}
+                style={{ fontFamily: "var(--font-accent)" }}
               >
                 Est. 2009
               </span>
@@ -53,7 +53,7 @@ export function Footer() {
           <div>
             <p
               className="text-[9.5px] font-medium uppercase tracking-[0.28em] text-white/22 mb-5"
-              style={{ fontFamily: "var(--font-body)" }}
+              style={{ fontFamily: "var(--font-accent)" }}
             >
               Navigation
             </p>
@@ -75,7 +75,7 @@ export function Footer() {
           <div>
             <p
               className="text-[9.5px] font-medium uppercase tracking-[0.28em] text-white/22 mb-5"
-              style={{ fontFamily: "var(--font-body)" }}
+              style={{ fontFamily: "var(--font-accent)" }}
             >
               Reach us
             </p>

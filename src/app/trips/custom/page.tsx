@@ -46,7 +46,7 @@ export default function CustomTripPage() {
         </div>
 
         <div className="relative container-site flex items-center justify-between pt-5 pb-3">
-          <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-amber)]/60">
+          <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-amber)]/60" style={{ fontFamily: "var(--font-accent)" }}>
             <Link
               href="/trips"
               className="hover:text-[var(--color-amber)]/90 transition-colors"
@@ -59,6 +59,7 @@ export default function CustomTripPage() {
           <Link
             href="/trips"
             className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-white/25 hover:text-white/60 transition-colors"
+            style={{ fontFamily: "var(--font-accent)" }}
           >
             <ArrowLeft size={10} /> All trips
           </Link>
@@ -68,7 +69,7 @@ export default function CustomTripPage() {
           <Reveal>
             <span
               className="inline-block text-[9px] uppercase tracking-[0.28em] border border-white/15 text-white/40 px-3 py-1.5 mb-8"
-              style={{ fontFamily: "var(--font-body)" }}
+              style={{ fontFamily: "var(--font-accent)" }}
             >
               Bespoke
             </span>
@@ -121,7 +122,7 @@ export default function CustomTripPage() {
                     <div className="flex flex-col gap-1.5">
                       <label
                         className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-navy)]/45"
-                        style={{ fontFamily: "var(--font-body)" }}
+                        style={{ fontFamily: "var(--font-accent)" }}
                       >
                         Your name
                       </label>
@@ -137,7 +138,7 @@ export default function CustomTripPage() {
                     <div className="flex flex-col gap-1.5">
                       <label
                         className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-navy)]/45"
-                        style={{ fontFamily: "var(--font-body)" }}
+                        style={{ fontFamily: "var(--font-accent)" }}
                       >
                         Vessel name
                       </label>
@@ -155,7 +156,7 @@ export default function CustomTripPage() {
                   <div className="flex flex-col gap-1.5">
                     <label
                       className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-navy)]/45"
-                      style={{ fontFamily: "var(--font-body)" }}
+                      style={{ fontFamily: "var(--font-accent)" }}
                     >
                       How many days do you have?
                     </label>
@@ -171,7 +172,7 @@ export default function CustomTripPage() {
                   <div className="flex flex-col gap-1.5">
                     <label
                       className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-navy)]/45"
-                      style={{ fontFamily: "var(--font-body)" }}
+                      style={{ fontFamily: "var(--font-accent)" }}
                     >
                       What interests you most?
                     </label>
@@ -187,7 +188,7 @@ export default function CustomTripPage() {
                   <div className="flex flex-col gap-1.5">
                     <label
                       className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-navy)]/45"
-                      style={{ fontFamily: "var(--font-body)" }}
+                      style={{ fontFamily: "var(--font-accent)" }}
                     >
                       Tell us more
                     </label>

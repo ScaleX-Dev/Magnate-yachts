@@ -100,7 +100,7 @@ export default function ClearancePage() {
           {/* Package card */}
           <Reveal delay={0.1} className="border border-[var(--color-ivory-dark)] rounded-xl p-7 lg:p-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-7 bg-[var(--color-ivory)] transition-shadow duration-300 hover:shadow-[0_24px_60px_-32px_rgba(11,31,58,0.25)]">
             <div className="min-w-0">
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-3">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-3" style={{ fontFamily: "var(--font-accent)" }}>
                 Clearance package
               </p>
               <div className="flex items-baseline gap-3 mb-3">

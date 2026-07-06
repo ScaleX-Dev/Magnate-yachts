@@ -127,7 +127,7 @@ export default function PortGuidePage() {
           <Reveal>
             <span
               className="block text-[10px] font-medium uppercase tracking-[0.35em] text-[var(--color-amber)] mb-8"
-              style={{ fontFamily: "var(--font-body)" }}
+              style={{ fontFamily: "var(--font-accent)" }}
             >
               Sri Lanka · Official Entry Ports
             </span>
@@ -156,7 +156,7 @@ export default function PortGuidePage() {
               <div>
                 <p
                   className="text-[10px] font-medium uppercase tracking-[0.25em] text-[var(--color-amber)] mb-1.5"
-                  style={{ fontFamily: "var(--font-body)" }}
+                  style={{ fontFamily: "var(--font-accent)" }}
                 >
                   South coast
                 </p>
@@ -181,7 +181,7 @@ export default function PortGuidePage() {
               <div>
                 <p
                   className="text-[10px] font-medium uppercase tracking-[0.25em] text-[var(--color-amber)] mb-1.5"
-                  style={{ fontFamily: "var(--font-body)" }}
+                  style={{ fontFamily: "var(--font-accent)" }}
                 >
                   East coast
                 </p>
@@ -227,7 +227,7 @@ export default function PortGuidePage() {
               <div>
                 <p
                   className="text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-3"
-                  style={{ fontFamily: "var(--font-body)" }}
+                  style={{ fontFamily: "var(--font-accent)" }}
                 >
                   South coast · Primary port
                 </p>
@@ -260,14 +260,14 @@ export default function PortGuidePage() {
             <Reveal delay={0.08} className="lg:col-span-2">
               <h3
                 className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-amber)] mb-5"
-                style={{ fontFamily: "var(--font-body)" }}
+                style={{ fontFamily: "var(--font-accent)" }}
               >
                 Quick facts
               </h3>
               <div className="flex flex-col divide-y divide-white/[0.06]">
                 {GALLE_FACTS.map(({ label, value }) => (
                   <div key={label} className="flex flex-col sm:flex-row sm:items-center justify-between py-3.5 gap-1">
-                    <span className="text-[11px] uppercase tracking-wide text-white/30 font-medium shrink-0">
+                    <span className="text-[11px] uppercase tracking-wide text-white/30 font-medium shrink-0" style={{ fontFamily: "var(--font-accent)" }}>
                       {label}
                     </span>
                     <span className="text-[13px] text-white/75 font-mono">{value}</span>
@@ -280,7 +280,7 @@ export default function PortGuidePage() {
             <Reveal delay={0.12} className="lg:col-span-3">
               <h3
                 className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-amber)] mb-5"
-                style={{ fontFamily: "var(--font-body)" }}
+                style={{ fontFamily: "var(--font-accent)" }}
               >
                 Approach &amp; entry
               </h3>
@@ -306,7 +306,7 @@ export default function PortGuidePage() {
           <Reveal delay={0.1} className="mt-8">
             <h3
               className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-amber)] mb-6"
-              style={{ fontFamily: "var(--font-body)" }}
+              style={{ fontFamily: "var(--font-accent)" }}
             >
               Facilities
             </h3>
@@ -333,7 +333,7 @@ export default function PortGuidePage() {
                 <Waves size={15} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
                 <p
                   className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-amber)]"
-                  style={{ fontFamily: "var(--font-body)" }}
+                  style={{ fontFamily: "var(--font-accent)" }}
                 >
                   What&apos;s within reach
                 </p>
@@ -371,7 +371,7 @@ export default function PortGuidePage() {
               <div>
                 <p
                   className="text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-turquoise)] mb-3"
-                  style={{ fontFamily: "var(--font-body)" }}
+                  style={{ fontFamily: "var(--font-accent)" }}
                 >
                   East coast · Natural deepwater harbour
                 </p>
@@ -403,14 +403,14 @@ export default function PortGuidePage() {
             <Reveal delay={0.08} className="lg:col-span-2">
               <h3
                 className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-turquoise)] mb-5"
-                style={{ fontFamily: "var(--font-body)" }}
+                style={{ fontFamily: "var(--font-accent)" }}
               >
                 Quick facts
               </h3>
               <div className="flex flex-col divide-y divide-white/[0.06]">
                 {TRINCO_FACTS.map(({ label, value }) => (
                   <div key={label} className="flex flex-col sm:flex-row sm:items-center justify-between py-3.5 gap-1">
-                    <span className="text-[11px] uppercase tracking-wide text-white/30 font-medium shrink-0">
+                    <span className="text-[11px] uppercase tracking-wide text-white/30 font-medium shrink-0" style={{ fontFamily: "var(--font-accent)" }}>
                       {label}
                     </span>
                     <span className="text-[13px] text-white/75 font-mono">{value}</span>
@@ -423,7 +423,7 @@ export default function PortGuidePage() {
             <Reveal delay={0.12} className="lg:col-span-3">
               <h3
                 className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-turquoise)] mb-5"
-                style={{ fontFamily: "var(--font-body)" }}
+                style={{ fontFamily: "var(--font-accent)" }}
               >
                 Approach &amp; entry
               </h3>
@@ -449,7 +449,7 @@ export default function PortGuidePage() {
           <Reveal delay={0.1} className="mt-8">
             <h3
               className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-turquoise)] mb-6"
-              style={{ fontFamily: "var(--font-body)" }}
+              style={{ fontFamily: "var(--font-accent)" }}
             >
               Facilities
             </h3>
@@ -476,7 +476,7 @@ export default function PortGuidePage() {
                 <Waves size={15} className="text-[var(--color-turquoise)] shrink-0 mt-0.5" />
                 <p
                   className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-turquoise)]"
-                  style={{ fontFamily: "var(--font-body)" }}
+                  style={{ fontFamily: "var(--font-accent)" }}
                 >
                   What&apos;s within reach
                 </p>
@@ -499,7 +499,7 @@ export default function PortGuidePage() {
               <Wind size={14} className="text-[var(--color-amber)]" />
               <h2
                 className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-amber)]"
-                style={{ fontFamily: "var(--font-body)" }}
+                style={{ fontFamily: "var(--font-accent)" }}
               >
                 Season &amp; weather
               </h2>
@@ -517,7 +517,7 @@ export default function PortGuidePage() {
               <Reveal key={port} delay={i * 0.08}>
                 <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-7 h-full flex flex-col gap-5">
                   <div>
-                    <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-white/30 mb-2" style={{ fontFamily: "var(--font-body)" }}>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-white/30 mb-2" style={{ fontFamily: "var(--font-accent)" }}>
                       {coast}
                     </p>
                     <p className="text-2xl font-light text-white" style={{ fontFamily: "var(--font-display)" }}>{port}</p>
@@ -525,11 +525,11 @@ export default function PortGuidePage() {
 
                   <div className="flex gap-4">
                     <div className="flex-1 rounded-lg bg-white/[0.03] border border-white/[0.06] p-4">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-amber)] mb-1.5">Best window</p>
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-amber)] mb-1.5" style={{ fontFamily: "var(--font-accent)" }}>Best window</p>
                       <p className="text-sm text-white/70 font-medium">{best}</p>
                     </div>
                     <div className="flex-1 rounded-lg bg-white/[0.03] border border-white/[0.06] p-4">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-white/25 mb-1.5">Avoid</p>
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-white/25 mb-1.5" style={{ fontFamily: "var(--font-accent)" }}>Avoid</p>
                       <p className="text-sm text-white/40 font-medium">{avoid}</p>
                     </div>
                   </div>
@@ -550,7 +550,7 @@ export default function PortGuidePage() {
             <div className="max-w-lg">
               <p
                 className="text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-4"
-                style={{ fontFamily: "var(--font-body)" }}
+                style={{ fontFamily: "var(--font-accent)" }}
               >
                 Ready to arrive?
               </p>

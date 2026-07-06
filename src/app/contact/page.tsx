@@ -96,7 +96,7 @@ export default function ContactPage() {
 
                 {/* Enquiry type */}
                 <fieldset>
-                  <legend className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/45 mb-4">
+                  <legend className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/45 mb-4" style={{ fontFamily: "var(--font-accent)" }}>
                     I&apos;m enquiring about
                   </legend>
                   <div className="flex flex-wrap gap-3">
@@ -186,7 +186,7 @@ export default function ContactPage() {
           {/* Sidebar */}
           <aside className="flex flex-col gap-7 lg:pl-5 lg:border-l lg:border-[var(--color-ivory-dark)]">
             <Reveal delay={0.1} y={16}>
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-amber)] mb-5" style={{ fontFamily: "var(--font-accent)" }}>
                 Other ways to reach us
               </p>
               <ul className="flex flex-col gap-4">
@@ -222,7 +222,7 @@ export default function ContactPage() {
               </ul>
             </Reveal>
             <Reveal delay={0.18} y={16} className="border-t border-[var(--color-ivory-dark)] pt-6">
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/35 mb-3">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-navy)]/35 mb-3" style={{ fontFamily: "var(--font-accent)" }}>
                 Response time
               </p>
               <p className="text-sm text-[var(--color-navy)]/55 leading-relaxed">

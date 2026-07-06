@@ -113,7 +113,7 @@ export default function AboutPage() {
               >
                 <p
                   className="text-[9.5px] font-medium uppercase tracking-[0.28em] text-[var(--color-amber)]"
-                  style={{ fontFamily: "var(--font-body)" }}
+                  style={{ fontFamily: "var(--font-accent)" }}
                 >
                   {label}
                 </p>

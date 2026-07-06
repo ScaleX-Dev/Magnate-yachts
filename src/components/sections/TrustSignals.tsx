@@ -57,7 +57,7 @@ export function TrustSignals() {
             >
               <span
                 className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-amber)]"
-                style={{ fontFamily: "var(--font-body)" }}
+                style={{ fontFamily: "var(--font-accent)" }}
               >
                 {number}
               </span>

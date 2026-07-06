@@ -41,7 +41,7 @@ function PillarCard({ tag, title, items }: (typeof PILLARS)[0]) {
       <div className="flex flex-col gap-2">
         <span
           className="text-[9.5px] uppercase tracking-[0.28em] text-[var(--color-amber)]"
-          style={{ fontFamily: "var(--font-body)" }}
+          style={{ fontFamily: "var(--font-accent)" }}
         >
           {tag}
         </span>

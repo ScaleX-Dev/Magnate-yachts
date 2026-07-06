@@ -73,7 +73,7 @@ export default function TripsPage() {
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <p
                         className="text-[9px] uppercase tracking-[0.24em] text-[var(--color-amber)] mb-1.5"
-                        style={{ fontFamily: "var(--font-body)" }}
+                        style={{ fontFamily: "var(--font-accent)" }}
                       >
                         One day · US${trip.price} · {trip.priceNote}
                       </p>
@@ -128,7 +128,7 @@ export default function TripsPage() {
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <p
                         className="text-[9px] uppercase tracking-[0.24em] text-[var(--color-amber)] mb-1.5"
-                        style={{ fontFamily: "var(--font-body)" }}
+                        style={{ fontFamily: "var(--font-accent)" }}
                       >
                         {trip.badge} · US${trip.price} · {trip.priceNote}
                       </p>
