@@ -58,17 +58,11 @@ export default function TripsPage() {
         <div className="container-site py-14 lg:py-20">
           <Reveal className="mb-10">
             <p
-              className="text-[10px] font-semibold uppercase tracking-[0.28em] mb-3"
+              className="text-[10px] font-semibold uppercase tracking-[0.28em]"
               style={{ color: "#3D7A5C", fontFamily: "var(--font-body)" }}
             >
               Day excursions
             </p>
-            <h2
-              className="text-[clamp(1.8rem,4vw,3rem)] font-light leading-[1.15]"
-              style={{ fontFamily: "var(--font-display)", color: "#0D1810" }}
-            >
-              Out and back before sunset
-            </h2>
           </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -134,17 +128,11 @@ export default function TripsPage() {
         <div className="container-site py-14 lg:py-20">
           <Reveal className="mb-10">
             <p
-              className="text-[10px] font-semibold uppercase tracking-[0.28em] mb-3"
+              className="text-[10px] font-semibold uppercase tracking-[0.28em]"
               style={{ color: "#6BBF92", fontFamily: "var(--font-body)" }}
             >
               Multi-day journeys
             </p>
-            <h2
-              className="text-[clamp(1.8rem,4vw,3rem)] font-light text-white leading-[1.15]"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Deeper into the island
-            </h2>
           </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

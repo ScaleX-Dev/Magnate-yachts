@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
 const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYzJiM2UiLz48L3N2Zz4=";
@@ -61,20 +61,22 @@ export function ClearanceSection() {
               </p>
             </div>
 
-            <ul className="flex flex-col gap-3.5">
-              {INCLUDED.map((item) => (
+            <ul className="flex flex-col" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              {INCLUDED.map((item, i) => (
                 <li
                   key={item}
-                  className="flex items-start gap-3.5 text-[13.5px] leading-relaxed"
-                  style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-body)" }}
+                  className="flex items-start gap-4 py-3"
+                  style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
                 >
                   <span
-                    className="w-5 h-5 rounded-full shrink-0 flex items-center justify-center mt-0.5"
-                    style={{ background: "rgba(42,125,168,0.2)", border: "1px solid rgba(42,125,168,0.4)" }}
+                    className="text-[10px] font-medium shrink-0 mt-[3px] tabular-nums"
+                    style={{ color: "rgba(91,184,232,0.35)", fontFamily: "var(--font-body)", minWidth: "16px" }}
                   >
-                    <Check size={10} style={{ color: "#5BB8E8" }} />
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                  {item}
+                  <span className="text-[13.5px] leading-relaxed" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-body)" }}>
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Flag, Check } from "lucide-react";
+import { ArrowRight, Flag } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
@@ -100,35 +100,33 @@ export default function ClearancePage() {
 
       {/* ── What's included ── dark ocean */}
       <section style={{ background: "#071E2E" }}>
-        <div className="container-site py-14 lg:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="container-site py-12 lg:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+
+            {/* Checklist */}
             <Reveal>
               <p
-                className="text-[10px] font-semibold uppercase tracking-[0.28em] mb-4"
+                className="text-[10px] font-semibold uppercase tracking-[0.28em] mb-8"
                 style={{ color: "#5BB8E8", fontFamily: "var(--font-body)" }}
               >
                 What's included
               </p>
-              <h2
-                className="text-[clamp(1.8rem,4vw,3rem)] font-light text-white leading-[1.15] mb-8"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Everything handled,
-                <br />
-                <span style={{ color: "rgba(255,255,255,0.35)", fontStyle: "italic" }}>end to end.</span>
-              </h2>
-              <ul className="flex flex-col gap-4">
-                {INCLUDED.map((item) => (
-                  <li key={item} className="flex items-start gap-4">
+              <ul className="flex flex-col">
+                {INCLUDED.map((item, i) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-5 py-4"
+                    style={{ borderBottom: i < INCLUDED.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}
+                  >
                     <span
-                      className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center mt-0.5"
-                      style={{ background: "rgba(42,125,168,0.2)", border: "1px solid rgba(42,125,168,0.4)" }}
+                      className="text-[10px] font-medium shrink-0 mt-1 tabular-nums"
+                      style={{ color: "rgba(91,184,232,0.4)", fontFamily: "var(--font-body)", minWidth: "18px" }}
                     >
-                      <Check size={11} style={{ color: "#5BB8E8" }} />
+                      {String(i + 1).padStart(2, "0")}
                     </span>
                     <span
                       className="text-[14px] leading-relaxed"
-                      style={{ color: "rgba(255,255,255,0.55)", fontFamily: "var(--font-body)" }}
+                      style={{ color: "rgba(255,255,255,0.6)", fontFamily: "var(--font-body)" }}
                     >
                       {item}
                     </span>
@@ -137,55 +135,51 @@ export default function ClearancePage() {
               </ul>
             </Reveal>
 
-            {/* Package card */}
+            {/* Package — minimal document style */}
             <Reveal delay={0.1}>
               <div
-                className="rounded-2xl p-8 lg:p-10"
-                style={{ background: "linear-gradient(135deg, #2A7DA8 0%, #1E6090 100%)", boxShadow: "0 32px 80px -20px rgba(42,125,168,0.4)" }}
+                className="p-8"
+                style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}
               >
                 <p
                   className="text-[10px] font-semibold uppercase tracking-[0.28em] mb-6"
-                  style={{ color: "rgba(255,255,255,0.55)", fontFamily: "var(--font-body)" }}
+                  style={{ color: "rgba(255,255,255,0.3)", fontFamily: "var(--font-body)" }}
                 >
                   Clearance package
                 </p>
-                <div className="flex items-baseline gap-3 mb-3">
+                <div className="mb-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", paddingBottom: "24px" }}>
                   <span
-                    className="font-light text-white"
-                    style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem,7vw,5rem)", lineHeight: 1 }}
+                    className="font-light text-white block"
+                    style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem,5vw,4rem)", lineHeight: 1, letterSpacing: "-0.01em" }}
                   >
                     US $300
                   </span>
+                  <span
+                    className="text-[12px] mt-2 block"
+                    style={{ color: "rgba(255,255,255,0.3)", fontFamily: "var(--font-body)" }}
+                  >
+                    Fixed fee · payable on arrival in Galle
+                  </span>
                 </div>
                 <p
-                  className="text-[13px] mb-8 leading-relaxed"
-                  style={{ color: "rgba(255,255,255,0.6)", fontFamily: "var(--font-body)" }}
+                  className="text-[13px] leading-relaxed mb-8"
+                  style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)" }}
                 >
-                  Includes up to 30 days of berthing, full customs clearance (arrival and departure), and agency fees. Payable upon arrival.
+                  Includes up to 30 days of berthing, full customs clearance (arrival and departure), and agency fees.
                 </p>
-                <div
-                  className="pt-6"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.15)" }}
-                >
-                  <p
-                    className="text-[11px] uppercase tracking-[0.2em] mb-1"
-                    style={{ color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-body)" }}
-                  >
-                    Fixed fee · no negotiation
-                  </p>
-                  <p
-                    className="text-[11px] uppercase tracking-[0.2em]"
-                    style={{ color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-body)" }}
-                  >
-                    Met at the dock on arrival
-                  </p>
+                <div className="flex flex-col gap-2 mb-8">
+                  {["No hidden charges", "Met at the dock on arrival", "Same team throughout your stay"].map(f => (
+                    <p key={f} className="text-[12px]" style={{ color: "rgba(255,255,255,0.25)", fontFamily: "var(--font-body)" }}>
+                      — {f}
+                    </p>
+                  ))}
                 </div>
                 <Link
                   href="/book"
-                  className="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-full text-[13px] font-medium transition-all duration-300 hover:-translate-y-0.5"
-                  style={{ background: "rgba(255,255,255,0.15)", color: "#fff", fontFamily: "var(--font-body)", border: "1px solid rgba(255,255,255,0.25)", backdropFilter: "blur(8px)" }}
+                  className="inline-flex items-center gap-2 px-6 py-3 text-[13px] font-medium transition-all duration-300 hover:gap-3"
+                  style={{ color: "#5BB8E8", fontFamily: "var(--font-body)" }}
                 >
-                  Book now <ArrowRight size={13} />
+                  Book us as your agent <ArrowRight size={13} />
                 </Link>
               </div>
             </Reveal>
