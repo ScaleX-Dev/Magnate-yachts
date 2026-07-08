@@ -15,12 +15,13 @@ const INCLUDED = [
 
 export function ClearanceSection() {
   return (
-    <section className="bg-[var(--color-ivory)]">
-      <div className="container-site py-12 md:py-16 lg:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+    <section style={{ background: "linear-gradient(160deg, #071824 0%, #0A2236 100%)" }}>
+      <div className="container-site py-14 md:py-18 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* Left: image */}
-          <Reveal className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-[0_32px_80px_-28px_rgba(6,12,24,0.22)]">
+          <Reveal>
+          <div className="relative aspect-[4/3] w-full overflow-hidden" style={{ borderRadius: "20px", boxShadow: "0 32px 80px -20px rgba(6,12,24,0.6), 0 0 0 1px rgba(42,125,168,0.15)" }}>
             <Image
               src="/images/site/clearance-harbour.jpg"
               alt="Sailing yachts moored in Galle harbour"
@@ -30,36 +31,49 @@ export function ClearanceSection() {
               className="object-cover transition-transform duration-700 hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
+            {/* Blue overlay tint */}
+            <div className="absolute inset-0" style={{ background: "rgba(7,24,36,0.25)", mixBlendMode: "multiply" }} />
+          </div>
           </Reveal>
 
           {/* Right: content */}
-          <Reveal delay={0.1} className="flex flex-col gap-8 pt-2">
+          <Reveal delay={0.1} className="flex flex-col gap-8">
             <div>
+              <p
+                className="text-[10px] font-semibold uppercase tracking-[0.28em] mb-4"
+                style={{ color: "#5BB8E8", fontFamily: "var(--font-body)" }}
+              >
+                Clearance
+              </p>
               <h2
-                className="text-[clamp(1.75rem,4.5vw,3.25rem)] font-light text-[var(--color-navy)] leading-[1.15] mb-4"
+                className="text-[clamp(1.8rem,4.5vw,3.25rem)] font-light text-white leading-[1.15] mb-4"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 Seamless Yacht Clearance
+                <br />
+                <span style={{ color: "rgba(91,184,232,0.45)", fontStyle: "italic" }}>in Sri Lanka</span>
               </h2>
               <p
-                className="text-[14px] text-[var(--color-navy)]/55 leading-relaxed max-w-sm"
-                style={{ fontFamily: "var(--font-body)" }}
+                className="text-[14px] leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-body)" }}
               >
                 All formalities are handled swiftly, so your crew can stay at ease.
               </p>
             </div>
 
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3.5">
               {INCLUDED.map((item) => (
                 <li
                   key={item}
-                  className="flex items-start gap-3 text-[13.5px] text-[var(--color-navy)]/60 leading-relaxed"
-                  style={{ fontFamily: "var(--font-body)" }}
+                  className="flex items-start gap-3.5 text-[13.5px] leading-relaxed"
+                  style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-body)" }}
                 >
-                  <Check
-                    size={13}
-                    className="text-[var(--color-amber)] shrink-0 mt-[3px]"
-                  />
+                  <span
+                    className="w-5 h-5 rounded-full shrink-0 flex items-center justify-center mt-0.5"
+                    style={{ background: "rgba(42,125,168,0.2)", border: "1px solid rgba(42,125,168,0.4)" }}
+                  >
+                    <Check size={10} style={{ color: "#5BB8E8" }} />
+                  </span>
                   {item}
                 </li>
               ))}
@@ -68,25 +82,19 @@ export function ClearanceSection() {
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <Link
                 href="/clearance"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--color-navy)] text-white text-[13.5px] font-medium hover:bg-[var(--color-navy-dark)] hover:shadow-[0_12px_36px_-8px_rgba(6,12,24,0.35)] hover:-translate-y-0.5 transition-all duration-300"
-                style={{ fontFamily: "var(--font-body)" }}
+                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white text-[13.5px] font-medium transition-all duration-300 hover:-translate-y-0.5"
+                style={{ background: "#2A7DA8", fontFamily: "var(--font-body)", boxShadow: "0 8px 28px -8px rgba(42,125,168,0.5)" }}
               >
                 Clearance details
-                <ArrowRight
-                  size={14}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
+                <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/book"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[var(--color-navy)]/20 text-[var(--color-navy)] text-[13.5px] font-medium hover:border-[var(--color-navy)]/40 hover:bg-[var(--color-ivory-dark)] transition-all duration-300"
-                style={{ fontFamily: "var(--font-body)" }}
+                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-[13.5px] font-medium transition-all duration-300"
+                style={{ border: "1px solid rgba(91,184,232,0.2)", color: "rgba(91,184,232,0.7)", fontFamily: "var(--font-body)" }}
               >
                 Book agent
-                <ArrowRight
-                  size={14}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
+                <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
           </Reveal>

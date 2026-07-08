@@ -46,15 +46,15 @@ export default function CustomTripPage() {
         </div>
 
         <div className="relative container-site flex items-center justify-between pt-5 pb-3">
-          <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-amber)]/60" style={{ fontFamily: "var(--font-accent)" }}>
+          <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-trips)]/60" style={{ fontFamily: "var(--font-accent)" }}>
             <Link
               href="/trips"
-              className="hover:text-[var(--color-amber)]/90 transition-colors"
+              className="hover:text-[var(--color-trips)]/90 transition-colors"
             >
               Trips
             </Link>
             <span className="text-white/15">/</span>
-            <span className="text-[var(--color-amber)]/40">Custom trip</span>
+            <span className="text-[var(--color-trips)]/40">Custom trip</span>
           </div>
           <Link
             href="/trips"
@@ -101,7 +101,7 @@ export default function CustomTripPage() {
             <Reveal>
               {submitted ? (
                 <div className="flex flex-col gap-5 py-8">
-                  <CheckCircle2 size={28} className="text-[var(--color-amber)]" />
+                  <CheckCircle2 size={28} className="text-[var(--color-trips)]" />
                   <h2
                     className="text-2xl font-semibold text-[var(--color-navy)]"
                     style={{ fontFamily: "var(--font-display)" }}
@@ -252,7 +252,7 @@ export default function CustomTripPage() {
                   "Same team that handles your clearance",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
-                    <span className="mt-1.5 w-[5px] h-[5px] rounded-full bg-[var(--color-amber)]/60 shrink-0" />
+                    <span className="mt-1.5 w-[5px] h-[5px] rounded-full bg-[var(--color-trips)]/60 shrink-0" />
                     <span
                       className="text-[13px] text-[var(--color-navy)]/55 leading-relaxed"
                       style={{ fontFamily: "var(--font-body)" }}

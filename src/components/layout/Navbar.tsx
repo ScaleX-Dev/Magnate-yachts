@@ -8,12 +8,12 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { href: "/trips",      label: "Trips" },
-  { href: "/clearance",  label: "Clearance" },
-  { href: "/port-guide", label: "Port Guide" },
-  { href: "/about",      label: "About" },
-  { href: "/contact",    label: "Contact" },
-] as const;
+  { href: "/trips",      label: "Trips",      accent: "var(--color-trips)"     },
+  { href: "/clearance",  label: "Clearance",  accent: "var(--color-clearance)" },
+  { href: "/port-guide", label: "Port Guide", accent: "var(--color-amber)"     },
+  { href: "/about",      label: "About",      accent: "var(--color-amber)"     },
+  { href: "/contact",    label: "Contact",    accent: "var(--color-amber)"     },
+];
 
 export function Navbar() {
   const pathname = usePathname();
@@ -70,7 +70,7 @@ export function Navbar() {
 
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-1" aria-label="Primary navigation">
-              {NAV_LINKS.map(({ href, label }) => {
+              {NAV_LINKS.map(({ href, label, accent }) => {
                 const active = pathname === href || pathname.startsWith(href + "/");
                 return (
                   <Link
@@ -87,7 +87,8 @@ export function Navbar() {
                     {active && (
                       <motion.span
                         layoutId="nav-underline"
-                        className="absolute bottom-0 left-4 right-4 h-px bg-[var(--color-amber)]"
+                        className="absolute bottom-0 left-4 right-4 h-px"
+                        style={{ backgroundColor: accent }}
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}

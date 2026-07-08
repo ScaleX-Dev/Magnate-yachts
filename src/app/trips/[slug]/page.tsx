@@ -51,12 +51,12 @@ export default async function TripDetailPage({
       <>
         <section className="bg-[#080e1a] min-h-[55svh] flex flex-col justify-between">
           <div className="container-site flex items-center justify-between pt-5 pb-3">
-            <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-amber)]/60" style={{ fontFamily: "var(--font-accent)" }}>
-              <Link href="/trips" className="hover:text-[var(--color-amber)]/90 transition-colors">
+            <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-trips)]/60" style={{ fontFamily: "var(--font-accent)" }}>
+              <Link href="/trips" className="hover:text-[var(--color-trips)]/90 transition-colors">
                 Trips
               </Link>
               <span className="text-white/15">/</span>
-              <span className="text-[var(--color-amber)]/40">{dayTrip.name}</span>
+              <span className="text-[var(--color-trips)]/40">{dayTrip.name}</span>
             </div>
             <Link href="/trips" className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-white/25 hover:text-white/60 transition-colors" style={{ fontFamily: "var(--font-accent)" }}>
               <ArrowLeft size={10} /> All trips
@@ -97,11 +97,11 @@ export default async function TripDetailPage({
           <div className="container-site py-10 lg:py-14">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
               <Reveal>
-                <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-6" style={{ fontFamily: "var(--font-accent)" }}>Included</p>
+                <p className="text-[10px] uppercase tracking-widest text-[var(--color-trips)] mb-6" style={{ fontFamily: "var(--font-accent)" }}>Included</p>
                 <ul className="flex flex-col gap-4">
                   {dayTrip.included.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/65 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                      <Check size={13} className="text-[var(--color-amber)] shrink-0 mt-[3px]" />
+                      <Check size={13} className="text-[var(--color-trips)] shrink-0 mt-[3px]" />
                       {item}
                     </li>
                   ))}
@@ -126,7 +126,7 @@ export default async function TripDetailPage({
           <div className="container-site py-10 lg:py-14">
             <Reveal className="flex flex-col sm:flex-row sm:items-center justify-between gap-8">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-amber)] mb-3" style={{ fontFamily: "var(--font-accent)" }}>Reserve your place</p>
+                <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-trips)] mb-3" style={{ fontFamily: "var(--font-accent)" }}>Reserve your place</p>
                 <p className="text-2xl sm:text-3xl font-light text-[var(--color-navy)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>{dayTrip.name}</p>
               </div>
               <Link href="/book?trip=day" className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--color-amber)] text-white text-[14px] font-medium hover:bg-[var(--color-amber-light)] hover:shadow-[0_8px_28px_-6px_rgba(196,146,74,0.45)] hover:-translate-y-px active:scale-[0.97] transition-all duration-300 whitespace-nowrap shrink-0" style={{ fontFamily: "var(--font-body)" }}>
@@ -144,10 +144,10 @@ export default async function TripDetailPage({
     <>
       <section className="bg-[#080e1a] min-h-[60svh] flex flex-col justify-between">
         <div className="container-site flex items-center justify-between pt-5 pb-3">
-          <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-amber)]/60" style={{ fontFamily: "var(--font-accent)" }}>
-            <Link href="/trips" className="hover:text-[var(--color-amber)]/90 transition-colors">Trips</Link>
+          <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-trips)]/60" style={{ fontFamily: "var(--font-accent)" }}>
+            <Link href="/trips" className="hover:text-[var(--color-trips)]/90 transition-colors">Trips</Link>
             <span className="text-white/15">/</span>
-            <span className="text-[var(--color-amber)]/40">{trip!.shortName}</span>
+            <span className="text-[var(--color-trips)]/40">{trip!.shortName}</span>
           </div>
           <Link href="/trips" className="hidden sm:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-white/25 hover:text-white/60 transition-colors" style={{ fontFamily: "var(--font-accent)" }}>
             <ArrowLeft size={10} /> All trips
@@ -176,7 +176,7 @@ export default async function TripDetailPage({
               <div className={"grid grid-cols-1 lg:grid-cols-2 gap-0 items-start " + (imageRight ? "" : "lg:[direction:rtl] [&>*]:[direction:ltr]")}>
                 <Reveal className="flex flex-col justify-end pt-14 pb-6 lg:pb-4" y={16}>
                   <span className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/35 mb-2" style={{ fontFamily: "var(--font-accent)" }}>{day.label}</span>
-                  <span className="block text-[8rem] sm:text-[11rem] lg:text-[14rem] font-semibold leading-none text-[var(--color-amber)]/20 select-none -ml-1" style={{ fontFamily: "var(--font-display)" }} aria-hidden>
+                  <span className="block text-[8rem] sm:text-[11rem] lg:text-[14rem] font-semibold leading-none text-[var(--color-trips)]/20 select-none -ml-1" style={{ fontFamily: "var(--font-display)" }} aria-hidden>
                     {day.n}
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mt-2 leading-snug" style={{ fontFamily: "var(--font-display)" }}>
@@ -201,11 +201,11 @@ export default async function TripDetailPage({
         <div className="container-site py-10 lg:py-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
             <Reveal>
-              <p className="text-[10px] uppercase tracking-widest text-[var(--color-amber)] mb-6" style={{ fontFamily: "var(--font-accent)" }}>Included</p>
+              <p className="text-[10px] uppercase tracking-widest text-[var(--color-trips)] mb-6" style={{ fontFamily: "var(--font-accent)" }}>Included</p>
               <ul className="flex flex-col gap-4">
                 {trip!.included.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/65 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                    <Check size={13} className="text-[var(--color-amber)] shrink-0 mt-[3px]" />{item}
+                    <Check size={13} className="text-[var(--color-trips)] shrink-0 mt-[3px]" />{item}
                   </li>
                 ))}
               </ul>
@@ -228,7 +228,7 @@ export default async function TripDetailPage({
         <div className="container-site py-10 lg:py-14">
           <Reveal className="flex flex-col sm:flex-row sm:items-center justify-between gap-8">
             <div>
-              <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-amber)] mb-3" style={{ fontFamily: "var(--font-accent)" }}>Reserve your place</p>
+              <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-trips)] mb-3" style={{ fontFamily: "var(--font-accent)" }}>Reserve your place</p>
               <p className="text-2xl sm:text-3xl font-light text-[var(--color-navy)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>{trip!.shortName}</p>
             </div>
             <Link href={"/book?trip=" + trip!.slug} className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--color-amber)] text-white text-[14px] font-medium hover:bg-[var(--color-amber-light)] hover:shadow-[0_8px_28px_-6px_rgba(196,146,74,0.45)] hover:-translate-y-px active:scale-[0.97] transition-all duration-300 whitespace-nowrap shrink-0" style={{ fontFamily: "var(--font-body)" }}>

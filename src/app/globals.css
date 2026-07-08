@@ -10,6 +10,8 @@
   --color-amber:       #C4924A;
   --color-amber-light: #D8A862;
   --color-turquoise:   #1E9292;
+  --color-clearance:   #2A7DA8;
+  --color-trips:       #3D7A5C;
   --color-ivory:       #F4F1EA;
   --color-ivory-dark:  #EAE6DC;
   --color-cream:       #FAF8F3;
@@ -60,6 +62,8 @@
   --color-amber:        var(--color-amber);
   --color-amber-light:  var(--color-amber-light);
   --color-turquoise:    var(--color-turquoise);
+  --color-clearance:    var(--color-clearance);
+  --color-trips:        var(--color-trips);
   --color-ivory:        var(--color-ivory);
   --color-ivory-dark:   var(--color-ivory-dark);
   --color-cream:        var(--color-cream);
