@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Flag, ArrowRight, Check, CheckCircle2, MessageCircle, CreditCard,
-  UploadCloud, X, Paperclip,
+  UploadCloud, X, Paperclip, Mail,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/ui/Reveal";
@@ -126,10 +126,11 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
   const [trip,     setTrip]     = useState(initialTrip ?? "none");
   const [docs,       setDocs]       = useState<string[]>([]);
   const [uploads,    setUploads]    = useState<File[]>([]);
-  const [submitting, setSubmitting] = useState(false);
-  const [submitErr,  setSubmitErr]  = useState("");
-  const [submitted,  setSubmitted]  = useState(false);
-  const [errs,       setErrs]       = useState<Record<string, string>>({});
+  const [submitting,    setSubmitting]    = useState(false);
+  const [submitErr,     setSubmitErr]     = useState("");
+  const [submitted,     setSubmitted]     = useState(false);
+  const [submitChannel, setSubmitChannel] = useState<"whatsapp" | "email">("whatsapp");
+  const [errs,          setErrs]          = useState<Record<string, string>>({});
 
   const toggleDoc = (slug: string) =>
     setDocs(prev => prev.includes(slug) ? prev.filter(d => d !== slug) : [...prev, slug]);
@@ -260,12 +261,25 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
     try {
       await postBooking();
     } catch {
-      // non-fatal — WhatsApp still opens even if email fails
       setSubmitErr("Email delivery failed — your enquiry was sent via WhatsApp only.");
     }
+    setSubmitChannel("whatsapp");
     openWhatsApp();
     setSubmitting(false);
     setSubmitted(true);
+  };
+
+  const handleEmailSubmit = async () => {
+    setSubmitting(true);
+    setSubmitErr("");
+    try {
+      await postBooking();
+      setSubmitChannel("email");
+      setSubmitted(true);
+    } catch {
+      setSubmitErr("Failed to send — please try WhatsApp or email us directly at info@magnateyachts.com.");
+    }
+    setSubmitting(false);
   };
 
   const handlePayPal = async () => {
@@ -323,10 +337,15 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
               ) : (
                 <>
                   <p className="text-[15px] text-white/70 leading-relaxed mb-4" style={{ fontFamily: "var(--font-body)" }}>
-                    Your enquiry has been sent via WhatsApp. We typically respond within a few hours.
+                    {submitChannel === "email"
+                      ? "Your enquiry has been sent to info@magnateyachts.com. We typically respond within a few hours."
+                      : "Your enquiry has been sent via WhatsApp. We typically respond within a few hours."}
                   </p>
                   <p className="text-[13.5px] text-white/40 leading-relaxed mb-8" style={{ fontFamily: "var(--font-body)" }}>
                     Clearance fees are settled on arrival in Galle — no upfront payment required. We&apos;ll confirm your slot and send a document checklist to <strong className="text-white/60">{contact.email}</strong> once confirmed.
+                    {submitChannel === "email" && uploads.length > 0 && (
+                      <span> Your uploaded documents have been attached to the email.</span>
+                    )}
                   </p>
                 </>
               )}
@@ -738,16 +757,29 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
                     <div className="flex flex-col gap-3">
                       <button
                         type="button"
-                        onClick={handleWhatsAppSubmit}
+                        onClick={handleEmailSubmit}
                         disabled={submitting}
-                        className="group w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(37,211,102,0.4)] active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none"
-                        style={{ fontFamily: "var(--font-body)", background: "#25D366" }}
+                        className="group w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none"
+                        style={{ fontFamily: "var(--font-body)", background: "var(--color-amber)" }}
                       >
-                        <MessageCircle size={18} />
-                        {submitting ? "Sending…" : "Send enquiry on WhatsApp"}
+                        <Mail size={18} />
+                        {submitting ? "Sending…" : "Send enquiry by email"}
                         {!submitting && <ArrowRight size={14} className="opacity-60 transition-transform duration-200 group-hover:translate-x-1" />}
                       </button>
+                      <button
+                        type="button"
+                        onClick={handleWhatsAppSubmit}
+                        disabled={submitting}
+                        className="group w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl border border-white/[0.1] text-white/50 text-[13px] font-medium hover:border-[#25D366]/40 hover:text-[#25D366]/80 transition-all duration-200 disabled:opacity-60 disabled:pointer-events-none"
+                        style={{ fontFamily: "var(--font-body)" }}
+                      >
+                        <MessageCircle size={15} />
+                        {submitting ? "Sending…" : "Send on WhatsApp instead"}
+                      </button>
                     </div>
+                    <p className="mt-3 text-[11px] text-white/25 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                      Email sends your details and any uploaded documents directly to info@magnateyachts.com.
+                    </p>
                   </>
                 )}
 
@@ -762,16 +794,29 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
                     <div className="flex flex-col gap-3">
                       <button
                         type="button"
-                        onClick={handleWhatsAppSubmit}
+                        onClick={handleEmailSubmit}
                         disabled={submitting}
-                        className="group w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(37,211,102,0.4)] active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none"
-                        style={{ fontFamily: "var(--font-body)", background: "#25D366" }}
+                        className="group w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white text-[14px] font-semibold transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none"
+                        style={{ fontFamily: "var(--font-body)", background: "var(--color-amber)" }}
                       >
-                        <MessageCircle size={18} />
-                        {submitting ? "Sending…" : "Discuss on WhatsApp"}
+                        <Mail size={18} />
+                        {submitting ? "Sending…" : "Send enquiry by email"}
                         {!submitting && <ArrowRight size={14} className="opacity-60 transition-transform duration-200 group-hover:translate-x-1" />}
                       </button>
+                      <button
+                        type="button"
+                        onClick={handleWhatsAppSubmit}
+                        disabled={submitting}
+                        className="group w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl border border-white/[0.1] text-white/50 text-[13px] font-medium hover:border-[#25D366]/40 hover:text-[#25D366]/80 transition-all duration-200 disabled:opacity-60 disabled:pointer-events-none"
+                        style={{ fontFamily: "var(--font-body)" }}
+                      >
+                        <MessageCircle size={15} />
+                        {submitting ? "Sending…" : "Discuss on WhatsApp instead"}
+                      </button>
                     </div>
+                    <p className="mt-3 text-[11px] text-white/25 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                      Email sends your details and any uploaded documents directly to info@magnateyachts.com.
+                    </p>
                   </>
                 )}
 
@@ -813,16 +858,28 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
                         {!submitting && <ArrowRight size={14} className="opacity-60 transition-transform duration-200 group-hover:translate-x-1" />}
                       </button>
 
-                      {/* WhatsApp for questions */}
-                      <button
-                        type="button"
-                        onClick={openWhatsApp}
-                        className="group w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl border border-white/[0.1] text-white/50 text-[13px] font-medium hover:border-[#25D366]/40 hover:text-[#25D366]/80 transition-all duration-200"
-                        style={{ fontFamily: "var(--font-body)" }}
-                      >
-                        <MessageCircle size={15} />
-                        Questions first? Chat on WhatsApp
-                      </button>
+                      {/* Secondary actions */}
+                      <div className="flex flex-col sm:flex-row gap-2">
+                        <button
+                          type="button"
+                          onClick={handleEmailSubmit}
+                          disabled={submitting}
+                          className="group flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl border border-white/[0.1] text-white/50 text-[13px] font-medium hover:border-[var(--color-amber)]/40 hover:text-[var(--color-amber)]/80 transition-all duration-200 disabled:opacity-60 disabled:pointer-events-none"
+                          style={{ fontFamily: "var(--font-body)" }}
+                        >
+                          <Mail size={15} />
+                          {submitting ? "Sending…" : "Send details by email"}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={openWhatsApp}
+                          className="group flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl border border-white/[0.1] text-white/50 text-[13px] font-medium hover:border-[#25D366]/40 hover:text-[#25D366]/80 transition-all duration-200"
+                          style={{ fontFamily: "var(--font-body)" }}
+                        >
+                          <MessageCircle size={15} />
+                          Questions? Chat on WhatsApp
+                        </button>
+                      </div>
                     </div>
 
                     <p className="mt-4 text-[11px] text-white/25 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
