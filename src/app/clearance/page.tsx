@@ -13,7 +13,6 @@ const INCLUDED = [
   "Immigration formalities & visa collection on arrival",
   "Customs clearance",
   "Port Authority & berthing coordination",
-  "Defence Ministry liaison",
   "Harbour security gate passes",
   "Clear-out / departure formalities",
 ];
@@ -56,19 +55,25 @@ export default function ClearancePage() {
       <section className="bg-[var(--color-navy)]">
         <div className="container-site py-12 lg:py-16">
           <Reveal>
-            <h1
-              className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white leading-[1.1] mb-6 max-w-lg"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Yacht clearance
-              <br />
-              <span className="italic text-[var(--color-amber)]/80">in Galle</span>
-            </h1>
             <p
-              className="text-[14.5px] text-white/40 max-w-md leading-relaxed"
+              className="text-[11px] font-medium uppercase tracking-[0.28em] text-[var(--color-amber)] mb-4"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Fast, transparent, and met at the dock. The mandatory part of arriving in Sri Lanka, made the easy part.
+              Clearance
+            </p>
+            <h1
+              className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white leading-[1.1] mb-5 max-w-2xl"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Seamless Yacht Clearance
+              <br />
+              <span className="italic text-white/40">in Sri Lanka</span>
+            </h1>
+            <p
+              className="text-[14.5px] text-white/50 max-w-md leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Fast, transparent, and handled at the dock. The mandatory process of arriving in Sri Lanka, simplified.
             </p>
           </Reveal>
         </div>
@@ -108,14 +113,14 @@ export default function ClearancePage() {
                   className="text-3xl sm:text-4xl font-semibold text-[var(--color-navy)]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  US $&nbsp;—
+                  US $300
                 </span>
                 <span className="text-sm text-[var(--color-navy)]/40 font-medium">
                   · fixed, all-in
                 </span>
               </div>
               <p className="text-xs text-[var(--color-navy)]/50 leading-relaxed max-w-sm">
-                One transparent fee. What you see is what you pay — no starting-high, no negotiation. Additional port dues shown separately at cost.
+                Includes up to 30 days of berthing, full customs clearance (arrival and departure), and agency fees. Payable upon arrival.
               </p>
             </div>
             <Link

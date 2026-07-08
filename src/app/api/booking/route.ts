@@ -5,7 +5,6 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.formData();
 
-    // ── Form fields ──────────────────────────────────────────────
     const vesselName  = (data.get("vesselName")  as string) ?? "";
     const vesselType  = (data.get("vesselType")  as string) ?? "";
     const vesselLoa   = (data.get("vesselLoa")   as string) ?? "";
@@ -21,7 +20,6 @@ export async function POST(req: NextRequest) {
     const tripPrice   = (data.get("tripPrice")   as string) ?? "";
     const docs        = (data.get("docs")        as string) ?? "[]";
 
-    // ── Files ────────────────────────────────────────────────────
     const files = data.getAll("documents") as File[];
     const attachments = await Promise.all(
       files
@@ -33,77 +31,161 @@ export async function POST(req: NextRequest) {
         }))
     );
 
-    // ── Build email HTML ─────────────────────────────────────────
-    let docRows = "";
-    try {
-      const checkedDocs: string[] = JSON.parse(docs);
-      const allDocs = [
-        "Vessel registration",
-        "Crew list",
-        "Passport copies (all crew)",
-        "NIL list / stores list",
-        "Medical clearance / health docs",
-      ];
-      docRows = allDocs
-        .map(d => `<tr><td style="padding:4px 8px;">${checkedDocs.includes(d) ? "✅" : "❌"}</td><td style="padding:4px 8px;color:#333;">${d}</td></tr>`)
-        .join("");
-    } catch {
-      docRows = "";
-    }
+    const ALL_DOCS = [
+      "Vessel registration",
+      "Crew list",
+      "Passport copies (all crew)",
+      "NIL list / stores list",
+      "Medical clearance / health docs",
+    ];
+    let checkedDocs: string[] = [];
+    try { checkedDocs = JSON.parse(docs); } catch { /* empty */ }
 
-    const uploadedList = attachments.length
-      ? attachments.map(a => `<li>${a.filename}</li>`).join("")
-      : "<li><em>None uploaded</em></li>";
+    const isTrip = trip !== "none";
+    const enquiryType = isTrip ? "Trip Reservation" : "Clearance Enquiry";
+    const submittedAt = new Date().toLocaleString("en-GB", {
+      day: "numeric", month: "long", year: "numeric",
+      hour: "2-digit", minute: "2-digit", timeZone: "Asia/Colombo",
+    });
 
+    // ── Row helpers ───────────────────────────────────────────────
+    const row = (label: string, value: string) =>
+      value ? `
+        <tr>
+          <td style="padding:10px 0;border-bottom:1px solid #f0ede8;width:140px;vertical-align:top;">
+            <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#999;">${label}</span>
+          </td>
+          <td style="padding:10px 0 10px 20px;border-bottom:1px solid #f0ede8;vertical-align:top;">
+            <span style="font-size:14px;color:#1a1a1a;line-height:1.5;">${value}</span>
+          </td>
+        </tr>` : "";
+
+    const section = (title: string, content: string) => `
+      <div style="margin-bottom:28px;">
+        <div style="border-left:3px solid #C4924A;padding-left:12px;margin-bottom:14px;">
+          <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#C4924A;">${title}</span>
+        </div>
+        <table style="width:100%;border-collapse:collapse;">${content}</table>
+      </div>`;
+
+    // ── Sections ──────────────────────────────────────────────────
+    const vesselSection = section("Vessel", [
+      row("Name", vesselName),
+      row("Type", vesselType),
+      row("LOA / Flag", vesselLoa),
+      row("Crew on board", vesselCrew),
+    ].join(""));
+
+    const arrivalSection = section("Arrival", [
+      row("Month / Window", `${month}${window ? ` &middot; ${window}` : ""}`),
+      row("Last port", lastPort),
+    ].join(""));
+
+    const tripSection = isTrip ? section("Excursion", [
+      row("Package", tripLabel),
+      row("Price", tripPrice),
+    ].join("")) : "";
+
+    const contactSection = section("Contact", [
+      row("Captain", captainName),
+      row("Email", `<a href="mailto:${email}" style="color:#C4924A;text-decoration:none;">${email}</a>`),
+      row("Phone / Sat", phone),
+    ].join(""));
+
+    const docChecklist = ALL_DOCS.map(d => {
+      const ready = checkedDocs.includes(d);
+      return `
+        <tr>
+          <td style="padding:8px 0;border-bottom:1px solid #f0ede8;width:28px;vertical-align:middle;">
+            <span style="display:inline-block;width:18px;height:18px;border-radius:4px;background:${ready ? "#C4924A" : "#f0ede8"};text-align:center;line-height:18px;font-size:10px;color:${ready ? "#fff" : "#bbb"};">
+              ${ready ? "✓" : "–"}
+            </span>
+          </td>
+          <td style="padding:8px 0 8px 12px;border-bottom:1px solid #f0ede8;">
+            <span style="font-size:13px;color:${ready ? "#1a1a1a" : "#aaa"};">${d}</span>
+          </td>
+        </tr>`;
+    }).join("");
+
+    const docsSection = section("Documents ready", docChecklist);
+
+    const uploadSection = attachments.length > 0 ? section(
+      `Uploaded files (${attachments.length})`,
+      attachments.map(a => `
+        <tr>
+          <td style="padding:7px 0;border-bottom:1px solid #f0ede8;">
+            <span style="font-size:13px;color:#1a1a1a;">&#128206; ${a.filename}</span>
+          </td>
+        </tr>`).join("")
+    ) : "";
+
+    // ── Full email ────────────────────────────────────────────────
     const html = `
-      <div style="font-family:sans-serif;max-width:620px;margin:0 auto;color:#1a1a1a;">
-        <div style="background:#0F1D33;padding:24px 28px;border-radius:12px 12px 0 0;">
-          <h2 style="margin:0;color:#fff;font-size:20px;font-weight:400;">
-            ${trip !== "none" ? "Trip Reservation" : "Clearance Enquiry"} — Magnate Yachts
-          </h2>
-        </div>
-        <div style="background:#f9f8f5;padding:28px;border-radius:0 0 12px 12px;border:1px solid #e2ddd3;border-top:none;">
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f5f3ef;font-family:Georgia,serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f3ef;padding:40px 20px;">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
 
-          <h3 style="margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#888;">Vessel</h3>
-          <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
-            <tr><td style="padding:4px 8px;color:#888;width:140px;">Name</td><td style="padding:4px 8px;">${vesselName}</td></tr>
-            ${vesselType ? `<tr><td style="padding:4px 8px;color:#888;">Type</td><td style="padding:4px 8px;">${vesselType}</td></tr>` : ""}
-            ${vesselLoa  ? `<tr><td style="padding:4px 8px;color:#888;">LOA / Flag</td><td style="padding:4px 8px;">${vesselLoa}</td></tr>` : ""}
-            ${vesselCrew ? `<tr><td style="padding:4px 8px;color:#888;">Crew</td><td style="padding:4px 8px;">${vesselCrew}</td></tr>` : ""}
-          </table>
+        <!-- Header -->
+        <tr>
+          <td style="background:#0F1D33;padding:36px 40px 28px;border-radius:8px 8px 0 0;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.18em;color:#C4924A;">Magnate Yachts &middot; Sri Lanka</span>
+                  <br>
+                  <span style="font-size:22px;font-weight:400;color:#ffffff;letter-spacing:0.01em;line-height:1.4;display:block;margin-top:8px;">${enquiryType}</span>
+                  <span style="font-size:14px;color:rgba(255,255,255,0.45);display:block;margin-top:4px;font-family:Arial,sans-serif;">${vesselName}</span>
+                </td>
+                <td align="right" valign="top">
+                  <span style="display:inline-block;background:rgba(196,146,74,0.15);border:1px solid rgba(196,146,74,0.3);border-radius:20px;padding:5px 14px;font-size:11px;color:#C4924A;font-family:Arial,sans-serif;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">${isTrip ? "Trip + Clearance" : "Clearance Only"}</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
 
-          <h3 style="margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#888;">Arrival</h3>
-          <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
-            <tr><td style="padding:4px 8px;color:#888;width:140px;">Month</td><td style="padding:4px 8px;">${month}${window ? ` · ${window}` : ""}</td></tr>
-            ${lastPort ? `<tr><td style="padding:4px 8px;color:#888;">Last port</td><td style="padding:4px 8px;">${lastPort}</td></tr>` : ""}
-          </table>
+        <!-- Body -->
+        <tr>
+          <td style="background:#ffffff;padding:36px 40px;border-left:1px solid #e8e4de;border-right:1px solid #e8e4de;">
 
-          ${trip !== "none" ? `
-          <h3 style="margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#888;">Trip</h3>
-          <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
-            <tr><td style="padding:4px 8px;color:#888;width:140px;">Package</td><td style="padding:4px 8px;">${tripLabel}</td></tr>
-            ${tripPrice ? `<tr><td style="padding:4px 8px;color:#888;">Price</td><td style="padding:4px 8px;">${tripPrice}</td></tr>` : ""}
-          </table>` : ""}
+            ${vesselSection}
+            ${arrivalSection}
+            ${tripSection}
+            ${contactSection}
+            ${docsSection}
+            ${uploadSection}
 
-          <h3 style="margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#888;">Contact</h3>
-          <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
-            <tr><td style="padding:4px 8px;color:#888;width:140px;">Captain</td><td style="padding:4px 8px;">${captainName}</td></tr>
-            <tr><td style="padding:4px 8px;color:#888;">Email</td><td style="padding:4px 8px;"><a href="mailto:${email}">${email}</a></td></tr>
-            ${phone ? `<tr><td style="padding:4px 8px;color:#888;">Phone / Sat</td><td style="padding:4px 8px;">${phone}</td></tr>` : ""}
-          </table>
+          </td>
+        </tr>
 
-          <h3 style="margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#888;">Documents checklist</h3>
-          <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">${docRows}</table>
+        <!-- Footer -->
+        <tr>
+          <td style="background:#faf9f6;padding:20px 40px;border:1px solid #e8e4de;border-top:none;border-radius:0 0 8px 8px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <span style="font-size:11px;color:#bbb;font-family:Arial,sans-serif;">Submitted via magnateyachts.com/book</span>
+                  <br>
+                  <span style="font-size:11px;color:#bbb;font-family:Arial,sans-serif;">${submittedAt} (Sri Lanka time)</span>
+                </td>
+                <td align="right">
+                  <a href="mailto:${email}" style="font-size:12px;color:#C4924A;text-decoration:none;font-family:Arial,sans-serif;">Reply to captain &rarr;</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
 
-          <h3 style="margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#888;">Uploaded files (${attachments.length})</h3>
-          <ul style="margin:0 0 20px;padding-left:20px;color:#333;">${uploadedList}</ul>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
 
-          <p style="margin:0;font-size:12px;color:#aaa;">Submitted via magnateyachts.com/book</p>
-        </div>
-      </div>
-    `;
-
-    // ── SMTP transporter ─────────────────────────────────────────
     const transporter = nodemailer.createTransport({
       host:   process.env.SMTP_HOST   ?? "smtp.gmail.com",
       port:   Number(process.env.SMTP_PORT ?? 587),
@@ -114,12 +196,12 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const subject = trip !== "none"
-      ? `Trip Reservation — ${vesselName} · ${tripLabel}`
-      : `Clearance Enquiry — ${vesselName}`;
+    const subject = isTrip
+      ? `[Trip] ${vesselName} — ${tripLabel} · ${month}`
+      : `[Clearance] ${vesselName} — ${month}`;
 
     await transporter.sendMail({
-      from:        `"Magnate Yachts Booking" <${process.env.SMTP_USER}>`,
+      from:        `"Magnate Yachts" <${process.env.SMTP_USER}>`,
       to:          "info@magnateyachts.com",
       replyTo:     email,
       subject,

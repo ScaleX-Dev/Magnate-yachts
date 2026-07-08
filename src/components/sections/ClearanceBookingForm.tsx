@@ -275,6 +275,7 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
     try {
       await postBooking();
       setSubmitChannel("email");
+      openWhatsApp();
       setSubmitted(true);
     } catch {
       setSubmitErr("Failed to send — please try WhatsApp or email us directly at info@magnateyachts.com.");

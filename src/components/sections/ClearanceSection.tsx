@@ -9,7 +9,6 @@ const INCLUDED = [
   "Immigration formalities & visa collection on arrival",
   "Customs clearance",
   "Port Authority & berthing coordination",
-  "Defence Ministry liaison",
   "Harbour security gate passes",
   "Clear-out / departure formalities",
 ];
@@ -40,17 +39,13 @@ export function ClearanceSection() {
                 className="text-[clamp(1.75rem,4.5vw,3.25rem)] font-light text-[var(--color-navy)] leading-[1.15] mb-4"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Clearance, handled.{" "}
-                <span className="italic text-[var(--color-navy)]/40">
-                  Met at the dock.
-                </span>
+                Seamless Yacht Clearance
               </h2>
               <p
                 className="text-[14px] text-[var(--color-navy)]/55 leading-relaxed max-w-sm"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                The mandatory part of arriving in Sri Lanka, made the easy part.
-                Fixed fee, no negotiation, no surprises.
+                All formalities are handled swiftly, so your crew can stay at ease.
               </p>
             </div>
 

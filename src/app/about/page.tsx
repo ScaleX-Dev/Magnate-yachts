@@ -8,25 +8,25 @@ const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
 export const metadata: Metadata = {
   title: "About — Magnate Yachts Sri Lanka",
   description:
-    "Sri Lanka's leading sailing yacht operations company. Licensed clearance agent in Galle and Trincomalee.",
+    "Sri Lanka's leading yacht agency. Founded by Achintha Hewagamage, trusted to handle over 80% of yacht arrivals into Sri Lanka.",
 };
 
 const CREDENTIALS = [
   {
     label: "Licensed agent",
-    detail: "Registered with Sri Lanka Ports Authority in Galle and Trincomalee.",
+    detail: "Registered with Sri Lanka Ports Authority in Galle and Colombo.",
   },
   {
-    label: "80% market share",
-    detail: "The dominant operator for international sailing yachts arriving in Sri Lanka.",
+    label: "80% of arrivals",
+    detail: "Trusted to handle the majority of international yacht arrivals into Sri Lanka.",
   },
   {
-    label: "Since 2009",
-    detail: "Over fifteen years on the dock in Galle Fort.",
+    label: "Dedicated support",
+    detail: "Teams based in both Colombo and Galle for consistent coverage at every port of call.",
   },
   {
-    label: "End-to-end operation",
-    detail: "Clearance, provisioning, excursions — one team, one number, one invoice.",
+    label: "End-to-end service",
+    detail: "Clearance, excursions, and logistics — one team, one point of contact.",
   },
 ];
 
@@ -37,18 +37,25 @@ export default function AboutPage() {
       <section className="bg-[var(--color-navy)]">
         <div className="container-site py-12 lg:py-16">
           <Reveal>
+            <p
+              className="text-[11px] font-medium uppercase tracking-[0.28em] text-[var(--color-amber)] mb-4"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              About Us
+            </p>
             <h1
               className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white max-w-3xl leading-[1.1] mb-7"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              The team on the dock when you arrive.{" "}
-              <span className="italic text-white/40">The same team when you leave.</span>
+              A seamless sailing experience
+              <br />
+              <span className="italic text-white/40">begins before you set sail.</span>
             </h1>
             <p
-              className="text-[14.5px] text-white/40 max-w-xl leading-relaxed"
+              className="text-[14.5px] text-white/50 max-w-xl leading-relaxed"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Magnate Yachts is Sri Lanka&apos;s dominant sailing yacht operations company — the licensed clearance agent for the majority of international sailing yachts arriving in the country. We cover both entry ports: Galle on the south coast, Trincomalee on the east.
+              It starts with how you are received, how swiftly formalities are handled, and how smoothly every detail is coordinated behind the scenes — ensuring nothing interrupts your time on the water.
             </p>
           </Reveal>
         </div>
@@ -73,13 +80,13 @@ export default function AboutPage() {
               className="text-[clamp(1.65rem,3.5vw,2.5rem)] font-light text-[var(--color-navy)] leading-[1.2]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              We started on the dockside and{" "}
-              <span className="italic text-[var(--color-navy)]/45">we&apos;ve stayed there.</span>
+              From arrival to departure,{" "}
+              <span className="italic text-[var(--color-navy)]/45">everything is managed for you.</span>
             </h2>
             {[
-              "We've been working with international sailing crews arriving in Galle since 2009. What started as clearance grew — crews wanted someone they already trusted to help them see the country. We built the land operation around the same team.",
-              "Today we handle clearance, provisioning, excursions, and marine logistics for more international yachts arriving in Sri Lanka than any other agent. We don't advertise that on billboards — we're known by word of mouth from captain to captain, passage to passage.",
-              "The fee is fixed and published. The team you speak to before you arrive is the team you meet on the dock.",
+              "Your time in Sri Lanka remains seamless, private, and uninterrupted. Whether you are pausing for a short break along your passage or navigating through the East of Asia, our role is simple — to be the reliable partner you can count on at every port of call.",
+              "With dedicated support in Colombo and Galle, every arrival and departure is handled with consistency, clarity, and care.",
+              "This philosophy has guided Magnate Yachts from the very beginning. Founded by Achintha Hewagamage, the company was built on a simple belief: exceptional service should feel effortless. Today, that commitment is reflected in the trust placed in us to handle over 80% of yacht arrivals into Sri Lanka — making Magnate Yachts Sri Lanka's leading yacht agency.",
             ].map((para, i) => (
               <p
                 key={i}
@@ -96,14 +103,6 @@ export default function AboutPage() {
       {/* ── Credentials ───────────────────────────────────────────────── */}
       <section className="bg-[var(--color-navy-dark)]">
         <div className="container-site py-12">
-          <Reveal>
-            <h2
-              className="text-[clamp(1.75rem,4vw,3rem)] font-light text-white mb-8"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Our credentials
-            </h2>
-          </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {CREDENTIALS.map(({ label, detail }, i) => (
               <Reveal
@@ -129,7 +128,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Team photo ────────────────────────────────────────────────── */}
+      {/* ── Port image ────────────────────────────────────────────────── */}
       <section className="bg-[var(--color-ivory)]">
         <div className="container-site py-10">
           <Reveal>
@@ -148,7 +147,7 @@ export default function AboutPage() {
               className="mt-4 text-[12px] text-[var(--color-navy)]/30 italic"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Our team at Galle harbour.
+              Galle harbour, Sri Lanka.
             </p>
           </Reveal>
         </div>

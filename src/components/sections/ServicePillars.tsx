@@ -17,10 +17,10 @@ const PILLARS = [
     tag: "At stay",
     title: "Your week ashore, and the boat in between.",
     items: [
+      "Provisioning, fuel, gas, water, repairs — as the yacht needs",
       "Day excursions and multi-day trips into the island",
       "Trusted drivers, handpicked stays",
       "Recommendations from people who actually live here",
-      "Provisioning, fuel, gas, water, repairs — as the boat needs",
     ],
   },
   {
@@ -83,7 +83,7 @@ export function ServicePillars() {
           >
             From arrival to departure,
             <br />
-            <span className="italic text-white/40">we hold the line.</span>
+            <span className="italic text-white/40">everything your yacht and crew need is taken care of, giving you complete peace of mind.</span>
           </h2>
         </Reveal>
 

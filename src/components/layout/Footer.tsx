@@ -44,7 +44,7 @@ export function Footer() {
                 className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-amber)]/60"
                 style={{ fontFamily: "var(--font-accent)" }}
               >
-                Est. 2009
+                Est. 2024
               </span>
             </div>
           </div>

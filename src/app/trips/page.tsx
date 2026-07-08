@@ -30,19 +30,25 @@ export default function TripsPage() {
       <section className="bg-[var(--color-navy)]">
         <div className="container-site py-10 lg:py-14">
           <Reveal>
-            <h1
-              className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white leading-[1.1] mb-4 max-w-lg"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Trips &amp;
-              <br />
-              <span className="italic text-white/40">Land Excursions</span>
-            </h1>
             <p
-              className="text-[14.5px] text-white/40 max-w-xs leading-relaxed"
+              className="text-[11px] font-medium uppercase tracking-[0.28em] text-[var(--color-amber)] mb-4"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              One day, three, or five through the kingdoms.
+              Trips
+            </p>
+            <h1
+              className="text-[clamp(2.25rem,6vw,4.5rem)] font-light text-white leading-[1.1] mb-5 max-w-2xl"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Bespoke Trips and Excursions
+              <br />
+              <span className="italic text-white/40">Around the Island</span>
+            </h1>
+            <p
+              className="text-[14.5px] text-white/50 max-w-md leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              From day excursions to wildlife safaris and tranquil mountain escapes, discover experiences tailored to your sailing plans.
             </p>
           </Reveal>
         </div>

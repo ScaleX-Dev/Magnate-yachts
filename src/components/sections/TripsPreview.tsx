@@ -49,7 +49,7 @@ export function TripsPreview() {
             className="text-[14px] text-[var(--color-navy)]/45 leading-relaxed max-w-sm"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Whichever fits your window — we'd take you somewhere quietly memorable.
+            Curated journeys to Sri Lanka's most scenic destinations, helping you make the most of your time ashore.
           </p>
         </Reveal>
 
