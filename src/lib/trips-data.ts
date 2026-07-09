@@ -32,6 +32,7 @@ export interface Trip {
   included: string[];
   notIncluded: string[];
   image: string;
+  videoSrc?: string;
 }
 
 export const DAY_TRIPS: DayTrip[] = [
@@ -94,6 +95,7 @@ export const TRIPS: Trip[] = [
     heroTitle: "Safari &\nHill Country",
     subtitle: "The wild south, then the hills above it.",
     image: "/images/site/trip-3day-card.jpg",
+    videoSrc: "/images/site/VIDEO%201.mp4",
     days: [
       DAY_SAFARI,
       {
@@ -137,6 +139,7 @@ export const TRIPS: Trip[] = [
     heroTitle: "Wilderness to\nAncient Kingdoms",
     subtitle: "Leopard country, hill country, and kingdoms built long before either had a name for itself.",
     image: "/images/site/trip-5day-card.jpg",
+    videoSrc: "/images/site/Video%202.mp4",
     days: [
       DAY_SAFARI,
       {

@@ -78,20 +78,40 @@ export default function TripsPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, 50vw"
                     />
-                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(15,29,51,0.8) 0%, rgba(15,29,51,0.1) 50%, transparent 100%)" }} />
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <p
-                        className="text-[9px] uppercase tracking-[0.24em] mb-1.5"
-                        style={{ color: "var(--color-trips)", fontFamily: "var(--font-accent)" }}
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(15,29,51,0.85) 0%, rgba(15,29,51,0.15) 55%, transparent 100%)" }} />
+
+                    {/* Top-right: duration */}
+                    <div className="absolute top-4 right-4">
+                      <span
+                        className="inline-block text-[8px] uppercase tracking-[0.22em] px-3 py-1.5 rounded-full"
+                        style={{ background: "rgba(8,15,30,0.45)", backdropFilter: "blur(8px)", color: "rgba(255,255,255,0.80)", fontFamily: "var(--font-accent)", border: "1px solid rgba(255,255,255,0.15)" }}
                       >
-                        One day · US${trip.price} · {trip.priceNote}
-                      </p>
+                        One Day
+                      </span>
+                    </div>
+
+                    {/* Bottom: title left, price + capacity right */}
+                    <div className="absolute bottom-0 left-0 right-0 px-5 pb-5 pt-10 flex items-end justify-between gap-4">
                       <h2
                         className="text-2xl font-semibold text-white leading-tight"
                         style={{ fontFamily: "var(--font-display)" }}
                       >
                         {trip.name}
                       </h2>
+                      <div className="text-right shrink-0 pb-0.5">
+                        <p
+                          className="text-[17px] font-semibold leading-none"
+                          style={{ color: "var(--color-trips)", fontFamily: "var(--font-display)" }}
+                        >
+                          US${trip.price}
+                        </p>
+                        <p
+                          className="text-[8px] uppercase tracking-[0.18em] mt-1"
+                          style={{ color: "rgba(255,255,255,0.50)", fontFamily: "var(--font-accent)" }}
+                        >
+                          {trip.priceNote}
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -147,26 +167,48 @@ export default function TripsPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,15,30,0.85) 0%, rgba(8,15,30,0.1) 55%, transparent 100%)" }} />
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <p
-                        className="text-[9px] uppercase tracking-[0.24em] mb-1.5"
-                        style={{ color: "var(--color-trips)", fontFamily: "var(--font-accent)" }}
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,15,30,0.9) 0%, rgba(8,15,30,0.15) 55%, transparent 100%)" }} />
+
+                    {/* Top-right: duration badge */}
+                    <div className="absolute top-4 right-4">
+                      <span
+                        className="inline-block text-[8px] uppercase tracking-[0.22em] px-3 py-1.5 rounded-full"
+                        style={{ background: "rgba(8,15,30,0.45)", backdropFilter: "blur(8px)", color: "rgba(255,255,255,0.80)", fontFamily: "var(--font-accent)", border: "1px solid rgba(255,255,255,0.15)" }}
                       >
-                        {trip.badge} · US${trip.price} · {trip.priceNote}
-                      </p>
-                      <h2
-                        className="text-xl font-semibold text-white leading-tight"
-                        style={{ fontFamily: "var(--font-display)" }}
-                      >
-                        {trip.shortName}
-                      </h2>
-                      <p
-                        className="text-[12px] mt-1.5 leading-relaxed line-clamp-2"
-                        style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-body)" }}
-                      >
-                        {trip.subtitle}
-                      </p>
+                        {trip.badge}
+                      </span>
+                    </div>
+
+                    {/* Bottom: title+subtitle left, price+capacity right */}
+                    <div className="absolute bottom-0 left-0 right-0 px-5 pb-5 pt-10 flex items-end justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <h2
+                          className="text-xl font-semibold text-white leading-tight"
+                          style={{ fontFamily: "var(--font-display)" }}
+                        >
+                          {trip.shortName}
+                        </h2>
+                        <p
+                          className="text-[11px] mt-1 leading-relaxed line-clamp-1"
+                          style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)" }}
+                        >
+                          {trip.subtitle}
+                        </p>
+                      </div>
+                      <div className="text-right shrink-0 pb-0.5">
+                        <p
+                          className="text-[17px] font-semibold leading-none"
+                          style={{ color: "var(--color-trips)", fontFamily: "var(--font-display)" }}
+                        >
+                          US${trip.price}
+                        </p>
+                        <p
+                          className="text-[8px] uppercase tracking-[0.18em] mt-1"
+                          style={{ color: "rgba(255,255,255,0.50)", fontFamily: "var(--font-accent)" }}
+                        >
+                          {trip.priceNote}
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -206,26 +248,48 @@ export default function TripsPage() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,15,30,0.85) 0%, rgba(8,15,30,0.1) 55%, transparent 100%)" }} />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p
-                      className="text-[9px] uppercase tracking-[0.24em] mb-1.5"
-                      style={{ color: "var(--color-trips)", fontFamily: "var(--font-body)" }}
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,15,30,0.9) 0%, rgba(8,15,30,0.15) 55%, transparent 100%)" }} />
+
+                  {/* Top-right: bespoke badge */}
+                  <div className="absolute top-4 right-4">
+                    <span
+                      className="inline-block text-[8px] uppercase tracking-[0.22em] px-3 py-1.5 rounded-full"
+                      style={{ background: "rgba(8,15,30,0.45)", backdropFilter: "blur(8px)", color: "rgba(255,255,255,0.80)", fontFamily: "var(--font-accent)", border: "1px solid rgba(255,255,255,0.15)" }}
                     >
                       {CUSTOM.badge}
-                    </p>
-                    <h2
-                      className="text-xl font-semibold text-white leading-tight"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      {CUSTOM.shortName}
-                    </h2>
-                    <p
-                      className="text-[12px] mt-1.5 leading-relaxed line-clamp-2"
-                      style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-body)" }}
-                    >
-                      {CUSTOM.subtitle}
-                    </p>
+                    </span>
+                  </div>
+
+                  {/* Bottom: title+subtitle left, "On request" right */}
+                  <div className="absolute bottom-0 left-0 right-0 px-5 pb-5 pt-10 flex items-end justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <h2
+                        className="text-xl font-semibold text-white leading-tight"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {CUSTOM.shortName}
+                      </h2>
+                      <p
+                        className="text-[11px] mt-1 leading-relaxed line-clamp-1"
+                        style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-body)" }}
+                      >
+                        {CUSTOM.subtitle}
+                      </p>
+                    </div>
+                    <div className="text-right shrink-0 pb-0.5">
+                      <p
+                        className="text-[17px] font-semibold leading-none"
+                        style={{ color: "var(--color-trips)", fontFamily: "var(--font-display)" }}
+                      >
+                        On request
+                      </p>
+                      <p
+                        className="text-[8px] uppercase tracking-[0.18em] mt-1"
+                        style={{ color: "rgba(255,255,255,0.50)", fontFamily: "var(--font-accent)" }}
+                      >
+                        Your itinerary
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <div
@@ -251,26 +315,26 @@ export default function TripsPage() {
       </section>
 
       {/* ── Bottom CTA ── beige */}
-      <section style={{ background: "var(--color-trips)" }}>
-        <div className="container-site py-10 lg:py-12">
-          <Reveal className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <section style={{ background: "var(--color-trips)", borderTop: "1px solid rgba(15,29,51,0.08)" }}>
+        <div className="container-site py-12 lg:py-16">
+          <Reveal className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
             <div>
               <p
-                className="text-[1.2rem] font-light mb-1"
+                className="text-[clamp(1.4rem,2.8vw,2rem)] font-semibold mb-2 leading-snug"
                 style={{ fontFamily: "var(--font-display)", color: "var(--color-navy)" }}
               >
                 Something different in mind?
               </p>
               <p
-                className="text-[13.5px] leading-relaxed"
-                style={{ color: "rgba(15,29,51,0.55)", fontFamily: "var(--font-body)" }}
+                className="text-[14px] font-medium leading-relaxed"
+                style={{ color: "rgba(15,29,51,0.65)", fontFamily: "var(--font-body)" }}
               >
                 Tell us what you have in mind — we&apos;ll build it around your schedule.
               </p>
             </div>
             <Link
               href="/trips/custom"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 shrink-0 whitespace-nowrap"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-[13.5px] font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(15,29,51,0.35)] active:scale-[0.97] shrink-0 whitespace-nowrap"
               style={{ background: "var(--color-navy)", color: "var(--color-trips)", fontFamily: "var(--font-body)" }}
             >
               Plan a custom trip <ArrowRight size={14} />

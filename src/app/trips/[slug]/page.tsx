@@ -86,7 +86,7 @@ export default async function TripDetailPage({
             <div className="max-w-2xl flex flex-col gap-6">
               {dayTrip.paragraphs.map((para, i) => (
                 <Reveal key={i} delay={i * 0.05}>
-                  <p className="text-[14.5px] text-[var(--color-navy)]/60 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>{para}</p>
+                  <p className="text-[14.5px] text-[var(--color-navy)]/75 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>{para}</p>
                 </Reveal>
               ))}
             </div>
@@ -100,7 +100,7 @@ export default async function TripDetailPage({
                 <p className="text-[10px] uppercase tracking-widest text-[var(--color-trips)] mb-6" style={{ fontFamily: "var(--font-accent)" }}>Included</p>
                 <ul className="flex flex-col gap-4">
                   {dayTrip.included.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/65 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                    <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/80 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
                       <Check size={13} className="text-[var(--color-trips)] shrink-0 mt-[3px]" />
                       {item}
                     </li>
@@ -108,11 +108,11 @@ export default async function TripDetailPage({
                 </ul>
               </Reveal>
               <Reveal delay={0.1}>
-                <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/25 mb-6" style={{ fontFamily: "var(--font-accent)" }}>Not included</p>
+                <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/60 mb-6" style={{ fontFamily: "var(--font-accent)" }}>Not included</p>
                 <ul className="flex flex-col gap-4">
                   {dayTrip.notIncluded.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/40 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                      <Minus size={13} className="text-[var(--color-navy)]/20 shrink-0 mt-[3px]" />
+                    <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/70 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                      <Minus size={13} className="text-[var(--color-navy)]/45 shrink-0 mt-[3px]" />
                       {item}
                     </li>
                   ))}
@@ -127,7 +127,7 @@ export default async function TripDetailPage({
             <Reveal className="flex flex-col sm:flex-row sm:items-center justify-between gap-8">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-trips)] mb-3" style={{ fontFamily: "var(--font-accent)" }}>Reserve your place</p>
-                <p className="text-2xl sm:text-3xl font-light text-[var(--color-navy)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>{dayTrip.name}</p>
+                <p className="text-2xl sm:text-3xl font-medium text-[var(--color-navy)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>{dayTrip.name}</p>
               </div>
               <Link href="/book?trip=day" className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--color-amber)] text-white text-[14px] font-medium hover:bg-[var(--color-amber-light)] hover:shadow-[0_8px_28px_-6px_rgba(196,146,74,0.45)] hover:-translate-y-px active:scale-[0.97] transition-all duration-300 whitespace-nowrap shrink-0" style={{ fontFamily: "var(--font-body)" }}>
                 Reserve · US${dayTrip.price} · {dayTrip.priceNote}
@@ -142,8 +142,25 @@ export default async function TripDetailPage({
 
   return (
     <>
-      <section className="bg-[#080e1a] min-h-[60svh] flex flex-col justify-between">
-        <div className="container-site flex items-center justify-between pt-5 pb-3">
+      <section className="relative bg-[#080e1a] min-h-[60svh] flex flex-col justify-between overflow-hidden">
+        {trip!.videoSrc && (
+          <>
+            <video
+              src={trip!.videoSrc}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-50 scale-[1.03]"
+              style={{ willChange: "transform" }}
+            />
+            {/* cinematic gradient: dark top band → transparent middle → rich dark bottom */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#060c18]/90 via-[#060c18]/20 to-[#060c18]/85 pointer-events-none" />
+            {/* subtle vignette on sides */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,#060c18/55%_100%)] pointer-events-none" />
+          </>
+        )}
+        <div className="relative z-10 container-site flex items-center justify-between pt-5 pb-3">
           <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-trips)]/60" style={{ fontFamily: "var(--font-accent)" }}>
             <Link href="/trips" className="hover:text-[var(--color-trips)]/90 transition-colors">Trips</Link>
             <span className="text-white/15">/</span>
@@ -153,15 +170,36 @@ export default async function TripDetailPage({
             <ArrowLeft size={10} /> All trips
           </Link>
         </div>
-        <div className="container-site pb-14 pt-12">
+        <div className="relative z-10 container-site pb-14 pt-12">
           <Reveal>
-            <span className="inline-block text-[9px] uppercase tracking-[0.28em] border border-white/15 text-white/40 px-3 py-1.5 mb-8" style={{ fontFamily: "var(--font-body)" }}>
+            <span
+              className="inline-block text-[9px] uppercase tracking-[0.28em] border px-3 py-1.5 mb-8"
+              style={{
+                fontFamily: "var(--font-body)",
+                borderColor: trip!.videoSrc ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.15)",
+                color: trip!.videoSrc ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.4)",
+              }}
+            >
               {trip!.badge}
             </span>
-            <h1 className="text-[clamp(2.5rem,7vw,5.5rem)] font-semibold text-white leading-[1.04] whitespace-pre-line mb-4" style={{ fontFamily: "var(--font-display)" }}>
+            <h1
+              className="text-[clamp(2.5rem,7vw,5.5rem)] font-semibold leading-[1.04] whitespace-pre-line mb-4"
+              style={{
+                fontFamily: "var(--font-display)",
+                color: trip!.videoSrc ? "#ffffff" : "#ffffff",
+                textShadow: trip!.videoSrc ? "0 2px 40px rgba(6,12,24,0.6)" : "none",
+              }}
+            >
               {trip!.heroTitle}
             </h1>
-            <p className="text-[15px] text-white/38 max-w-md leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+            <p
+              className="text-[15px] max-w-md leading-relaxed"
+              style={{
+                fontFamily: "var(--font-body)",
+                color: trip!.videoSrc ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.38)",
+                textShadow: trip!.videoSrc ? "0 1px 20px rgba(6,12,24,0.5)" : "none",
+              }}
+            >
               {trip!.subtitle}
             </p>
           </Reveal>
@@ -175,8 +213,8 @@ export default async function TripDetailPage({
             <div className="container-site pb-4">
               <div className={"grid grid-cols-1 lg:grid-cols-2 gap-0 items-start " + (imageRight ? "" : "lg:[direction:rtl] [&>*]:[direction:ltr]")}>
                 <Reveal className="flex flex-col justify-end pt-14 pb-6 lg:pb-4" y={16}>
-                  <span className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/35 mb-2" style={{ fontFamily: "var(--font-accent)" }}>{day.label}</span>
-                  <span className="block text-[8rem] sm:text-[11rem] lg:text-[14rem] font-semibold leading-none text-[var(--color-trips)]/20 select-none -ml-1" style={{ fontFamily: "var(--font-display)" }} aria-hidden>
+                  <span className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/60 mb-2" style={{ fontFamily: "var(--font-accent)" }}>{day.label}</span>
+                  <span className="block text-[8rem] sm:text-[11rem] lg:text-[14rem] font-semibold leading-none text-[var(--color-trips)]/40 select-none -ml-1" style={{ fontFamily: "var(--font-display)" }} aria-hidden>
                     {day.n}
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mt-2 leading-snug" style={{ fontFamily: "var(--font-display)" }}>
@@ -189,7 +227,7 @@ export default async function TripDetailPage({
                   </div>
                 </Reveal>
               </div>
-              <p className="mt-7 mb-10 text-sm text-[var(--color-navy)]/55 leading-relaxed max-w-2xl" style={{ fontFamily: "var(--font-body)" }}>
+              <p className="mt-7 mb-10 text-sm text-[var(--color-navy)]/75 leading-relaxed max-w-2xl" style={{ fontFamily: "var(--font-body)" }}>
                 {day.description}
               </p>
             </div>
@@ -204,18 +242,18 @@ export default async function TripDetailPage({
               <p className="text-[10px] uppercase tracking-widest text-[var(--color-trips)] mb-6" style={{ fontFamily: "var(--font-accent)" }}>Included</p>
               <ul className="flex flex-col gap-4">
                 {trip!.included.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/65 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                  <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/80 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
                     <Check size={13} className="text-[var(--color-trips)] shrink-0 mt-[3px]" />{item}
                   </li>
                 ))}
               </ul>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/25 mb-6" style={{ fontFamily: "var(--font-accent)" }}>Not included</p>
+              <p className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/60 mb-6" style={{ fontFamily: "var(--font-accent)" }}>Not included</p>
               <ul className="flex flex-col gap-4">
                 {trip!.notIncluded.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/40 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
-                    <Minus size={13} className="text-[var(--color-navy)]/20 shrink-0 mt-[3px]" />{item}
+                  <li key={item} className="flex items-start gap-3 text-sm text-[var(--color-navy)]/70 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                    <Minus size={13} className="text-[var(--color-navy)]/45 shrink-0 mt-[3px]" />{item}
                   </li>
                 ))}
               </ul>
@@ -229,7 +267,7 @@ export default async function TripDetailPage({
           <Reveal className="flex flex-col sm:flex-row sm:items-center justify-between gap-8">
             <div>
               <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-trips)] mb-3" style={{ fontFamily: "var(--font-accent)" }}>Reserve your place</p>
-              <p className="text-2xl sm:text-3xl font-light text-[var(--color-navy)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>{trip!.shortName}</p>
+              <p className="text-2xl sm:text-3xl font-medium text-[var(--color-navy)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>{trip!.shortName}</p>
             </div>
             <Link href={"/book?trip=" + trip!.slug} className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--color-amber)] text-white text-[14px] font-medium hover:bg-[var(--color-amber-light)] hover:shadow-[0_8px_28px_-6px_rgba(196,146,74,0.45)] hover:-translate-y-px active:scale-[0.97] transition-all duration-300 whitespace-nowrap shrink-0" style={{ fontFamily: "var(--font-body)" }}>
               Reserve this trip · US${trip!.price} · {trip!.priceNote}
@@ -245,7 +283,7 @@ export default async function TripDetailPage({
             <h2 className="text-[clamp(1.75rem,4vw,3rem)] font-light text-white leading-[1.2] mb-5 max-w-lg" style={{ fontFamily: "var(--font-display)" }}>
               Every route can be adjusted.
             </h2>
-            <p className="text-[14px] text-white/40 leading-relaxed max-w-md mb-10" style={{ fontFamily: "var(--font-body)" }}>
+            <p className="text-[14px] text-white/60 leading-relaxed max-w-md mb-10" style={{ fontFamily: "var(--font-body)" }}>
               Slower, faster, fewer stops, or something not on this page at all — tell us what you have in mind and we will put it together.
             </p>
             <Link href="/trips/custom" className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white text-[13.5px] font-medium hover:bg-white/[0.06] hover:border-white/35 transition-all duration-300" style={{ fontFamily: "var(--font-body)" }}>
