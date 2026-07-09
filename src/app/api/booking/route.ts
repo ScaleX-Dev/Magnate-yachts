@@ -1,6 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+/* ── WhatsApp Cloud API ────────────────────────────────────────────
+   Set these env vars to enable automatic WhatsApp notifications:
+   WA_ACCESS_TOKEN    — permanent system user token from Meta Business
+   WA_PHONE_NUMBER_ID — WhatsApp Business phone number ID (not the number)
+   WA_TO_NUMBER       — recipient number in E.164 format e.g. 94769850115
+──────────────────────────────────────────────────────────────────── */
+async function sendWhatsAppNotification(body: string) {
+  const token    = process.env.WA_ACCESS_TOKEN;
+  const phoneId  = process.env.WA_PHONE_NUMBER_ID;
+  const toNumber = process.env.WA_TO_NUMBER;
+  if (!token || !phoneId || !toNumber) return;
+
+  await fetch(`https://graph.facebook.com/v20.0/${phoneId}/messages`, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      messaging_product: "whatsapp",
+      to: toNumber,
+      type: "text",
+      text: { body },
+    }),
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const data = await req.formData();
@@ -15,6 +42,7 @@ export async function POST(req: NextRequest) {
     const month       = (data.get("month")       as string) ?? "";
     const window      = (data.get("window")      as string) ?? "";
     const lastPort    = (data.get("lastPort")    as string) ?? "";
+    const lastPortsRaw = (data.get("lastPorts") as string) ?? "[]";
     const trip        = (data.get("trip")        as string) ?? "none";
     const tripLabel   = (data.get("tripLabel")   as string) ?? "";
     const tripPrice   = (data.get("tripPrice")   as string) ?? "";
@@ -40,6 +68,8 @@ export async function POST(req: NextRequest) {
     ];
     let checkedDocs: string[] = [];
     try { checkedDocs = JSON.parse(docs); } catch { /* empty */ }
+    let lastPorts: string[] = [];
+    try { lastPorts = JSON.parse(lastPortsRaw); } catch { /* empty */ }
 
     const isTrip = trip !== "none";
     const enquiryType = isTrip ? "Trip Reservation" : "Clearance Enquiry";
@@ -79,6 +109,7 @@ export async function POST(req: NextRequest) {
     const arrivalSection = section("Arrival", [
       row("Month / Window", `${month}${window ? ` &middot; ${window}` : ""}`),
       row("Last port", lastPort),
+      lastPorts.length > 0 ? row("Last ports visited", lastPorts.map((p, i) => `${i + 1}. ${p}`).join("<br>")) : "",
     ].join(""));
 
     const tripSection = isTrip ? section("Excursion", [
@@ -208,6 +239,42 @@ export async function POST(req: NextRequest) {
       html,
       attachments,
     });
+
+    // ── WhatsApp notification (server-side, no documents) ─────────
+    const waLines: string[] = [
+      `*${enquiryType} — Magnate Yachts*`,
+      ``,
+      `*Vessel:* ${vesselName}${vesselType ? ` (${vesselType})` : ""}`,
+    ];
+    if (vesselLoa)  waLines.push(`*LOA / Flag:* ${vesselLoa}`);
+    if (vesselCrew) waLines.push(`*Crew:* ${vesselCrew}`);
+    waLines.push(``);
+    waLines.push(`*Arrival:* ${month}${window ? ` · ${window}` : ""}`);
+    if (lastPort) waLines.push(`*Last port:* ${lastPort}`);
+    if (lastPorts.length > 0) {
+      waLines.push(`*Last ${lastPorts.length} port(s) visited:*`);
+      lastPorts.forEach((p, i) => waLines.push(`  ${i + 1}. ${p}`));
+    }
+    if (isTrip) waLines.push(`*Trip:* ${tripLabel}${tripPrice ? ` — ${tripPrice}` : ""}`);
+    waLines.push(``);
+    waLines.push(`*Captain:* ${captainName}`);
+    waLines.push(`*Email:* ${email}`);
+    if (phone) waLines.push(`*Phone/Sat:* ${phone}`);
+    waLines.push(``);
+    waLines.push(`*Documents ready:*`);
+    const ALL_DOC_LABELS = [
+      "Vessel registration", "Crew list", "Passport copies (all crew)",
+      "NIL list / stores list", "Medical clearance / health docs",
+    ];
+    ALL_DOC_LABELS.forEach(d => waLines.push(`${checkedDocs.includes(d) ? "✅" : "❌"} ${d}`));
+    if (attachments.length > 0) {
+      waLines.push(``);
+      waLines.push(`📎 ${attachments.length} document(s) attached to email`);
+    }
+    waLines.push(``);
+    waLines.push(`_Submitted ${submittedAt} (SL time)_`);
+
+    await sendWhatsAppNotification(waLines.join("\n")).catch(() => {/* non-fatal */});
 
     return NextResponse.json({ ok: true });
   } catch (err) {

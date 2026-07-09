@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Flag, ArrowRight, Check, CheckCircle2, MessageCircle, CreditCard,
-  UploadCloud, X, Paperclip, Mail,
+  UploadCloud, X, Paperclip, Mail, Plus, Minus,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/ui/Reveal";
@@ -124,6 +124,7 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
   const [vessel,   setVessel]   = useState({ name: "", type: "", loa: "", crew: "" });
   const [arrival,  setArrival]  = useState({ month: "", window: "", lastPort: "" });
   const [trip,     setTrip]     = useState(initialTrip ?? "none");
+  const [lastPorts,  setLastPorts]  = useState<string[]>([""]);
   const [docs,       setDocs]       = useState<string[]>([]);
   const [uploads,    setUploads]    = useState<File[]>([]);
   const [submitting,    setSubmitting]    = useState(false);
@@ -146,6 +147,13 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
 
   const removeFile = (name: string) =>
     setUploads(prev => prev.filter(f => f.name !== name));
+
+  const updatePort = (i: number, val: string) =>
+    setLastPorts(prev => prev.map((p, idx) => idx === i ? val : p));
+  const addPort = () =>
+    setLastPorts(prev => prev.length < 10 ? [...prev, ""] : prev);
+  const removePort = (i: number) =>
+    setLastPorts(prev => prev.length > 1 ? prev.filter((_, idx) => idx !== i) : [""]);
 
   const tripOption  = TRIP_OPTIONS.find(t => t.value === trip)!;
   const tripLabel   = tripOption.label;
@@ -211,6 +219,11 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
     lines.push(``);
     lines.push(`*Arrival:* ${arrival.month}${arrival.window ? ` · ${arrival.window}` : ""}`);
     if (arrival.lastPort) lines.push(`*Last port:* ${arrival.lastPort}`);
+    const filledPorts = lastPorts.filter(p => p.trim());
+    if (filledPorts.length > 0) {
+      lines.push(`*Last ${filledPorts.length} port(s) visited:*`);
+      filledPorts.forEach((p, i) => lines.push(`${i + 1}. ${p}`));
+    }
     if (isTrip) lines.push(`*Trip:* ${tripLabel}${tripPrice ? ` — ${tripPrice}` : ""}`);
     lines.push(``);
     lines.push(`*Captain:* ${contact.name}`);
@@ -246,6 +259,7 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
     fd.append("month",       arrival.month);
     fd.append("window",      arrival.window);
     fd.append("lastPort",    arrival.lastPort);
+    fd.append("lastPorts",   JSON.stringify(lastPorts.filter(p => p.trim())));
     fd.append("trip",        trip);
     fd.append("tripLabel",   tripLabel);
     fd.append("tripPrice",   tripPrice ?? "");
@@ -583,6 +597,49 @@ export function ClearanceBookingForm({ initialTrip }: { initialTrip?: string }) 
                       style={{ fontFamily: "var(--font-body)" }}
                     />
                   </Field>
+                </div>
+
+                {/* Last 10 ports */}
+                <div className="mt-4 rounded-xl border border-white/[0.07] bg-white/[0.02] p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/25" style={{ fontFamily: "var(--font-body)" }}>
+                      Last 10 ports visited <span className="normal-case tracking-normal text-white/15 font-normal ml-1">— optional</span>
+                    </p>
+                    <span className="text-[10px] text-white/20" style={{ fontFamily: "var(--font-body)" }}>
+                      {lastPorts.filter(p => p.trim()).length} / 10
+                    </span>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    {lastPorts.map((port, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <span className="text-[10px] text-white/15 w-4 shrink-0 text-right" style={{ fontFamily: "var(--font-body)" }}>{i + 1}</span>
+                        <input
+                          value={port}
+                          onChange={e => updatePort(i, e.target.value)}
+                          placeholder={`Port ${i + 1}, Country`}
+                          className={inputCls + " flex-1 py-2.5 text-[13px]"}
+                          style={{ fontFamily: "var(--font-body)" }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removePort(i)}
+                          className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/[0.08] text-white/20 hover:text-red-400/60 hover:border-red-400/20 transition-colors shrink-0"
+                        >
+                          <Minus size={12} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                  {lastPorts.length < 10 && (
+                    <button
+                      type="button"
+                      onClick={addPort}
+                      className="mt-2.5 flex items-center gap-1.5 text-[11.5px] text-white/25 hover:text-[var(--color-amber)]/60 transition-colors"
+                      style={{ fontFamily: "var(--font-body)" }}
+                    >
+                      <Plus size={11} /> Add port
+                    </button>
+                  )}
                 </div>
 
                 <div className="flex justify-end mt-6 pt-5 border-t border-white/[0.07]">
