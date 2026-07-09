@@ -24,42 +24,36 @@ const CUSTOM = {
 export default function TripsPage() {
   return (
     <>
-      {/* ── Hero ── deep forest */}
-      <section style={{ background: "linear-gradient(160deg, #0A1A0E 0%, #0F2418 60%, #142D1E 100%)" }}>
+      {/* ── Hero ── navy */}
+      <section style={{ background: "linear-gradient(160deg, #080F1E 0%, #0F1D33 60%, #172A46 100%)" }}>
         <div className="container-site py-16 lg:py-24">
           <Reveal>
-            <p
-              className="text-[11px] font-semibold uppercase tracking-[0.32em] mb-6"
-              style={{ fontFamily: "var(--font-body)", color: "#6BBF92" }}
-            >
-              Trips
-            </p>
             <h1
               className="text-[clamp(2.5rem,7vw,5.5rem)] font-light text-white leading-[1.05] mb-6 max-w-3xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Bespoke Trips and Excursions
               <br />
-              <span style={{ color: "rgba(107,191,146,0.5)", fontStyle: "italic" }}>Around the Island</span>
+              <span style={{ color: "var(--color-trips)", fontStyle: "italic", opacity: 0.7 }}>Around the Island</span>
             </h1>
             <p
               className="text-[15px] leading-relaxed max-w-md"
-              style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.45)" }}
+              style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.55)" }}
             >
               From day excursions to wildlife safaris and tranquil mountain escapes, discover experiences tailored to your sailing plans.
             </p>
           </Reveal>
         </div>
-        <div style={{ height: "2px", background: "linear-gradient(90deg, transparent, rgba(61,122,92,0.5), transparent)" }} />
+        <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(232,220,196,0.25), transparent)" }} />
       </section>
 
-      {/* ── Day excursions ── warm natural light */}
-      <section style={{ background: "#EEF5EF" }}>
+      {/* ── Day excursions ── beige */}
+      <section style={{ background: "var(--color-trips)" }}>
         <div className="container-site py-14 lg:py-20">
           <Reveal className="mb-10">
             <p
               className="text-[10px] font-semibold uppercase tracking-[0.28em]"
-              style={{ color: "#3D7A5C", fontFamily: "var(--font-body)" }}
+              style={{ color: "rgba(15,29,51,0.45)", fontFamily: "var(--font-body)" }}
             >
               Day excursions
             </p>
@@ -71,7 +65,7 @@ export default function TripsPage() {
                 <Link
                   href={`/trips/${trip.slug}`}
                   className="group relative overflow-hidden block transition-transform duration-300 hover:-translate-y-1"
-                  style={{ borderRadius: "16px", boxShadow: "0 16px 48px -20px rgba(13,24,16,0.25)" }}
+                  style={{ borderRadius: "16px", boxShadow: "0 16px 48px -20px rgba(15,29,51,0.2)" }}
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
@@ -84,11 +78,11 @@ export default function TripsPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, 50vw"
                     />
-                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,24,16,0.8) 0%, rgba(13,24,16,0.1) 50%, transparent 100%)" }} />
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(15,29,51,0.8) 0%, rgba(15,29,51,0.1) 50%, transparent 100%)" }} />
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <p
                         className="text-[9px] uppercase tracking-[0.24em] mb-1.5"
-                        style={{ color: "#6BBF92", fontFamily: "var(--font-accent)" }}
+                        style={{ color: "var(--color-trips)", fontFamily: "var(--font-accent)" }}
                       >
                         One day · US${trip.price} · {trip.priceNote}
                       </p>
@@ -102,18 +96,18 @@ export default function TripsPage() {
                   </div>
                   <div
                     className="p-5 flex items-center justify-between gap-4"
-                    style={{ background: "#fff", borderTop: "2px solid rgba(61,122,92,0.12)" }}
+                    style={{ background: "#fff", borderTop: "2px solid rgba(15,29,51,0.08)" }}
                   >
                     <p
                       className="text-[13px] leading-relaxed flex-1 line-clamp-2"
-                      style={{ color: "rgba(13,24,16,0.55)", fontFamily: "var(--font-body)" }}
+                      style={{ color: "rgba(15,29,51,0.55)", fontFamily: "var(--font-body)" }}
                     >
                       {trip.paragraphs[0]}
                     </p>
                     <ArrowRight
                       size={16}
                       className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
-                      style={{ color: "#3D7A5C" }}
+                      style={{ color: "var(--color-navy)" }}
                     />
                   </div>
                 </Link>
@@ -123,13 +117,13 @@ export default function TripsPage() {
         </div>
       </section>
 
-      {/* ── Multi-day trips ── deep forest dark */}
-      <section style={{ background: "#0D1810" }}>
+      {/* ── Multi-day trips ── navy dark */}
+      <section style={{ background: "var(--color-navy-dark)" }}>
         <div className="container-site py-14 lg:py-20">
           <Reveal className="mb-10">
             <p
               className="text-[10px] font-semibold uppercase tracking-[0.28em]"
-              style={{ color: "#6BBF92", fontFamily: "var(--font-body)" }}
+              style={{ color: "rgba(232,220,196,0.5)", fontFamily: "var(--font-body)" }}
             >
               Multi-day journeys
             </p>
@@ -141,7 +135,7 @@ export default function TripsPage() {
                 <Link
                   href={`/trips/${trip.slug}`}
                   className="group relative overflow-hidden block transition-transform duration-300 hover:-translate-y-1"
-                  style={{ borderRadius: "16px", border: "1px solid rgba(61,122,92,0.15)" }}
+                  style={{ borderRadius: "16px", border: "1px solid rgba(232,220,196,0.12)" }}
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
@@ -153,11 +147,11 @@ export default function TripsPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,24,16,0.85) 0%, rgba(13,24,16,0.1) 55%, transparent 100%)" }} />
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,15,30,0.85) 0%, rgba(8,15,30,0.1) 55%, transparent 100%)" }} />
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <p
                         className="text-[9px] uppercase tracking-[0.24em] mb-1.5"
-                        style={{ color: "#6BBF92", fontFamily: "var(--font-accent)" }}
+                        style={{ color: "var(--color-trips)", fontFamily: "var(--font-accent)" }}
                       >
                         {trip.badge} · US${trip.price} · {trip.priceNote}
                       </p>
@@ -177,18 +171,18 @@ export default function TripsPage() {
                   </div>
                   <div
                     className="p-4 flex items-center justify-between"
-                    style={{ background: "rgba(61,122,92,0.12)", borderTop: "1px solid rgba(61,122,92,0.2)" }}
+                    style={{ background: "rgba(232,220,196,0.06)", borderTop: "1px solid rgba(232,220,196,0.12)" }}
                   >
                     <span
                       className="text-[12px]"
-                      style={{ color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-body)" }}
+                      style={{ color: "rgba(232,220,196,0.45)", fontFamily: "var(--font-body)" }}
                     >
                       View full itinerary
                     </span>
                     <ArrowRight
                       size={14}
                       className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
-                      style={{ color: "#6BBF92" }}
+                      style={{ color: "var(--color-trips)" }}
                     />
                   </div>
                 </Link>
@@ -200,7 +194,7 @@ export default function TripsPage() {
               <Link
                 href="/trips/custom"
                 className="group relative overflow-hidden block transition-transform duration-300 hover:-translate-y-1"
-                style={{ borderRadius: "16px", border: "1px solid rgba(61,122,92,0.15)" }}
+                style={{ borderRadius: "16px", border: "1px solid rgba(232,220,196,0.12)" }}
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
@@ -212,11 +206,11 @@ export default function TripsPage() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,24,16,0.85) 0%, rgba(13,24,16,0.1) 55%, transparent 100%)" }} />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,15,30,0.85) 0%, rgba(8,15,30,0.1) 55%, transparent 100%)" }} />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <p
                       className="text-[9px] uppercase tracking-[0.24em] mb-1.5"
-                      style={{ color: "#6BBF92", fontFamily: "var(--font-body)" }}
+                      style={{ color: "var(--color-trips)", fontFamily: "var(--font-body)" }}
                     >
                       {CUSTOM.badge}
                     </p>
@@ -236,18 +230,18 @@ export default function TripsPage() {
                 </div>
                 <div
                   className="p-4 flex items-center justify-between"
-                  style={{ background: "rgba(61,122,92,0.12)", borderTop: "1px solid rgba(61,122,92,0.2)" }}
+                  style={{ background: "rgba(232,220,196,0.06)", borderTop: "1px solid rgba(232,220,196,0.12)" }}
                 >
                   <span
                     className="text-[12px]"
-                    style={{ color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-body)" }}
+                    style={{ color: "rgba(232,220,196,0.45)", fontFamily: "var(--font-body)" }}
                   >
                     Plan a custom trip
                   </span>
                   <ArrowRight
                     size={14}
                     className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
-                    style={{ color: "#6BBF92" }}
+                    style={{ color: "var(--color-trips)" }}
                   />
                 </div>
               </Link>
@@ -256,20 +250,20 @@ export default function TripsPage() {
         </div>
       </section>
 
-      {/* ── Bottom CTA ── trips green */}
-      <section style={{ background: "#3D7A5C" }}>
+      {/* ── Bottom CTA ── beige */}
+      <section style={{ background: "var(--color-trips)" }}>
         <div className="container-site py-10 lg:py-12">
           <Reveal className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
               <p
-                className="text-[1.2rem] font-light text-white mb-1"
-                style={{ fontFamily: "var(--font-display)" }}
+                className="text-[1.2rem] font-light mb-1"
+                style={{ fontFamily: "var(--font-display)", color: "var(--color-navy)" }}
               >
                 Something different in mind?
               </p>
               <p
                 className="text-[13.5px] leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.6)", fontFamily: "var(--font-body)" }}
+                style={{ color: "rgba(15,29,51,0.55)", fontFamily: "var(--font-body)" }}
               >
                 Tell us what you have in mind — we&apos;ll build it around your schedule.
               </p>
@@ -277,7 +271,7 @@ export default function TripsPage() {
             <Link
               href="/trips/custom"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 shrink-0 whitespace-nowrap"
-              style={{ background: "rgba(255,255,255,0.15)", color: "#fff", border: "1px solid rgba(255,255,255,0.25)", fontFamily: "var(--font-body)" }}
+              style={{ background: "var(--color-navy)", color: "var(--color-trips)", fontFamily: "var(--font-body)" }}
             >
               Plan a custom trip <ArrowRight size={14} />
             </Link>

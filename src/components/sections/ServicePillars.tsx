@@ -37,7 +37,7 @@ const PILLARS = [
 
 function PillarCard({ tag, title, items }: (typeof PILLARS)[0]) {
   return (
-    <div className="relative flex flex-col gap-8 bg-white/[0.04] border border-white/[0.08] rounded-2xl p-7 md:p-8 overflow-hidden transition-all duration-500 hover:bg-white/[0.07] hover:border-white/[0.15] hover:-translate-y-1 group">
+    <div className="relative flex flex-col gap-8 h-full bg-white/[0.04] border border-white/[0.08] rounded-2xl p-7 md:p-8 overflow-hidden transition-all duration-500 hover:bg-white/[0.07] hover:border-white/[0.15] hover:-translate-y-1 group">
       <div className="flex flex-col gap-2">
         <span
           className="text-[9.5px] uppercase tracking-[0.28em] text-[var(--color-amber)]"
@@ -78,12 +78,12 @@ export function ServicePillars() {
         {/* Section header */}
         <Reveal className="mb-10 md:mb-12">
           <h2
-            className="text-[clamp(2rem,5vw,3.5rem)] font-light text-white leading-[1.1]"
+            className="text-[clamp(2rem,5vw,3.5rem)] font-light text-white leading-none"
             style={{ fontFamily: "var(--font-display)" }}
           >
             From arrival to departure,
             <br />
-            <span className="italic text-white/40">everything your yacht and crew need is taken care of, giving you complete peace of mind.</span>
+            <span className="inline-block mt-3 italic font-light text-[clamp(1.1rem,2.5vw,1.75rem)] text-white/40 leading-snug">everything your yacht and crew need is taken care of, giving you complete peace of mind.</span>
           </h2>
         </Reveal>
 
@@ -92,7 +92,7 @@ export function ServicePillars() {
           {PILLARS.map((pillar) => (
             <div
               key={pillar.tag}
-              className="snap-start shrink-0 w-[85vw] max-w-[360px]"
+              className="snap-start shrink-0 w-[85vw] max-w-[360px] h-full"
             >
               <PillarCard {...pillar} />
             </div>
@@ -102,9 +102,9 @@ export function ServicePillars() {
         </div>
 
         {/* Desktop: 3-column grid */}
-        <div className="hidden lg:grid grid-cols-3 gap-5">
+        <div className="hidden lg:grid grid-cols-3 gap-5 items-stretch">
           {PILLARS.map((pillar, i) => (
-            <Reveal key={pillar.tag} delay={i * 0.12}>
+            <Reveal key={pillar.tag} delay={i * 0.12} className="h-full">
               <PillarCard {...pillar} />
             </Reveal>
           ))}

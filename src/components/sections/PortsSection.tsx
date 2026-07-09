@@ -9,7 +9,7 @@ export function PortsSection() {
           {/* Text */}
           <div>
             <h2
-              className="text-3xl sm:text-4xl font-semibold text-[var(--color-navy)] leading-tight mb-5"
+              className="text-[clamp(2rem,5vw,3.5rem)] font-light text-[var(--color-navy)] leading-[1.1] mb-5"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Two doors into Sri Lanka — Galle in the south, Trincomalee on the east.

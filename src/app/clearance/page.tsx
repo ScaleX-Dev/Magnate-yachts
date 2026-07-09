@@ -52,7 +52,7 @@ export default function ClearancePage() {
   return (
     <>
       {/* ── Hero ── deep ocean */}
-      <section style={{ background: "linear-gradient(160deg, #061824 0%, #0A2236 60%, #0D2A44 100%)" }}>
+      <section className="bg-[var(--color-navy)]">
         <div className="container-site py-16 lg:py-24">
           <Reveal>
             <p
@@ -99,7 +99,7 @@ export default function ClearancePage() {
       </section>
 
       {/* ── What's included ── dark ocean */}
-      <section style={{ background: "#071E2E" }}>
+      <section className="bg-[var(--color-navy)]">
         <div className="container-site py-12 lg:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
 
@@ -188,7 +188,7 @@ export default function ClearancePage() {
       </section>
 
       {/* ── Documents ── light blue-tinted */}
-      <section style={{ background: "#EBF5FB" }}>
+      <section style={{ background: "var(--color-ivory)" }}>
         <div className="container-site py-14 lg:py-18">
           <Reveal>
             <p
@@ -259,7 +259,7 @@ export default function ClearancePage() {
       </section>
 
       {/* ── How it works ── deep ocean with steps */}
-      <section id="how-it-works" style={{ background: "#061824" }}>
+      <section id="how-it-works" className="bg-[var(--color-navy)]">
         <div className="container-site py-14 lg:py-20">
           <Reveal>
             <p
@@ -281,7 +281,7 @@ export default function ClearancePage() {
               <Reveal key={n} delay={i * 0.1}>
                 <div
                   className="flex flex-col gap-5 p-8 group transition-all duration-300 hover:bg-[rgba(42,125,168,0.08)] h-full"
-                  style={{ background: "#061824" }}
+                  style={{ background: "var(--color-navy)" }}
                 >
                 <span
                   className="text-[2.5rem] font-light leading-none"
