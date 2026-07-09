@@ -72,7 +72,13 @@ function PillarCard({ tag, title, items }: (typeof PILLARS)[0]) {
 
 export function ServicePillars() {
   return (
-    <section className="bg-[var(--color-navy)] overflow-hidden">
+    <section className="overflow-hidden relative" style={{ backgroundImage: [
+      "radial-gradient(ellipse 65% 70% at -8% -10%, #1A3560 0%, #0D2040 50%, transparent 75%)",
+      "radial-gradient(ellipse 55% 60% at 108% 108%, #152D52 0%, #0B1E38 55%, transparent 78%)",
+      "radial-gradient(ellipse 40% 35% at 98%  2%,  rgba(42,90,180,0.22) 0%, transparent 60%)",
+      "radial-gradient(ellipse 35% 30% at  2% 98%,  rgba(30,70,150,0.18) 0%, transparent 60%)",
+      "linear-gradient(160deg, #0F1D33 0%, #0D1A2E 100%)",
+    ].join(", ") }}>
       <div className="container-site py-12 md:py-16 lg:py-20">
 
         {/* Section header */}

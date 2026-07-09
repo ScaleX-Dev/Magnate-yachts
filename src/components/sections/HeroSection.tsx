@@ -32,7 +32,11 @@ function LineReveal({
 
 export function HeroSection() {
   return (
-    <section className="bg-[var(--color-ivory)]">
+    <section className="relative" style={{ backgroundImage: [
+      "radial-gradient(ellipse 55% 50% at 100% 0%,   rgba(196,146,74,0.07) 0%, transparent 65%)",
+      "radial-gradient(ellipse 45% 40% at   0% 100%, rgba(15,29,51,0.04)   0%, transparent 65%)",
+      "linear-gradient(160deg, #F4F1EA 0%, #EEE9DF 100%)",
+    ].join(", ") }}>
       <div className="container-site pt-5 md:pt-6 pb-10 md:pb-14">
 
         {/* Hero image */}

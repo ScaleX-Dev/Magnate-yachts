@@ -4,17 +4,14 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export function FinalCTA() {
   return (
-    <section className="relative bg-[var(--color-navy)] overflow-hidden">
-      {/* Atmospheric gradient */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(ellipse 140% 80% at -10% 50%, rgba(30, 146, 146, 0.07) 0%, transparent 55%),
-            radial-gradient(ellipse 80% 100% at 110% 50%, rgba(196, 146, 74, 0.05) 0%, transparent 60%)
-          `,
-        }}
-      />
+    <section className="relative overflow-hidden" style={{ backgroundImage: [
+      "radial-gradient(ellipse 62% 70% at -6% 50%,   #1A3B6A 0%, #0D2244 52%, transparent 76%)",
+      "radial-gradient(ellipse 58% 65% at 106% 50%,  #152E58 0%, #0B1E3A 55%, transparent 78%)",
+      "radial-gradient(ellipse 40% 40% at  2%   2%,  rgba(38,80,160,0.22) 0%, transparent 60%)",
+      "radial-gradient(ellipse 38% 38% at 98%  98%,  rgba(196,146,74,0.07) 0%, transparent 60%)",
+      "radial-gradient(ellipse 55% 50% at 50%  50%,  rgba(12,25,48,0.65)  0%, transparent 80%)",
+      "linear-gradient(160deg, #0F1D33 0%, #0C1828 100%)",
+    ].join(", ") }}>
 
       <div className="relative z-10 container-site py-24 md:py-32 lg:py-40">
         <Reveal y={30} className="max-w-3xl">

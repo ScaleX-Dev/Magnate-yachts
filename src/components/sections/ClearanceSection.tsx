@@ -15,7 +15,13 @@ const INCLUDED = [
 
 export function ClearanceSection() {
   return (
-    <section className="bg-[var(--color-navy)]">
+    <section className="relative overflow-hidden" style={{ backgroundImage: [
+      "radial-gradient(ellipse 60% 65% at 110% -12%, #1A3D78 0%, #0D2248 52%, transparent 78%)",
+      "radial-gradient(ellipse 52% 58% at -8% 108%, #163260 0%, #0B1E42 55%, transparent 80%)",
+      "radial-gradient(ellipse 38% 40% at 105%  95%, rgba(42,125,168,0.20) 0%, transparent 65%)",
+      "radial-gradient(ellipse 30% 28% at  50%  50%, rgba(15,30,55,0.6)    0%, transparent 70%)",
+      "linear-gradient(160deg, #0F1D33 0%, #0C1A2C 100%)",
+    ].join(", ") }}>
       <div className="container-site py-14 md:py-18 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 

@@ -29,7 +29,12 @@ const TRIPS = [
 
 export function TripsPreview() {
   return (
-    <section style={{ background: "var(--color-trips)" }}>
+    <section style={{ backgroundImage: [
+      "radial-gradient(ellipse 55% 50% at  -5% 0%,   rgba(15,29,51,0.06)   0%, transparent 65%)",
+      "radial-gradient(ellipse 50% 45% at 105% 100%, rgba(15,29,51,0.05)   0%, transparent 65%)",
+      "radial-gradient(ellipse 40% 38% at  98%  2%,  rgba(196,146,74,0.08) 0%, transparent 60%)",
+      "linear-gradient(160deg, #EDE1CB 0%, var(--color-trips) 40%, #E0D3B8 100%)",
+    ].join(", ") }}>
       <div className="container-site py-14 md:py-18 lg:py-24">
 
         {/* Header */}
