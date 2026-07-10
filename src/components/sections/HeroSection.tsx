@@ -48,39 +48,40 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(8,15,30,0.45)_100%)] pointer-events-none" />
 
       {/* Content — anchored to bottom */}
-      <div className="relative z-10 container-site pb-10 md:pb-12 overflow-x-hidden">
+      {/* pb-24 on mobile leaves 96px clearance above the 56px fixed MobileCtaBar */}
+      <div className="relative z-10 container-site pb-24 lg:pb-14 overflow-x-hidden">
 
         {/* Headline */}
         <h1
-          className="mb-6 md:mb-8"
+          className="mb-5 md:mb-7"
           style={{ fontFamily: "var(--font-display)" }}
         >
           <LineReveal
             delay={0.18}
-            className="text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] sm:whitespace-nowrap"
+            className="text-[clamp(1.4rem,4.5vw,3.6rem)] font-semibold text-white leading-[1.1] tracking-[-0.01em]"
           >
             Anchor down.
           </LineReveal>
           <LineReveal
             delay={0.30}
-            className="text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] sm:whitespace-nowrap"
+            className="text-[clamp(1.4rem,4.5vw,3.6rem)] font-semibold text-white leading-[1.1] tracking-[-0.01em]"
           >
             Your Sri Lanka adventure
           </LineReveal>
           <LineReveal
             delay={0.42}
-            className="text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] sm:whitespace-nowrap"
+            className="text-[clamp(1.4rem,4.5vw,3.6rem)] font-semibold text-white leading-[1.1] tracking-[-0.01em]"
           >
             begins here
           </LineReveal>
-          <div className="hidden sm:block">
+          <div className="hidden sm:block mt-1">
             <LineReveal
               delay={0.54}
-              className="text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] whitespace-nowrap"
+              className="text-[clamp(1.4rem,4.5vw,3.6rem)] font-semibold text-white leading-[1.1] whitespace-nowrap"
             >
               <motion.span
                 className="inline-flex items-center gap-2"
-                style={{ fontFamily: "var(--font-accent)", fontSize: "clamp(1.6rem,3.6vw,3rem)", letterSpacing: "0.28em", color: "var(--color-amber)", verticalAlign: "middle", transform: "translateY(-0.08em)" }}
+                style={{ fontFamily: "var(--font-accent)", fontSize: "clamp(1.4rem,3.2vw,2.8rem)", letterSpacing: "0.26em", color: "var(--color-amber)" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.95 }}
@@ -93,14 +94,14 @@ export function HeroSection() {
 
         {/* CTAs */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-3"
+          className="flex flex-col sm:flex-row gap-2.5"
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.75, ease: EASE_EXPO }}
         >
           <Link
             href="/book"
-            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full bg-white text-[var(--color-navy)] text-[13.5px] font-medium tracking-wide hover:bg-white/92 hover:shadow-[0_16px_48px_-8px_rgba(6,12,24,0.55)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
+            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3.5 rounded-full bg-white text-[var(--color-navy)] text-[14px] font-medium tracking-wide hover:bg-white/92 hover:shadow-[0_16px_48px_-8px_rgba(6,12,24,0.55)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Plan your stay
@@ -108,7 +109,7 @@ export function HeroSection() {
           </Link>
           <Link
             href="/clearance"
-            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-navy-mid)] text-white text-[13.5px] font-medium tracking-wide hover:bg-[var(--color-navy)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
+            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3.5 rounded-full bg-[var(--color-navy-mid)]/80 text-white text-[14px] font-medium tracking-wide hover:bg-[var(--color-navy)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Arrange Clearance
