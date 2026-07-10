@@ -126,7 +126,7 @@ export default function PortGuidePage() {
         <div className="container-site relative pt-14 pb-12 lg:pt-20 lg:pb-16">
           <Reveal>
             <span
-              className="block text-[10px] font-medium uppercase tracking-[0.35em] text-[var(--color-amber)] mb-8"
+              className="block text-[14px] font-medium uppercase tracking-[0.35em] text-[var(--color-amber)] mb-8"
               style={{ fontFamily: "var(--font-accent)" }}
             >
               Sri Lanka · Official Entry Ports
@@ -155,7 +155,7 @@ export default function PortGuidePage() {
             >
               <div>
                 <p
-                  className="text-[10px] font-medium uppercase tracking-[0.25em] text-[var(--color-amber)] mb-1.5"
+                  className="text-[14px] font-medium uppercase tracking-[0.25em] text-[var(--color-amber)] mb-1.5"
                   style={{ fontFamily: "var(--font-accent)" }}
                 >
                   South coast
@@ -168,8 +168,8 @@ export default function PortGuidePage() {
                 </p>
               </div>
               <div className="flex flex-col items-end gap-1">
-                <span className="text-[11px] text-white/25 font-mono">6° 01′ N</span>
-                <span className="text-[11px] text-white/25 font-mono">80° 13′ E</span>
+                <span className="text-[15px] text-white/25 font-mono">6° 01′ N</span>
+                <span className="text-[15px] text-white/25 font-mono">80° 13′ E</span>
                 <ArrowRight size={14} className="text-[var(--color-amber)] mt-2 transition-transform duration-300 group-hover:translate-x-1" />
               </div>
             </a>
@@ -180,7 +180,7 @@ export default function PortGuidePage() {
             >
               <div>
                 <p
-                  className="text-[10px] font-medium uppercase tracking-[0.25em] text-[var(--color-amber)] mb-1.5"
+                  className="text-[14px] font-medium uppercase tracking-[0.25em] text-[var(--color-amber)] mb-1.5"
                   style={{ fontFamily: "var(--font-accent)" }}
                 >
                   East coast
@@ -193,8 +193,8 @@ export default function PortGuidePage() {
                 </p>
               </div>
               <div className="flex flex-col items-end gap-1">
-                <span className="text-[11px] text-white/25 font-mono">8° 33′ N</span>
-                <span className="text-[11px] text-white/25 font-mono">81° 14′ E</span>
+                <span className="text-[15px] text-white/25 font-mono">8° 33′ N</span>
+                <span className="text-[15px] text-white/25 font-mono">81° 14′ E</span>
                 <ArrowRight size={14} className="text-[var(--color-amber)] mt-2 transition-transform duration-300 group-hover:translate-x-1" />
               </div>
             </a>
@@ -226,7 +226,7 @@ export default function PortGuidePage() {
               </div>
               <div>
                 <p
-                  className="text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-3"
+                  className="text-[14px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-3"
                   style={{ fontFamily: "var(--font-accent)" }}
                 >
                   South coast · Primary port
@@ -237,7 +237,7 @@ export default function PortGuidePage() {
                 >
                   Galle
                 </h2>
-                <p className="text-sm text-white/40 max-w-lg leading-relaxed">
+                <p className="text-[15px]text-white/40 max-w-lg leading-relaxed">
                   Sri Lanka&apos;s principal yachting destination, sheltered by one of the Indian Ocean&apos;s best-known colonial-era forts. Galle Harbour sits inside a modern breakwater and handles the majority of cruising yachts arriving from the west.
                 </p>
               </div>
@@ -259,7 +259,7 @@ export default function PortGuidePage() {
             {/* Quick facts */}
             <Reveal delay={0.08} className="lg:col-span-2">
               <h3
-                className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-amber)] mb-5"
+                className="text-[13px]font-semibold uppercase tracking-[0.2em] text-[var(--color-amber)] mb-5"
                 style={{ fontFamily: "var(--font-accent)" }}
               >
                 Quick facts
@@ -267,10 +267,10 @@ export default function PortGuidePage() {
               <div className="flex flex-col divide-y divide-white/[0.06]">
                 {GALLE_FACTS.map(({ label, value }) => (
                   <div key={label} className="flex flex-col sm:flex-row sm:items-center justify-between py-3.5 gap-1">
-                    <span className="text-[11px] uppercase tracking-wide text-white/30 font-medium shrink-0" style={{ fontFamily: "var(--font-accent)" }}>
+                    <span className="text-[15px] uppercase tracking-wide text-white/30 font-medium shrink-0" style={{ fontFamily: "var(--font-accent)" }}>
                       {label}
                     </span>
-                    <span className="text-[13px] text-white/75 font-mono">{value}</span>
+                    <span className="text-[15px] text-white/75 font-mono">{value}</span>
                   </div>
                 ))}
               </div>
@@ -279,7 +279,7 @@ export default function PortGuidePage() {
             {/* Approach */}
             <Reveal delay={0.12} className="lg:col-span-3">
               <h3
-                className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-amber)] mb-5"
+                className="text-[13px]font-semibold uppercase tracking-[0.2em] text-[var(--color-amber)] mb-5"
                 style={{ fontFamily: "var(--font-accent)" }}
               >
                 Approach &amp; entry
@@ -288,13 +288,13 @@ export default function PortGuidePage() {
                 {GALLE_APPROACH.map(({ title, body }, i) => (
                   <div key={title} className="flex gap-4">
                     <span
-                      className="w-6 h-6 rounded-full bg-white/[0.06] border border-white/[0.09] text-[11px] font-semibold text-white/40 flex items-center justify-center shrink-0 mt-0.5"
+                      className="w-6 h-6 rounded-full bg-white/[0.06] border border-white/[0.09] text-[15px] font-semibold text-white/40 flex items-center justify-center shrink-0 mt-0.5"
                     >
                       {i + 1}
                     </span>
                     <div>
-                      <p className="text-[13px] font-semibold text-white/80 mb-1">{title}</p>
-                      <p className="text-[13px] text-white/40 leading-relaxed">{body}</p>
+                      <p className="text-[15px] font-semibold text-white/80 mb-1">{title}</p>
+                      <p className="text-[15px] text-white/40 leading-relaxed">{body}</p>
                     </div>
                   </div>
                 ))}
@@ -305,7 +305,7 @@ export default function PortGuidePage() {
           {/* Facilities */}
           <Reveal delay={0.1} className="mt-8">
             <h3
-              className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-amber)] mb-6"
+              className="text-[13px]font-semibold uppercase tracking-[0.2em] text-[var(--color-amber)] mb-6"
               style={{ fontFamily: "var(--font-accent)" }}
             >
               Facilities
@@ -318,8 +318,8 @@ export default function PortGuidePage() {
                 >
                   <span className="text-[var(--color-amber)] shrink-0 mt-0.5">{icon}</span>
                   <div>
-                    <p className="text-[12.5px] font-semibold text-white/75 mb-1">{name}</p>
-                    <p className="text-[12px] text-white/35 leading-relaxed">{note}</p>
+                    <p className="text-[14.5px] font-semibold text-white/75 mb-1">{name}</p>
+                    <p className="text-[14px] text-white/35 leading-relaxed">{note}</p>
                   </div>
                 </div>
               ))}
@@ -328,19 +328,31 @@ export default function PortGuidePage() {
 
           {/* Galle highlights */}
           <Reveal delay={0.12} className="mt-10">
-            <div className="rounded-xl border border-[var(--color-amber)]/15 bg-[var(--color-amber)]/[0.04] p-7 lg:p-9">
-              <div className="flex items-start gap-4 mb-5">
-                <Waves size={15} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
-                <p
-                  className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-amber)]"
-                  style={{ fontFamily: "var(--font-accent)" }}
-                >
-                  What&apos;s within reach
-                </p>
+            <div className="rounded-xl border border-[var(--color-amber)]/15 bg-[var(--color-amber)]/[0.04] overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className="p-7 lg:p-9">
+                  <div className="flex items-start gap-4 mb-5">
+                    <Waves size={15} className="text-[var(--color-amber)] shrink-0 mt-0.5" />
+                    <p
+                      className="text-[14px] font-semibold uppercase tracking-[0.25em] text-[var(--color-amber)]"
+                      style={{ fontFamily: "var(--font-accent)" }}
+                    >
+                      What&apos;s within reach
+                    </p>
+                  </div>
+                  <p className="text-[15.5px] text-white/50 leading-relaxed">
+                    Galle Fort, a UNESCO World Heritage site, is a ten-minute walk from the dock. The city&apos;s Dutch-colonial ramparts, boutique hotels, and fresh-catch restaurants are walkable. Sri Lanka&apos;s south coast whale-watching grounds lie just 10–15 NM offshore. Inland, Yala National Park and the hill country are within a half-day&apos;s road trip — both easily arranged as add-on excursions through Magnate.
+                  </p>
+                </div>
+                <div className="relative min-h-[240px] lg:min-h-0">
+                  <ImgPlaceholder
+                    src="/images/site/galle-fort.jpg"
+                    label="Galle Fort, Sri Lanka"
+                    aspectRatio="aspect-auto"
+                    className="absolute inset-0 !rounded-none h-full w-full [&>img]:object-cover"
+                  />
+                </div>
               </div>
-              <p className="text-[13.5px] text-white/50 leading-relaxed max-w-2xl">
-                Galle Fort, a UNESCO World Heritage site, is a ten-minute walk from the dock. The city&apos;s Dutch-colonial ramparts, boutique hotels, and fresh-catch restaurants are walkable. Sri Lanka&apos;s south coast whale-watching grounds lie just 10–15 NM offshore. Inland, Yala National Park and the hill country are within a half-day&apos;s road trip — both easily arranged as add-on excursions through Magnate.
-              </p>
             </div>
           </Reveal>
 
@@ -370,7 +382,7 @@ export default function PortGuidePage() {
               </div>
               <div>
                 <p
-                  className="text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-turquoise)] mb-3"
+                  className="text-[14px] font-medium uppercase tracking-[0.3em] text-[var(--color-turquoise)] mb-3"
                   style={{ fontFamily: "var(--font-accent)" }}
                 >
                   East coast · Natural deepwater harbour
@@ -381,7 +393,7 @@ export default function PortGuidePage() {
                 >
                   Trincomalee
                 </h2>
-                <p className="text-sm text-white/40 max-w-lg leading-relaxed">
+                <p className="text-[15px]text-white/40 max-w-lg leading-relaxed">
                   One of Asia&apos;s finest natural deepwater anchorages, Trincomalee has sheltered fleets since antiquity. The harbour is immense — protected by headlands on three sides, it offers superb holding in all conditions and a very different face of Sri Lanka to the south.
                 </p>
               </div>
@@ -403,7 +415,7 @@ export default function PortGuidePage() {
             {/* Quick facts */}
             <Reveal delay={0.08} className="lg:col-span-2">
               <h3
-                className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-turquoise)] mb-5"
+                className="text-[13px]font-semibold uppercase tracking-[0.2em] text-[var(--color-turquoise)] mb-5"
                 style={{ fontFamily: "var(--font-accent)" }}
               >
                 Quick facts
@@ -411,10 +423,10 @@ export default function PortGuidePage() {
               <div className="flex flex-col divide-y divide-white/[0.06]">
                 {TRINCO_FACTS.map(({ label, value }) => (
                   <div key={label} className="flex flex-col sm:flex-row sm:items-center justify-between py-3.5 gap-1">
-                    <span className="text-[11px] uppercase tracking-wide text-white/30 font-medium shrink-0" style={{ fontFamily: "var(--font-accent)" }}>
+                    <span className="text-[15px] uppercase tracking-wide text-white/30 font-medium shrink-0" style={{ fontFamily: "var(--font-accent)" }}>
                       {label}
                     </span>
-                    <span className="text-[13px] text-white/75 font-mono">{value}</span>
+                    <span className="text-[15px] text-white/75 font-mono">{value}</span>
                   </div>
                 ))}
               </div>
@@ -423,7 +435,7 @@ export default function PortGuidePage() {
             {/* Approach */}
             <Reveal delay={0.12} className="lg:col-span-3">
               <h3
-                className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-turquoise)] mb-5"
+                className="text-[13px]font-semibold uppercase tracking-[0.2em] text-[var(--color-turquoise)] mb-5"
                 style={{ fontFamily: "var(--font-accent)" }}
               >
                 Approach &amp; entry
@@ -432,13 +444,13 @@ export default function PortGuidePage() {
                 {TRINCO_APPROACH.map(({ title, body }, i) => (
                   <div key={title} className="flex gap-4">
                     <span
-                      className="w-6 h-6 rounded-full bg-white/[0.06] border border-white/[0.09] text-[11px] font-semibold text-white/40 flex items-center justify-center shrink-0 mt-0.5"
+                      className="w-6 h-6 rounded-full bg-white/[0.06] border border-white/[0.09] text-[15px] font-semibold text-white/40 flex items-center justify-center shrink-0 mt-0.5"
                     >
                       {i + 1}
                     </span>
                     <div>
-                      <p className="text-[13px] font-semibold text-white/80 mb-1">{title}</p>
-                      <p className="text-[13px] text-white/40 leading-relaxed">{body}</p>
+                      <p className="text-[15px] font-semibold text-white/80 mb-1">{title}</p>
+                      <p className="text-[15px] text-white/40 leading-relaxed">{body}</p>
                     </div>
                   </div>
                 ))}
@@ -449,7 +461,7 @@ export default function PortGuidePage() {
           {/* Facilities */}
           <Reveal delay={0.1} className="mt-8">
             <h3
-              className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-turquoise)] mb-6"
+              className="text-[13px]font-semibold uppercase tracking-[0.2em] text-[var(--color-turquoise)] mb-6"
               style={{ fontFamily: "var(--font-accent)" }}
             >
               Facilities
@@ -462,8 +474,8 @@ export default function PortGuidePage() {
                 >
                   <span className="text-[var(--color-turquoise)] shrink-0 mt-0.5">{icon}</span>
                   <div>
-                    <p className="text-[12.5px] font-semibold text-white/75 mb-1">{name}</p>
-                    <p className="text-[12px] text-white/35 leading-relaxed">{note}</p>
+                    <p className="text-[14.5px] font-semibold text-white/75 mb-1">{name}</p>
+                    <p className="text-[14px] text-white/35 leading-relaxed">{note}</p>
                   </div>
                 </div>
               ))}
@@ -476,13 +488,13 @@ export default function PortGuidePage() {
               <div className="flex items-start gap-4 mb-5">
                 <Waves size={15} className="text-[var(--color-turquoise)] shrink-0 mt-0.5" />
                 <p
-                  className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-turquoise)]"
+                  className="text-[14px] font-semibold uppercase tracking-[0.25em] text-[var(--color-turquoise)]"
                   style={{ fontFamily: "var(--font-accent)" }}
                 >
                   What&apos;s within reach
                 </p>
               </div>
-              <p className="text-[13.5px] text-white/50 leading-relaxed max-w-2xl">
+              <p className="text-[15.5px] text-white/50 leading-relaxed max-w-2xl">
                 Pigeon Island National Marine Park — one of Sri Lanka&apos;s best reef dive sites — is a short tender ride away. The bay itself is home to dolphins and blue whales during season. Ashore, the ancient Koneswaram temple sits dramatically on a headland above the harbour. Further inland, Minneriya and Kaudulla national parks host the famous elephant gatherings — hundreds of elephants converging on ancient tanks as water levels drop in the dry season.
               </p>
             </div>
@@ -499,7 +511,7 @@ export default function PortGuidePage() {
             <div className="flex items-center gap-3 mb-3">
               <Wind size={14} className="text-[var(--color-amber)]" />
               <h2
-                className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-amber)]"
+                className="text-[13px]font-semibold uppercase tracking-[0.25em] text-[var(--color-amber)]"
                 style={{ fontFamily: "var(--font-accent)" }}
               >
                 Season &amp; weather
@@ -518,7 +530,7 @@ export default function PortGuidePage() {
               <Reveal key={port} delay={i * 0.08}>
                 <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-7 h-full flex flex-col gap-5">
                   <div>
-                    <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-white/30 mb-2" style={{ fontFamily: "var(--font-accent)" }}>
+                    <p className="text-[14px] font-medium uppercase tracking-[0.25em] text-white/30 mb-2" style={{ fontFamily: "var(--font-accent)" }}>
                       {coast}
                     </p>
                     <p className="text-2xl font-light text-white" style={{ fontFamily: "var(--font-display)" }}>{port}</p>
@@ -526,16 +538,16 @@ export default function PortGuidePage() {
 
                   <div className="flex gap-4">
                     <div className="flex-1 rounded-lg bg-white/[0.03] border border-white/[0.06] p-4">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-amber)] mb-1.5" style={{ fontFamily: "var(--font-accent)" }}>Best window</p>
-                      <p className="text-sm text-white/70 font-medium">{best}</p>
+                      <p className="text-[14px] font-semibold uppercase tracking-wider text-[var(--color-amber)] mb-1.5" style={{ fontFamily: "var(--font-accent)" }}>Best window</p>
+                      <p className="text-[15px]text-white/70 font-medium">{best}</p>
                     </div>
                     <div className="flex-1 rounded-lg bg-white/[0.03] border border-white/[0.06] p-4">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-white/25 mb-1.5" style={{ fontFamily: "var(--font-accent)" }}>Avoid</p>
-                      <p className="text-sm text-white/40 font-medium">{avoid}</p>
+                      <p className="text-[14px] font-semibold uppercase tracking-wider text-white/25 mb-1.5" style={{ fontFamily: "var(--font-accent)" }}>Avoid</p>
+                      <p className="text-[15px]text-white/40 font-medium">{avoid}</p>
                     </div>
                   </div>
 
-                  <p className="text-[12.5px] text-white/35 leading-relaxed">{note}</p>
+                  <p className="text-[14.5px] text-white/35 leading-relaxed">{note}</p>
                 </div>
               </Reveal>
             ))}
@@ -550,7 +562,7 @@ export default function PortGuidePage() {
           <Reveal className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
             <div className="max-w-lg">
               <p
-                className="text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-4"
+                className="text-[14px] font-medium uppercase tracking-[0.3em] text-[var(--color-amber)] mb-4"
                 style={{ fontFamily: "var(--font-accent)" }}
               >
                 Ready to arrive?
@@ -563,10 +575,10 @@ export default function PortGuidePage() {
                 <br />
                 <span className="italic text-white/40">before you enter port.</span>
               </h2>
-              <p className="text-sm text-white/40 leading-relaxed">
+              <p className="text-[15px]text-white/40 leading-relaxed">
                 Sri Lanka requires all visiting yachts to appoint a licensed clearing agent ahead of arrival. Magnate handles clearance at both Galle and Trincomalee — fixed fee, met at the dock.
               </p>
-              <p className="text-sm text-white/40 leading-relaxed mt-3">
+              <p className="text-[15px]text-white/40 leading-relaxed mt-3">
                 <strong className="text-white/60">Visa required before arrival</strong> — all crew must apply online before reaching Sri Lanka.{" "}
                 <a
                   href="https://www.eta.gov.lk/"
@@ -582,14 +594,14 @@ export default function PortGuidePage() {
             <div className="flex flex-col sm:flex-row gap-4 shrink-0">
               <Link
                 href="/clearance"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--color-amber)] text-white text-[13px] font-medium tracking-wide hover:bg-[var(--color-amber-light)] hover:shadow-[var(--shadow-gold)] hover:-translate-y-px transition-all duration-300 active:scale-[0.97]"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--color-amber)] text-white text-[15px] font-medium tracking-wide hover:bg-[var(--color-amber-light)] hover:shadow-[var(--shadow-gold)] hover:-translate-y-px transition-all duration-300 active:scale-[0.97]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Clearance service <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/book"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white/70 text-[13px] font-medium hover:border-white/40 hover:text-white transition-all duration-300"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white/70 text-[15px] font-medium hover:border-white/40 hover:text-white transition-all duration-300"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Book your agent
