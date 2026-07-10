@@ -34,7 +34,7 @@ export function HeroSection() {
     <section className="relative bg-[var(--color-navy-dark)] min-h-[calc(100svh-68px)] md:min-h-[calc(100svh-72px)] lg:min-h-[calc(100svh-104px)] flex flex-col justify-end overflow-hidden">
       {/* Video background */}
       <video
-        src="/images/site/VIDEO%201.mp4"
+        src="/images/site/VIDEO%203.mp4"
         autoPlay
         muted
         loop
