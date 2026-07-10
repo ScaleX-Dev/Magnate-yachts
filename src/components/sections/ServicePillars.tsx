@@ -98,7 +98,7 @@ export function ServicePillars() {
           {PILLARS.map((pillar) => (
             <div
               key={pillar.tag}
-              className="snap-start shrink-0 w-[85vw] max-w-[360px] h-full"
+              className="snap-start shrink-0 w-[85vw] max-w-[360px] self-stretch"
             >
               <PillarCard {...pillar} />
             </div>

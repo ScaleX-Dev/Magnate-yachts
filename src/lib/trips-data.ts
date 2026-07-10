@@ -94,7 +94,7 @@ export const TRIPS: Trip[] = [
     shortName: "Safari & Hill Country",
     heroTitle: "Safari &\nHill Country",
     subtitle: "The wild south, then the hills above it.",
-    image: "/images/site/trip-3day-card.jpg",
+    image: "/images/site/Safari.jpg",
     videoSrc: "/images/site/VIDEO%201.mp4",
     days: [
       DAY_SAFARI,
