@@ -5,10 +5,27 @@ import { Reveal } from "@/components/ui/Reveal";
 
 const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYzJiM2UiLz48L3N2Zz4=";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://magnateyachts.com";
+
 export const metadata: Metadata = {
-  title: "About — Magnate Yachts Sri Lanka",
+  title: "About Us — Sri Lanka's Leading Yacht Agent",
   description:
-    "Sri Lanka's leading yacht agency. Founded by Achintha Hewagamage, trusted to handle over 80% of yacht arrivals into Sri Lanka.",
+    "Founded by Achintha Hewagamage, Magnate Yachts handles over 80% of international yacht arrivals into Sri Lanka. SLPA-registered, based in Galle and Colombo.",
+  keywords: [
+    "Magnate Yachts about",
+    "Achintha Hewagamage yacht agent",
+    "Sri Lanka yacht agency",
+    "SLPA registered yacht agent",
+    "Galle yacht agent",
+    "international yacht arrivals Sri Lanka",
+  ],
+  alternates: { canonical: `${siteUrl}/about` },
+  openGraph: {
+    title: "About Magnate Yachts — Sri Lanka's #1 Yacht Clearance Agent",
+    description:
+      "Founded by Achintha Hewagamage, Magnate Yachts handles over 80% of international yacht arrivals into Sri Lanka.",
+    url: `${siteUrl}/about`,
+  },
 };
 
 const CREDENTIALS = [

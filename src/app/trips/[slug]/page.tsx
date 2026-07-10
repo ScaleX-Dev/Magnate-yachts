@@ -18,6 +18,8 @@ export function generateStaticParams() {
   return getAllTripSlugs().map((slug) => ({ slug }));
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://magnateyachts.com";
+
 export async function generateMetadata({
   params,
 }: {
@@ -28,10 +30,27 @@ export async function generateMetadata({
   const dayTrip = getDayTripBySlug(slug);
   if (!trip && !dayTrip) return {};
   const name = trip ? trip.shortName : dayTrip!.name;
-  const description = trip ? trip.subtitle : dayTrip!.paragraphs[0].slice(0, 160);
+  const description = trip
+    ? trip.subtitle
+    : dayTrip!.paragraphs[0].slice(0, 160);
+  const image = trip ? trip.image : dayTrip!.heroImage ?? dayTrip!.image;
   return {
-    title: name + " — Magnate Yachts Sri Lanka",
-    description,
+    title: `${name} — Private Tour from Galle, Sri Lanka`,
+    description: `${description} Private tour arranged by Magnate Yachts from Galle.`,
+    keywords: [
+      `${name} Sri Lanka`,
+      `${name} from Galle`,
+      "private tour Sri Lanka",
+      "yacht crew excursion Sri Lanka",
+      "Sri Lanka day trip sailing",
+    ],
+    alternates: { canonical: `${siteUrl}/trips/${slug}` },
+    openGraph: {
+      title: `${name} — Private Tour from Galle | Magnate Yachts`,
+      description,
+      url: `${siteUrl}/trips/${slug}`,
+      images: [{ url: image, width: 1200, height: 630, alt: name }],
+    },
   };
 }
 

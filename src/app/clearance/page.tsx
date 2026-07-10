@@ -6,10 +6,30 @@ import { Reveal } from "@/components/ui/Reveal";
 
 const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYzJiM2UiLz48L3N2Zz4=";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://magnateyachts.com";
+
 export const metadata: Metadata = {
-  title: "Yacht Clearance in Galle — Magnate Yachts Sri Lanka",
+  title: "Yacht Clearance in Galle & Trincomalee, Sri Lanka",
   description:
-    "Fast, transparent yacht clearance met at the dock. Fixed fee, no negotiation. The mandatory part of arriving in Sri Lanka, made the easy part.",
+    "Fast, transparent yacht clearance met at the dock. Fixed fee — immigration, customs, port authority, and harbour passes handled for you. Galle and Trincomalee.",
+  keywords: [
+    "yacht clearance Sri Lanka",
+    "Galle port clearance",
+    "Trincomalee yacht clearance",
+    "Sri Lanka yacht agent",
+    "sailing to Sri Lanka clearance",
+    "immigration clearance yacht",
+    "customs clearance yacht Sri Lanka",
+    "yacht agent Galle harbour",
+    "SLPA clearance",
+  ],
+  alternates: { canonical: `${siteUrl}/clearance` },
+  openGraph: {
+    title: "Yacht Clearance in Galle & Trincomalee — Magnate Yachts",
+    description:
+      "Fixed-fee yacht clearance handled dockside. Immigration, customs, port authority, and harbour security passes — all taken care of.",
+    url: `${siteUrl}/clearance`,
+  },
 };
 
 const INCLUDED = [

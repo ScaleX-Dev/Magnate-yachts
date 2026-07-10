@@ -5,10 +5,30 @@ import { ArrowRight, Anchor, Wind, Waves, Fuel, Droplets, Wrench, ShoppingBag, W
 import { Reveal } from "@/components/ui/Reveal";
 import { ImgPlaceholder } from "@/components/ui/ImgPlaceholder";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://magnateyachts.com";
+
 export const metadata: Metadata = {
-  title: "Port Guide — Galle & Trincomalee | Magnate Yachts Sri Lanka",
+  title: "Sri Lanka Port Guide — Galle & Trincomalee for Sailors",
   description:
-    "Full pilot information for Sri Lanka's two official yacht entry ports — Galle on the south coast and Trincomalee on the east. Approaches, anchorages, facilities, and seasonal notes.",
+    "Full pilot information for Sri Lanka's two official yacht entry ports. Approaches, VHF channels, anchorages, depths, facilities, and seasonal notes for Galle and Trincomalee.",
+  keywords: [
+    "Galle harbour pilot guide",
+    "Trincomalee anchorage guide",
+    "Sri Lanka sailing port guide",
+    "Galle yacht facilities",
+    "Trincomalee deepwater anchorage",
+    "Sri Lanka cruising guide",
+    "sailing Sri Lanka entry port",
+    "Galle VHF channel",
+    "Trincomalee VHF channel",
+  ],
+  alternates: { canonical: `${siteUrl}/port-guide` },
+  openGraph: {
+    title: "Sri Lanka Port Guide for Sailors — Galle & Trincomalee",
+    description:
+      "Approaches, anchorages, VHF channels, depths, and facilities for Galle and Trincomalee — Sri Lanka's two official yacht entry ports.",
+    url: `${siteUrl}/port-guide`,
+  },
 };
 
 /* ─── Data ───────────────────────────────────────────────────────────── */

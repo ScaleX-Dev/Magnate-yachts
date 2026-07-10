@@ -7,10 +7,31 @@ import { DAY_TRIPS, TRIPS } from "@/lib/trips-data";
 
 const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYzJiM2UiLz48L3N2Zz4=";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://magnateyachts.com";
+
 export const metadata: Metadata = {
-  title: "Trips — Magnate Yachts Sri Lanka",
+  title: "Sri Lanka Trips & Excursions for Sailors — From Galle",
   description:
-    "Day trips and multi-day tours from Galle. Safari in Yala, Galle Fort, tea country, Ella, Sigiriya and more.",
+    "Private day trips and multi-day tours from Galle — Yala safari, Galle Fort, tea country, Ella, Sigiriya, and custom itineraries tailored around your sailing schedule.",
+  keywords: [
+    "Sri Lanka tours from Galle",
+    "sailing holiday tours Sri Lanka",
+    "Yala safari from Galle",
+    "Galle Fort day trip",
+    "Sri Lanka tea country tour",
+    "Ella Sigiriya tour",
+    "private tours Sri Lanka sailors",
+    "yacht crew excursions Sri Lanka",
+    "multi-day Sri Lanka tour",
+    "bespoke Sri Lanka itinerary",
+  ],
+  alternates: { canonical: `${siteUrl}/trips` },
+  openGraph: {
+    title: "Sri Lanka Trips & Excursions for Sailors — Magnate Yachts",
+    description:
+      "Private day trips and multi-day tours built around your sailing schedule. Yala safari, Galle Fort, tea country, and custom routes.",
+    url: `${siteUrl}/trips`,
+  },
 };
 
 const CUSTOM = {
