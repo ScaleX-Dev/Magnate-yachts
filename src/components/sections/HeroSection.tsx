@@ -57,36 +57,38 @@ export function HeroSection() {
         >
           <LineReveal
             delay={0.18}
-            className="text-[clamp(2rem,5.2vw,6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] whitespace-nowrap"
+            className="text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] sm:whitespace-nowrap"
           >
             Anchor down.
           </LineReveal>
           <LineReveal
             delay={0.30}
-            className="text-[clamp(2rem,5.2vw,6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] whitespace-nowrap"
+            className="text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] sm:whitespace-nowrap"
           >
             Your Sri Lanka adventure
           </LineReveal>
           <LineReveal
             delay={0.42}
-            className="text-[clamp(2rem,5.2vw,6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] whitespace-nowrap"
+            className="text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] sm:whitespace-nowrap"
           >
             begins here
           </LineReveal>
-          <LineReveal
-            delay={0.54}
-            className="text-[clamp(2rem,5.2vw,6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] whitespace-nowrap"
-          >
-            <motion.span
-              className="inline-flex items-center gap-2 ml-4 sm:ml-6 text-[clamp(0.55rem,0.95vw,0.78rem)] font-medium uppercase tracking-[0.28em] text-[var(--color-amber)] align-middle"
-              style={{ fontFamily: "var(--font-accent)", verticalAlign: "middle", transform: "translateY(-0.12em)" }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.95 }}
+          <div className="hidden sm:block">
+            <LineReveal
+              delay={0.54}
+              className="text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] whitespace-nowrap"
             >
-              Galle&nbsp;&nbsp;·&nbsp;&nbsp;Trincomalee
-            </motion.span>
-          </LineReveal>
+              <motion.span
+                className="inline-flex items-center gap-2"
+                style={{ fontFamily: "var(--font-accent)", fontSize: "clamp(1.6rem,3.6vw,3rem)", letterSpacing: "0.28em", color: "var(--color-amber)", verticalAlign: "middle", transform: "translateY(-0.08em)" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.95 }}
+              >
+                Galle&nbsp;&nbsp;·&nbsp;&nbsp;Trincomalee
+              </motion.span>
+            </LineReveal>
+          </div>
         </h1>
 
         {/* CTAs */}

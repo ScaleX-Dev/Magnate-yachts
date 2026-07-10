@@ -89,20 +89,45 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
   background-color: var(--color-midnight);
   color: var(--color-navy);
   font-family: var(--font-body);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.125rem);
+  line-height: 1.78;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
 
+p, li, label, span, small, button, a, input, textarea, select {
+  font-size: inherit;
+}
+
+/* In @layer base so Tailwind utility classes (text-xl, text-2xl, etc.) can override */
+@layer base {
+  h1 { font-size: clamp(2.6rem, 4.5vw, 3.75rem); line-height: 1.08; }
+  h2 { font-size: clamp(2rem, 3.5vw, 2.65rem); line-height: 1.14; }
+  h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; }
+  h4 { font-size: clamp(1.25rem, 1.9vw, 1.6rem); line-height: 1.24; }
+}
+
 /* ─── Typography helpers ─────────────────────────────────────────── */
 .font-display { font-family: var(--font-display); }
 .font-accent  { font-family: var(--font-accent); }
+
+/* Semantic Tailwind sizes — boost slightly for readability */
+[class~="text-xs"]   { font-size: 0.875rem !important; }
+[class~="text-sm"]   { font-size: 1rem !important; }
+[class~="text-base"] { font-size: 1.0625rem !important; }
+[class~="text-lg"]   { font-size: 1.1875rem !important; }
+
+/* Genuinely tiny pixel sizes only — 12px+ is already readable */
+[class*="text-[10px]"] { font-size: 0.8125rem !important; }
+[class*="text-[11px]"] { font-size: 0.875rem !important; }
 
 /* ─── Container ──────────────────────────────────────────────────── */
 .container-site {
@@ -158,8 +183,8 @@ body {
 /* ─── Form inputs ────────────────────────────────────────────────── */
 .form-input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
+  padding: 0.8125rem 1rem;
+  font-size: 1rem;
   font-family: var(--font-body);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: var(--radius-sm);
