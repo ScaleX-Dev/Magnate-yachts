@@ -29,7 +29,10 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://magnateyachts.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Magnate Yachts — Sri Lanka Yacht Clearance & Tours",
     template: "%s | Magnate Yachts",
@@ -37,10 +40,32 @@ export const metadata: Metadata = {
   description:
     "Sri Lanka's leading sailing yacht agent. Port clearance in Galle & Trincomalee, guided land tours, and everything your crew needs from anchor down to sail out.",
   keywords: ["Sri Lanka yacht", "Galle port clearance", "sailing Sri Lanka", "yacht agent Sri Lanka", "sailing tours Sri Lanka"],
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "Magnate Yachts",
+    title: "Magnate Yachts",
+    description:
+      "Sri Lanka's leading sailing yacht agent. Port clearance in Galle & Trincomalee, guided land tours, and everything your crew needs from anchor down to sail out.",
+    images: [
+      {
+        url: "/images/site/hero-main.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Magnate Yachts yacht clearance and tours",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Magnate Yachts",
+    description:
+      "Sri Lanka's leading sailing yacht agent. Port clearance in Galle & Trincomalee, guided land tours, and everything your crew needs from anchor down to sail out.",
+    images: ["/images/site/hero-main.jpg"],
   },
 };
 
