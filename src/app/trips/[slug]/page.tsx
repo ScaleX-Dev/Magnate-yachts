@@ -211,7 +211,7 @@ export default async function TripDetailPage({
         return (
           <section key={day.n} className="bg-[var(--color-ivory)]">
             <div className="container-site pb-4">
-              <div className={"grid grid-cols-1 lg:grid-cols-2 gap-0 items-start " + (imageRight ? "" : "lg:[direction:rtl] [&>*]:[direction:ltr]")}>
+              <div className={"grid grid-cols-1 lg:grid-cols-2 gap-x-16 xl:gap-x-24 gap-y-0 items-start " + (imageRight ? "" : "lg:[direction:rtl] [&>*]:[direction:ltr]")}>
                 <Reveal className="flex flex-col justify-end pt-14 pb-6 lg:pb-4" y={16}>
                   <span className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/60 mb-2" style={{ fontFamily: "var(--font-accent)" }}>{day.label}</span>
                   <span className="block text-[8rem] sm:text-[11rem] lg:text-[14rem] font-semibold leading-none text-[var(--color-trips)]/40 select-none -ml-1" style={{ fontFamily: "var(--font-display)" }} aria-hidden>
@@ -221,7 +221,7 @@ export default async function TripDetailPage({
                     {day.title}
                   </h2>
                 </Reveal>
-                <Reveal className="lg:pt-14 lg:pl-8" delay={0.1} y={16}>
+                <Reveal className="lg:pt-14" delay={0.1} y={16}>
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl shadow-[0_24px_60px_-30px_rgba(11,31,58,0.3)]">
                     <Image src={day.image} alt={day.imageLabel} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" placeholder="blur" blurDataURL={BLUR} />
                   </div>

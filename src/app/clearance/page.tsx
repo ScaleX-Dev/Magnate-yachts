@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Flag } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
+
+const BLUR = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxYzJiM2UiLz48L3N2Zz4=";
 
 export const metadata: Metadata = {
   title: "Yacht Clearance in Galle — Magnate Yachts Sri Lanka",
@@ -51,9 +54,27 @@ const STEPS = [
 export default function ClearancePage() {
   return (
     <>
-      {/* ── Hero ── deep ocean */}
-      <section className="bg-[var(--color-navy)]">
-        <div className="container-site py-16 lg:py-24">
+      {/* ── Hero ── full-bleed image background */}
+      <section className="relative min-h-[65svh] flex flex-col justify-between overflow-hidden bg-[#060c18]">
+
+        {/* Background image */}
+        <Image
+          src="/images/site/about-story.jpg"
+          alt="Yachts at berth, Galle harbour"
+          fill
+          priority
+          placeholder="blur"
+          blurDataURL={BLUR}
+          className="object-cover opacity-50 scale-[1.03]"
+          style={{ willChange: "transform" }}
+        />
+        {/* Cinematic gradient — dark top → transparent mid → rich dark bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060c18]/90 via-[#060c18]/20 to-[#060c18]/85 pointer-events-none" />
+        {/* Side vignette */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, transparent 55%, rgba(6,12,24,0.55) 100%)" }} />
+
+        {/* Content */}
+        <div className="relative z-10 container-site py-16 lg:py-24 flex flex-col justify-end h-full">
           <Reveal>
             <p
               className="text-[11px] font-semibold uppercase tracking-[0.32em] mb-6"
@@ -63,15 +84,15 @@ export default function ClearancePage() {
             </p>
             <h1
               className="text-[clamp(2.5rem,7vw,5.5rem)] font-light text-white leading-[1.05] mb-6 max-w-3xl"
-              style={{ fontFamily: "var(--font-display)" }}
+              style={{ fontFamily: "var(--font-display)", textShadow: "0 2px 40px rgba(6,12,24,0.6)" }}
             >
               Seamless Yacht Clearance
               <br />
-              <span style={{ color: "rgba(91,184,232,0.5)", fontStyle: "italic" }}>in Sri Lanka</span>
+              <span style={{ color: "rgba(91,184,232,0.6)", fontStyle: "italic" }}>in Sri Lanka</span>
             </h1>
             <p
               className="text-[15px] leading-relaxed max-w-md"
-              style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.45)" }}
+              style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.55)", textShadow: "0 1px 20px rgba(6,12,24,0.5)" }}
             >
               Fast, transparent, and handled at the dock. The mandatory process of arriving in Sri Lanka, simplified.
             </p>
@@ -86,7 +107,7 @@ export default function ClearancePage() {
               <Link
                 href="#how-it-works"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-[13.5px] font-medium transition-all duration-300"
-                style={{ border: "1px solid rgba(91,184,232,0.2)", color: "rgba(91,184,232,0.7)", fontFamily: "var(--font-body)" }}
+                style={{ border: "1px solid rgba(91,184,232,0.3)", color: "rgba(91,184,232,0.8)", fontFamily: "var(--font-body)" }}
               >
                 How it works
               </Link>
@@ -95,7 +116,7 @@ export default function ClearancePage() {
         </div>
 
         {/* Wave divider */}
-        <div style={{ height: "2px", background: "linear-gradient(90deg, transparent, rgba(42,125,168,0.5), transparent)" }} />
+        <div className="relative z-10" style={{ height: "2px", background: "linear-gradient(90deg, transparent, rgba(42,125,168,0.5), transparent)" }} />
       </section>
 
       {/* ── What's included ── dark ocean */}

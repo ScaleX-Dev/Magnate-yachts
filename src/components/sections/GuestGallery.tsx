@@ -4,7 +4,7 @@ const PHOTOS = [
   {
     label: "Yachts at berth, Galle harbour",
     tall: false,
-    src: "/images/site/about-story.jpg",
+    src: "/images/site/5day-day3-kandy.jpg",
   },
   {
     label: "Elephant safari, Udawalawe National Park",
@@ -14,12 +14,12 @@ const PHOTOS = [
   {
     label: "Nine Arch Bridge at sunrise, Ella",
     tall: false,
-    src: "/images/site/clearance-harbour.jpg",
+    src: "/images/site/ella-train.jpg",
   },
   {
     label: "Dutch Quarter at dusk, Galle Fort",
     tall: false,
-    src: "/images/site/5day-day4-sigiriya.jpg",
+    src: "/images/site/galle-fort.jpg",
   },
   {
     label: "Sigiriya rock fortress at sunrise",

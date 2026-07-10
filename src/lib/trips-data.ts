@@ -81,7 +81,7 @@ const DAY_SAFARI: TripDay = {
   n: "01",
   label: "DAY 1",
   title: "Yala or Udawalawe",
-  image: "/images/site/gallery-elephant-safari.jpg",
+  image: "/images/site/Safari.jpg",
   description:
     "An early departure, into whichever park you have chosen, both celebrated for their leopards and for elephant herds that move, unhurried, across open grassland. By evening, you return to comfort — and by morning, to breakfast, before the day begins again.",
   imageLabel: "Elephant herd at dusk, Udawalawe National Park",
@@ -102,7 +102,7 @@ export const TRIPS: Trip[] = [
         n: "02",
         label: "DAY 2",
         title: "Into Ella",
-        image: "/images/site/clearance-harbour.jpg",
+        image: "/images/site/ella-train.jpg",
         description:
           "The road narrows. It climbs. And somewhere past Haputale, the air changes entirely — cooler, thinner, carrying the scent of eucalyptus and wet earth. Tea estates unfurl down into the valleys below, mist gathering in the low places and lingering there, often past midday. In Ella, you will stand upon the Nine Arch Bridge as a train threads through it — a feat of engineering now nearly a century old, still doing exactly what it was built to do. Little Adam's Peak offers, for comparatively little effort, a view over the entire valley. And at the foot of Ravana Falls, the water falls exactly as it has for longer than anyone has thought to measure. A final stop at a tea estate brings you close to the hills you have spent the day admiring from a distance.",
         imageLabel: "Nine Arch Bridge at first light, Ella",
@@ -113,7 +113,7 @@ export const TRIPS: Trip[] = [
         title: "Homeward, at your own pace",
         description:
           "No urgency here. Only the return journey, in the same comfort as the outward one.",
-        image: "/images/site/5day-day5-tea.jpg",
+        image: "/images/site/tea-plants.jpg",
         imageLabel: "Tea country, central Sri Lanka",
       },
     ],
@@ -146,7 +146,7 @@ export const TRIPS: Trip[] = [
         n: "02",
         label: "DAY 2",
         title: "Ella",
-        image: "/images/site/3day-day1-yala.jpg",
+        image: "/images/site/ella.png",
         description:
           "Tea hills roll away on either side of the road for the better part of the climb. The Nine Arch Bridge. Little Adam's Peak. The cool descent to Ravana Falls, where the water has been finding its way down for rather longer than the road has existed.",
         imageLabel: "Nine Arch Bridge, Ella, morning light",
@@ -155,7 +155,7 @@ export const TRIPS: Trip[] = [
         n: "03",
         label: "DAY 3",
         title: "Kandy",
-        image: "/images/site/gallery-galle-street.jpg",
+        image: "/images/site/kandy.jpg",
         description:
           "The Temple of the Tooth Relic greets the morning in low chant and the scent of incense — a place of pilgrimage for the better part of a millennium, and none the less affecting for its age. By afternoon, the Royal Botanical Gardens at Peradeniya open into an avenue of palms that dwarf everything around them, an orchid house heavy with scent, and shade enough to persuade you to slow down, at last, for a few hours.",
         imageLabel: "Temple of the Tooth Relic, Kandy, early morning",
@@ -164,7 +164,7 @@ export const TRIPS: Trip[] = [
         n: "04",
         label: "DAY 4",
         title: "Sigiriya and Pidurangala",
-        image: "/images/site/3day-day2-ella.jpg",
+        image: "/images/site/sigiriya.jpg",
         description:
           "Sigiriya rises, quite improbably, straight out of the flat jungle floor — a slab of rock over two hundred metres high, crowned by the remains of a fifth-century palace that once stood, by all accounts, rather magnificently. The climb reveals frescoes part of the way up, and near the summit, the great stone paws of a lion long since vanished. From the top, the jungle stretches in every direction, entirely unbroken. And across the way, Pidurangala offers the finest view of Sigiriya there is — best appreciated, as it happens, just as the sun begins to set.",
         imageLabel: "Sigiriya rock fortress at sunrise, Sri Lanka",
@@ -174,7 +174,7 @@ export const TRIPS: Trip[] = [
         label: "DAY 5",
         title: "Homeward, at your own pace",
         description: "The return, unhurried, exactly as it began.",
-        image: "/images/site/5day-day5-tea.jpg",
+        image: "/images/site/tea-plants.jpg",
         imageLabel: "Tea country, central Sri Lanka",
       },
     ],

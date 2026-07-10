@@ -29,7 +29,7 @@ export function ClearanceSection() {
           <Reveal>
           <div className="relative aspect-[4/3] w-full overflow-hidden" style={{ borderRadius: "20px", boxShadow: "0 32px 80px -20px rgba(6,12,24,0.6), 0 0 0 1px rgba(42,125,168,0.2)" }}>
             <Image
-              src="/images/site/clearance-harbour.jpg"
+              src="/images/site/clearnace.jpg"
               alt="Sailing yachts moored in Galle harbour"
               fill
               placeholder="blur"
