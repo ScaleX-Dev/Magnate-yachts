@@ -49,8 +49,20 @@ export default async function TripDetailPage({
   if (dayTrip) {
     return (
       <>
-        <section className="bg-[#080e1a] min-h-[55svh] flex flex-col justify-between">
-          <div className="container-site flex items-center justify-between pt-5 pb-3">
+        <section className="relative bg-[#080e1a] min-h-[60svh] flex flex-col justify-between overflow-hidden">
+          <Image
+            src={dayTrip.heroImage ?? dayTrip.image}
+            alt={dayTrip.name}
+            fill
+            className="object-cover opacity-50 scale-[1.03]"
+            sizes="100vw"
+            priority
+            placeholder="blur"
+            blurDataURL={BLUR}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#060c18]/90 via-[#060c18]/20 to-[#060c18]/85 pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(6,12,24,0.55)_100%)] pointer-events-none" />
+          <div className="relative z-10 container-site flex items-center justify-between pt-5 pb-3">
             <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-[var(--color-trips)]/60" style={{ fontFamily: "var(--font-accent)" }}>
               <Link href="/trips" className="hover:text-[var(--color-trips)]/90 transition-colors">
                 Trips
@@ -62,12 +74,12 @@ export default async function TripDetailPage({
               <ArrowLeft size={10} /> All trips
             </Link>
           </div>
-          <div className="container-site pb-14 pt-10">
+          <div className="relative z-10 container-site pb-14 pt-12">
             <Reveal>
-              <span className="inline-block text-[9px] uppercase tracking-[0.28em] border border-white/15 text-white/40 px-3 py-1.5 mb-8" style={{ fontFamily: "var(--font-accent)" }}>
+              <span className="inline-block text-[9px] uppercase tracking-[0.28em] border border-white/22 text-white/60 px-3 py-1.5 mb-8" style={{ fontFamily: "var(--font-accent)" }}>
                 One day · US${dayTrip.price} · {dayTrip.priceNote}
               </span>
-              <h1 className="text-[clamp(2.5rem,7vw,5.5rem)] font-semibold text-white leading-[1.04] mb-4" style={{ fontFamily: "var(--font-display)" }}>
+              <h1 className="text-[clamp(2.5rem,7vw,5.5rem)] font-semibold text-white leading-[1.04] mb-4" style={{ fontFamily: "var(--font-display)", textShadow: "0 2px 40px rgba(6,12,24,0.6)" }}>
                 {dayTrip.name}
               </h1>
             </Reveal>
@@ -75,13 +87,6 @@ export default async function TripDetailPage({
         </section>
 
         <section className="bg-[var(--color-ivory)]">
-          <div className="container-site pt-12">
-            <Reveal>
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl shadow-[0_32px_80px_-28px_rgba(6,12,24,0.3)]">
-                <Image src={dayTrip.heroImage ?? dayTrip.image} alt={dayTrip.name} fill className="object-cover" sizes="(max-width: 1280px) 100vw, 1280px" priority placeholder="blur" blurDataURL={BLUR} />
-              </div>
-            </Reveal>
-          </div>
           <div className="container-site py-10 lg:py-14">
             <div className="max-w-2xl flex flex-col gap-6">
               {dayTrip.paragraphs.map((para, i) => (
@@ -210,16 +215,19 @@ export default async function TripDetailPage({
         const imageRight = i % 2 === 0;
         return (
           <section key={day.n} className="bg-[var(--color-ivory)]">
-            <div className="container-site pb-4">
-              <div className={"grid grid-cols-1 lg:grid-cols-2 gap-x-16 xl:gap-x-24 gap-y-0 items-start " + (imageRight ? "" : "lg:[direction:rtl] [&>*]:[direction:ltr]")}>
-                <Reveal className="flex flex-col justify-end pt-14 pb-6 lg:pb-4" y={16}>
+            <div className="container-site pb-12 lg:pb-16">
+              <div className={"grid grid-cols-1 lg:grid-cols-2 gap-x-16 xl:gap-x-24 gap-y-0 items-stretch " + (imageRight ? "" : "lg:[direction:rtl] [&>*]:[direction:ltr]")}>
+                <Reveal className="flex flex-col pt-14 pb-0 overflow-hidden" y={16}>
                   <span className="text-[10px] uppercase tracking-widest text-[var(--color-navy)]/60 mb-2" style={{ fontFamily: "var(--font-accent)" }}>{day.label}</span>
-                  <span className="block text-[8rem] sm:text-[11rem] lg:text-[14rem] font-semibold leading-none text-[var(--color-trips)]/40 select-none -ml-1" style={{ fontFamily: "var(--font-display)" }} aria-hidden>
+                  <span className="block text-[8rem] sm:text-[11rem] lg:text-[14rem] font-semibold leading-none text-[var(--color-trips)]/40 select-none -ml-1 flex-1" style={{ fontFamily: "var(--font-display)" }} aria-hidden>
                     {day.n}
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-semibold text-[var(--color-navy)] mt-2 leading-snug" style={{ fontFamily: "var(--font-display)" }}>
                     {day.title}
                   </h2>
+                  <p className="mt-5 text-sm text-[var(--color-navy)]/75 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
+                    {day.description}
+                  </p>
                 </Reveal>
                 <Reveal className="lg:pt-14" delay={0.1} y={16}>
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl shadow-[0_24px_60px_-30px_rgba(11,31,58,0.3)]">
@@ -227,9 +235,6 @@ export default async function TripDetailPage({
                   </div>
                 </Reveal>
               </div>
-              <p className="mt-7 mb-10 text-sm text-[var(--color-navy)]/75 leading-relaxed max-w-2xl" style={{ fontFamily: "var(--font-body)" }}>
-                {day.description}
-              </p>
             </div>
           </section>
         );

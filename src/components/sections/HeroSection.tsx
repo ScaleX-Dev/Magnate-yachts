@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { ImgPlaceholder } from "@/components/ui/ImgPlaceholder";
 
 const EASE_EXPO = [0.22, 1, 0.36, 1] as const;
 
@@ -32,57 +31,58 @@ function LineReveal({
 
 export function HeroSection() {
   return (
-    <section className="relative" style={{ backgroundImage: [
-      "radial-gradient(ellipse 55% 50% at 100% 0%,   rgba(196,146,74,0.07) 0%, transparent 65%)",
-      "radial-gradient(ellipse 45% 40% at   0% 100%, rgba(15,29,51,0.04)   0%, transparent 65%)",
-      "linear-gradient(160deg, #F4F1EA 0%, #EEE9DF 100%)",
-    ].join(", ") }}>
-      <div className="container-site pt-5 md:pt-6 pb-10 md:pb-14">
+    <section className="relative bg-[var(--color-navy-dark)] min-h-[calc(100svh-68px)] md:min-h-[calc(100svh-72px)] lg:min-h-[calc(100svh-104px)] flex flex-col justify-end overflow-hidden">
+      {/* Video background */}
+      <video
+        src="/images/site/VIDEO%201.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-55"
+        style={{ willChange: "transform" }}
+      />
 
-        {/* Hero image */}
-        <motion.div
-          className="mb-8 md:mb-10"
-          initial={{ opacity: 0, scale: 1.015 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease: EASE_EXPO }}
-        >
-          <ImgPlaceholder
-            src="/images/site/hero-main.jpg"
-            label="Sailing yacht at sea — Sri Lanka"
-            aspectRatio="aspect-[16/9]"
-            priority
-            className="rounded-2xl shadow-[0_20px_60px_-20px_rgba(6,12,24,0.18)]"
-          />
-        </motion.div>
+      {/* Lighter overlays — let the video show through */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080F1E]/75 via-[#080F1E]/10 to-[#080F1E]/72 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(8,15,30,0.45)_100%)] pointer-events-none" />
+
+      {/* Content — anchored to bottom */}
+      <div className="relative z-10 container-site pb-10 md:pb-12 overflow-x-hidden">
 
         {/* Headline */}
         <h1
-          className="mb-8 md:mb-10"
+          className="mb-6 md:mb-8"
           style={{ fontFamily: "var(--font-display)" }}
         >
           <LineReveal
             delay={0.18}
-            className="text-[clamp(2.6rem,7.5vw,6.5rem)] font-bold text-[var(--color-navy)] leading-[0.93] tracking-[-0.02em]"
+            className="text-[clamp(2rem,5.2vw,6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] whitespace-nowrap"
           >
             Anchor down.
           </LineReveal>
           <LineReveal
-            delay={0.32}
-            className="text-[clamp(2.6rem,7.5vw,6.5rem)] font-bold text-[var(--color-navy)] leading-[0.93] tracking-[-0.02em]"
+            delay={0.30}
+            className="text-[clamp(2rem,5.2vw,6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] whitespace-nowrap"
           >
-            Your Sri Lanka adventure begins
+            Your Sri Lanka adventure
           </LineReveal>
           <LineReveal
-            delay={0.46}
-            className="text-[clamp(2.6rem,7.5vw,6.5rem)] font-bold text-[var(--color-navy)] leading-[0.93] tracking-[-0.02em]"
+            delay={0.42}
+            className="text-[clamp(2rem,5.2vw,6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] whitespace-nowrap"
           >
-            <span>here.</span>
+            begins here
+          </LineReveal>
+          <LineReveal
+            delay={0.54}
+            className="text-[clamp(2rem,5.2vw,6rem)] font-semibold text-white leading-[0.94] tracking-[-0.01em] whitespace-nowrap"
+          >
             <motion.span
-              className="inline-flex items-center gap-2 ml-4 sm:ml-6 text-[clamp(0.6rem,1.35vw,0.875rem)] font-medium uppercase tracking-[0.22em] text-[var(--color-amber)] align-middle"
-              style={{ fontFamily: "var(--font-accent)", verticalAlign: "middle", transform: "translateY(-0.1em)" }}
+              className="inline-flex items-center gap-2 ml-4 sm:ml-6 text-[clamp(0.55rem,0.95vw,0.78rem)] font-medium uppercase tracking-[0.28em] text-[var(--color-amber)] align-middle"
+              style={{ fontFamily: "var(--font-accent)", verticalAlign: "middle", transform: "translateY(-0.12em)" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.82 }}
+              transition={{ duration: 0.7, delay: 0.95 }}
             >
               Galle&nbsp;&nbsp;·&nbsp;&nbsp;Trincomalee
             </motion.span>
@@ -94,11 +94,11 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row gap-3"
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7, ease: EASE_EXPO }}
+          transition={{ duration: 0.8, delay: 0.75, ease: EASE_EXPO }}
         >
           <Link
             href="/book"
-            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-navy)] text-white text-[13.5px] font-medium tracking-wide hover:bg-[var(--color-navy-dark)] hover:shadow-[0_16px_48px_-8px_rgba(6,12,24,0.35)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
+            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full bg-white text-[var(--color-navy)] text-[13.5px] font-medium tracking-wide hover:bg-white/92 hover:shadow-[0_16px_48px_-8px_rgba(6,12,24,0.55)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Plan your stay
@@ -106,7 +106,7 @@ export function HeroSection() {
           </Link>
           <Link
             href="/clearance"
-            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full border border-[var(--color-navy)]/22 text-[var(--color-navy)] text-[13.5px] font-medium tracking-wide hover:border-[var(--color-navy)]/45 hover:bg-[var(--color-navy)]/[0.04] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
+            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-navy-mid)] text-white text-[13.5px] font-medium tracking-wide hover:bg-[var(--color-navy)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Arrange Clearance
